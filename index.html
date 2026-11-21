@@ -2716,6 +2716,8 @@ routeHash();
 /* ── 확인 문제 (교재를 공부한 뒤 푸는 4지선다 5문항) ──
    교재(학생 그룹별로 바뀐 표현이 반영된 본문) + 학생 프로필(진단 수준·위계별 숙달도·병목)로 만든다.
    예시 자료는 미리 만든 문항을 쓰고, 올린 PDF는 Claude로 만든다. 교사가 검토·승인한 문항만 학생 화면에 나온다. */
+/* 한국어 진단평가 결과 (가상 데이터 · 초 5~6학년 루브릭과 진단평가 앱 채점 코드로 계산). 실제 연동 시 진단평가 결과 파일로 바꾼다. */
+const DIAG = {"l2": {"name": "아지즈", "grade_band": "초등학교 5~6학년", "native_language": "우즈베크어", "virtual": true, "overall": "초급", "listening": {"score": 32, "max": 100, "level": "초급"}, "reading": {"score": 12, "max": 100, "level": "초급"}, "total": 44, "daily_korean": {"score": 12, "max": 52, "level": "보완 필요"}, "subjects": {"국어": {"score": 0, "max": 34, "by_score": "초급", "by_criterion": "초급 미달", "level": "초급 미달", "correct_by_level": "초급 0/2 · 중급 0/2 · 고급 0/2"}, "수학": {"score": 8, "max": 35, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"}, "사회": {"score": 18, "max": 36, "by_score": "중급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"}, "과학": {"score": 6, "max": 43, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 1/2 · 중급 0/2 · 고급 0/2"}}, "wrong_items": ["듣3", "듣6", "듣8", "듣9", "듣10", "듣12", "듣13", "듣14", "듣15", "읽2", "읽3", "읽4", "읽6", "읽7", "읽8", "읽10", "읽11", "읽12", "읽13", "읽14", "읽15", "읽16", "읽17", "읽18", "읽19", "읽20"]}, "l4": {"name": "바트볼드", "grade_band": "초등학교 5~6학년", "native_language": "몽골어", "virtual": true, "overall": "중급", "listening": {"score": 66, "max": 100, "level": "중급"}, "reading": {"score": 52, "max": 100, "level": "중급"}, "total": 118, "daily_korean": {"score": 46, "max": 52, "level": "양호"}, "subjects": {"국어": {"score": 22, "max": 34, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}, "수학": {"score": 16, "max": 35, "by_score": "중급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"}, "사회": {"score": 24, "max": 36, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}, "과학": {"score": 10, "max": 43, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"}}, "wrong_items": ["듣10", "듣13", "듣14", "듣15", "읽12", "읽13", "읽14", "읽16", "읽17", "읽18", "읽19", "읽20"]}, "l5": {"name": "리나", "grade_band": "초등학교 5~6학년", "native_language": "중국어", "virtual": true, "overall": "고급", "listening": {"score": 83, "max": 100, "level": "고급"}, "reading": {"score": 94, "max": 100, "level": "고급"}, "total": 177, "daily_korean": {"score": 52, "max": 52, "level": "양호"}, "subjects": {"국어": {"score": 34, "max": 34, "by_score": "고급", "by_criterion": "고급", "level": "고급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"}, "수학": {"score": 35, "max": 35, "by_score": "고급", "by_criterion": "고급", "level": "고급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"}, "사회": {"score": 30, "max": 36, "by_score": "고급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 1/2"}, "과학": {"score": 26, "max": 43, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}}, "wrong_items": ["듣13", "듣14", "읽18"]}};
 const QZN = 5;
 const QZ_DEMO = {
   l2: [
@@ -2759,10 +2761,31 @@ function stuPlain(g, key){
 function qzKeys(){ return blockList().map(b => b.id).filter(k => P[k]); }
 function qzSrcText(g, key){ return P[key] ? stuPlain(g, key) : ""; }
 
+/* 문항 말투·어휘 단계: 진단평가 결과가 있으면 '이 교과 수준'과 '읽기 등급' 중 낮은 쪽, 없으면 전체 한국어 수준(1~6)으로 정한다. */
+const DLV = ["초급 미달", "초급", "중급", "고급"];
+function qzTier(g){
+  const dg = DIAG[g];
+  if (dg){
+    const sj = dg.subjects[curSubj()], a = sj ? DLV.indexOf(sj.level) : 3, b = DLV.indexOf(dg.reading.level);
+    const lo = Math.min(a < 0 ? 3 : a, b < 0 ? 3 : b);
+    return {t: lo <= 1 ? 1 : lo === 2 ? 2 : 3, why: `${curSubj()} ${sj ? sj.level : "결과 없음"} · 읽기 ${dg.reading.level}${dg.daily_korean.level === "보완 필요" ? " · 생활 한국어 보완 필요" : ""}`};
+  }
+  const lv = PROFILES[g].overall_korean_level;
+  return {t: lv <= 2 ? 1 : lv <= 4 ? 2 : 3, why: `전체 수준 ${lv}`};
+}
+function diagText(g){
+  const dg = DIAG[g]; if (!dg) return "";
+  return `
+[한국어 진단평가 결과] (${dg.grade_band}용${dg.virtual ? ", 가상 데이터" : ""})
+- 듣기·읽기 종합: ${dg.overall} (듣기 ${dg.listening.score}/${dg.listening.max} ${dg.listening.level}, 읽기 ${dg.reading.score}/${dg.reading.max} ${dg.reading.level})
+- 생활 한국어: ${dg.daily_korean.level} (${dg.daily_korean.score}/${dg.daily_korean.max})
+- 교과별 수준(점수 등급과 수준 판정 기준 중 낮은 쪽): ${Object.entries(dg.subjects).map(([k, v]) => `${k} ${v.level}${v.by_score !== v.level ? `(점수로는 ${v.by_score})` : ""}`).join(", ")}
+- 이번 교과(${curSubj()}) 수준: ${dg.subjects[curSubj()] ? dg.subjects[curSubj()].level : "결과 없음"}`;
+}
 function qzPrompt(g){
-  const p = PROFILES[g], s = STU[g], lv = p.overall_korean_level;
-  const style = lv <= 2 ? "문장은 아주 짧게(한 문장 15자 안팎) 쓰고, 선지·해설은 해요체로 쓴다. 학생 교재에 나온 쉬운 표현을 그대로 쓰고, 처음 보는 어휘는 쓰지 않는다. '아닌 것' 같은 부정 발문은 쓰지 않는다."
-    : lv <= 4 ? "문장은 짧고 분명하게 쓰고, 해설은 합니다체로 쓴다. 학생 교재에 나온 표현을 쓰고, 부정 발문은 1문항까지만 쓴다."
+  const p = PROFILES[g], s = STU[g], lv = qzTier(g).t;
+  const style = lv <= 1 ? "문장은 아주 짧게(한 문장 15자 안팎) 쓰고, 선지·해설은 해요체로 쓴다. 학생 교재에 나온 쉬운 표현을 그대로 쓰고, 처음 보는 어휘는 쓰지 않는다. '아닌 것' 같은 부정 발문은 쓰지 않는다."
+    : lv <= 2 ? "문장은 짧고 분명하게 쓰고, 해설은 합니다체로 쓴다. 학생 교재에 나온 표현을 쓰고, 부정 발문은 1문항까지만 쓴다."
     : "교과서 원문 수준의 표현을 써도 된다. 개념을 적용하거나 비교하는 문항을 1~2개 넣는다.";
   const sj = p.subject[curSubj()];
   const blocks = qzKeys().map(k => ({key: k, text: stuPlain(g, k)})).filter(b => b.text.length > 1);
@@ -2771,9 +2794,10 @@ function qzPrompt(g){
 
 [학생]
 - 이름: ${s.name}, 모국어: ${p.native_language}
-- 전체 한국어 수준: ${lv} (듣기 ${p.skills.listening} · 읽기 ${p.skills.reading})
+- 전체 한국어 수준: ${p.overall_korean_level} (듣기 ${p.skills.listening} · 읽기 ${p.skills.reading})
 - 학습 한국어 위계 숙달도: ${JSON.stringify(p.academic_korean)} (B 생활, T1 교실 어휘, T2 사고 도구, T3 범용 지식 어휘, C 교과 적응) · 병목: ${(p.bottlenecks || []).join(", ") || "없음"}
-- ${curSubj()} 교과 진단: ${sj ? sj.representative_level + (sj.recheck_required ? " (재시행 필요, 불확실)" : "") : "결과 없음"}
+- ${curSubj()} 교과 진단: ${sj ? sj.representative_level + (sj.recheck_required ? " (재시행 필요, 불확실)" : "") : "결과 없음"}${diagText(g)}
+- 문항 난이도 기준: ${qzTier(g).why} → ${['','쉬움','보통','교과서 수준'][lv]}
 
 [교과] ${curSubj()}${st.doc && st.doc.unit ? " · " + st.doc.unit : ""}
 
@@ -2789,6 +2813,7 @@ ${terms || "(없음)"}
 3. 정답은 하나만 분명히 맞고, 오답 3개는 본문을 잘못 이해했을 때 고를 만한 그럴듯한 것으로 만든다. 정답 번호는 1~4에 고르게 흩어 놓는다.
 4. 발문은 모두 '~일까요?'로 끝낸다(예: '민사 재판은 무엇을 하는 재판일까요?', '알맞은 것은 무엇일까요?'). '~입니까?', '~은?', '~예요?'로 끝내지 않는다.
 5. 발문과 선지의 말투·어휘 수준: ${style}
+   이번 교과 수준이 초급 미달·초급이면 용어의 뜻과 사실 확인 위주로, 중급이면 관계·순서 이해를 더하고, 고급이면 적용·비교 문항을 넣는다. 듣기·읽기 중 낮은 쪽이 읽기라면 지문을 길게 인용하지 않는다.
 6. 병목 위계(${(p.bottlenecks || []).join(", ") || "없음"})의 어휘가 핵심인 문장은 확인 문항에 꼭 넣는다.
 7. why는 학생이 읽을 해설로, 같은 수준의 말투로 한두 문장 쓴다.
 
@@ -2810,7 +2835,7 @@ async function qzMakeFor(g, ai){
 async function qzMake(only){
   const groups = only ? [only] : [...st.mkGroups];
   st.qz.err = ""; st.qz.status = "making";
-  if (!st.doc){
+  if (!st.doc && !(only && await getAI())){
     for (const g of groups){ st.qz.byG[g] = clone(QZ_DEMO[g] || QZ_DEMO.l4); st.qz.ok.delete(g); }
     st.qz.busy = "예시 자료 확인 문제를 불러왔어요"; render();
     setTimeout(() => { st.qz.status = "review"; st.qz.busy = ""; st.qz.g = st.qz.g && st.mkGroups.has(st.qz.g) ? st.qz.g : groups[0]; render(); }, 500);
@@ -2843,7 +2868,7 @@ function qzTeacherHTML(){
   const pf = PROFILES[g];
   return `<div class="tcard qzt"><h2>확인 문제를 검토해 주세요</h2>
     <div class="ltabs">${groups.map(k => `<button type="button" data-qzg="${k}" aria-pressed="${g === k}">${STU[k].name}<span class="apv ${Q.ok.has(k) ? "y" : "n"}">${Q.ok.has(k) ? "승인" : "검토 전"}</span><small>${STU[k].lv} · ${STU[k].ln}</small></button>`).join("")}</div>
-    <p class="note" style="color:var(--sub)">${STU[g].name} 학생 기준: 전체 수준 ${pf.overall_korean_level} · 병목 위계 ${(pf.bottlenecks || []).map(b => `${b}(${TIER_NAME[TIER_OF[b]]})`).join(", ") || "없음"} · 발문은 ‘~일까요?’ · ${pf.overall_korean_level <= 2 ? "짧은 문장, 교재의 쉬운 표현 사용" : pf.overall_korean_level <= 4 ? "짧은 문장, 교재 표현 사용" : "교과서 원문 수준"}. 발문·선지·정답·해설을 바로 고칠 수 있어요.</p>
+    <p class="note" style="color:var(--sub)">${STU[g].name} 학생 기준: ${DIAG[g] ? `진단평가 ${qzTier(g).why} (종합 ${DIAG[g].overall}${DIAG[g].virtual ? ", 가상 데이터" : ""})` : `전체 수준 ${pf.overall_korean_level}`} · 병목 위계 ${(pf.bottlenecks || []).map(b => `${b}(${TIER_NAME[TIER_OF[b]]})`).join(", ") || "없음"} · 발문은 ‘~일까요?’ · ${qzTier(g).t <= 1 ? "짧은 문장, 교재의 쉬운 표현 사용" : qzTier(g).t <= 2 ? "짧은 문장, 교재 표현 사용" : "교과서 원문 수준"}. 발문·선지·정답·해설을 바로 고칠 수 있어요.</p>
     ${Q.err ? `<span class="err">${esc(Q.err)}</span>` : ""}
     ${items.length ? items.map((it, i) => `<div class="qzc${ok ? " lock" : ""}">
       <div class="qzh"><b>${i + 1}</b><textarea rows="2" data-qzf="q" data-qzi="${i}" aria-label="${i + 1}번 발문" ${ok ? "disabled" : ""}>${esc(it.q)}</textarea>${ok ? "" : `<button type="button" class="btn s" data-qzdel="${i}" aria-label="${i + 1}번 문항 지우기">지우기</button>`}</div>
@@ -2867,7 +2892,7 @@ function qzStuHTML(){
   const g = st.stu, Q = st.qz;
   if (Q.status !== "sent" || !Q.ok.has(g) || !(Q.byG[g] || []).length) return "";
   const items = Q.byG[g], a = Q.ans[g] || (Q.ans[g] = {}), done = !!Q.done[g];
-  const easy = PROFILES[g].overall_korean_level <= 2;
+  const easy = qzTier(g).t <= 1;
   if (!Q.open) return `<div class="qzs-in qzentry"><div><b>확인 문제 ${items.length}개</b><p>${easy ? "자료를 다 읽었어요? 문제를 풀어 봐요." : "자료를 다 공부했으면 확인 문제를 풀어 보세요."}</p></div><button type="button" class="btn p" data-qz="open">${done ? "결과 보기" : "풀기"}</button></div>`;
   const n = items.filter((it, i) => +a[i] === it.ans).length, filled = items.every((it, i) => a[i]);
   return `<div class="qzs-in"><div class="qzst"><h2>확인 문제</h2><button type="button" class="x" data-qz="close" aria-label="닫기">✕</button></div>
