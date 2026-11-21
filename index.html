@@ -438,6 +438,47 @@ body.drawing .inkc{pointer-events:auto;touch-action:none;cursor:crosshair}
 .tri{display:grid;gap:2px;padding:8px 10px;border-radius:10px;background:var(--chip)}
 .tri .ko{font-size:13px;color:var(--sub)}
 .tri .l1{font-size:15px;color:var(--title);font-family:"Noto Sans",var(--font)}
+
+.qzhb{flex:1;min-width:0;display:grid;gap:4px}.qztags{display:flex;gap:4px}
+.qztag{display:inline-block;font-size:11px;font-weight:600;border-radius:999px;padding:0 8px;background:var(--chip);color:var(--sub);line-height:18px;vertical-align:middle}
+.qztag.ch{background:var(--amber-300);color:var(--amber-500)}
+.qzplan{display:grid;gap:4px;font-size:13px;color:var(--sub)}.qzplan b{color:var(--title)}.qzplan em{font-style:normal;color:var(--amber-500);margin-left:6px}
+/* 확인 문제 */
+.qzt textarea,.qzt input[type="text"]{font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;width:100%;box-sizing:border-box;min-width:0}
+.qzt textarea{resize:vertical;line-height:1.5}
+.qzt textarea:disabled,.qzt input:disabled{background:transparent;border-color:transparent;color:var(--fg);opacity:1}
+.qzc{border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px}
+.qzc.lock{background:var(--bg)}
+.qzh{display:flex;gap:8px;align-items:flex-start}.qzh .btn{flex:none;white-space:nowrap}.qzh>b{flex:none;width:24px;height:24px;border-radius:999px;background:var(--title);color:var(--bg);display:grid;place-items:center;font-size:13px;margin-top:4px}
+.qzo{display:grid;gap:6px;padding-left:32px}
+.qzo label{display:flex;gap:6px;align-items:center;border-radius:8px;padding:2px 4px}
+.qzo label.on{background:var(--ok-300)}.qzo label.on .n{color:var(--teal-600);font-weight:700}
+.qzo .n{flex:none;width:18px;color:var(--sub)}
+.qzw,.qzsrc{display:flex;gap:8px;align-items:baseline;padding-left:32px;font-size:13px;color:var(--sub);line-height:1.6}
+.qzw .lab,.qzsrc .lab{flex:none;font-size:11px;font-weight:600;color:var(--muted);background:var(--chip);border-radius:999px;padding:0 8px}
+.qzspin{width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--teal-500);border-radius:999px;animation:spin .8s linear infinite}
+.qzr{border-collapse:collapse;font-size:13px;width:100%}.qzr th,.qzr td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}.qzr th{color:var(--muted);font-weight:600;font-size:12px}
+.qzs{max-width:860px;margin:16px auto 0;padding:0 16px 96px}
+.qzs-in{background:var(--card);border-radius:16px;padding:18px;display:grid;gap:14px}
+.qzentry{grid-template-columns:1fr auto;align-items:center;border:2px solid var(--teal-500)}
+.qzentry b{font-size:17px;color:var(--title)}.qzentry p{margin:2px 0 0;font-size:14px;color:var(--sub)}
+.qzentry .btn{font-size:15px;padding:10px 22px}
+.qzst{display:flex;justify-content:space-between;align-items:center}.qzst h2{margin:0;font-size:19px;color:var(--title)}
+.qzst .x{border:0;background:var(--chip);border-radius:999px;width:30px;height:30px;color:var(--sub);cursor:pointer}
+.qzscore{display:flex;gap:12px;align-items:baseline;background:var(--ok-300);border-radius:12px;padding:10px 14px}.qzscore b{font-size:24px;color:var(--teal-600);font-variant-numeric:tabular-nums}.qzscore span{font-size:14px;color:var(--title)}
+.qzq{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.qq{margin:0;font-size:17px;line-height:1.6;color:var(--title);display:flex;gap:8px}.qn{flex:none;width:26px;height:26px;border-radius:999px;background:var(--title);color:var(--bg);display:grid;place-items:center;font-size:14px;margin-top:2px}
+.qzopts{display:grid;gap:8px;padding-left:34px}
+.qzopts button{display:flex;gap:10px;align-items:flex-start;text-align:left;font:inherit;font-size:16px;line-height:1.5;color:var(--fg);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;min-height:48px}
+.qzopts button .n{flex:none;color:var(--sub);font-weight:600}
+.qzopts button.pick{border-color:var(--teal-500);background:var(--teal-300)}
+.qzopts button.ans{border-color:var(--teal-500);background:var(--ok-300)}.qzopts button.ans .n{color:var(--teal-600)}
+.qzopts button.wrong{border-color:var(--red-500);background:var(--red-300)}
+.qzopts button:disabled{cursor:default}
+.qzfb{padding-left:34px;font-size:15px;line-height:1.6;color:var(--fg);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.qzq.ok .qzfb b{color:var(--teal-600)}.qzq.no .qzfb b{color:var(--red-500)}
+.qzflash{background:var(--amber-300);box-shadow:0 0 0 3px var(--amber-300);border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background .3s}
+@media (max-width:600px){.qzo,.qzw,.qzsrc,.qzopts,.qzfb{padding-left:0}.qzentry{grid-template-columns:1fr}}
 </style>
 
 <div class="wrap">
@@ -2675,4 +2716,299 @@ render = function(){ closePop(); renderBase(); if (st.doc){ fitPages(); checkDoc
 })();
 render();
 routeHash();
+
+/* ── 확인 문제 (교재를 공부한 뒤 푸는 4지선다 5문항) ──
+   교재(학생 그룹별로 바뀐 표현이 반영된 본문) + 학생 프로필(진단 수준·위계별 숙달도·병목)로 만든다.
+   예시 자료는 미리 만든 문항을 쓰고, 올린 PDF는 Claude로 만든다. 교사가 검토·승인한 문항만 학생 화면에 나온다. */
+/* 한국어 진단평가 결과 (가상 데이터 · 초 5~6학년 루브릭과 진단평가 앱 채점 코드로 계산). 실제 연동 시 진단평가 결과 파일로 바꾼다. */
+const DIAG = {"l2": {"name": "아지즈", "grade_band": "초등학교 5~6학년", "native_language": "우즈베크어", "virtual": true, "overall": "초급", "listening": {"score": 32, "max": 100, "level": "초급"}, "reading": {"score": 12, "max": 100, "level": "초급"}, "total": 44, "daily_korean": {"score": 12, "max": 52, "level": "보완 필요"}, "subjects": {"국어": {"score": 0, "max": 34, "by_score": "초급", "by_criterion": "초급 미달", "level": "초급 미달", "correct_by_level": "초급 0/2 · 중급 0/2 · 고급 0/2"}, "수학": {"score": 8, "max": 35, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"}, "사회": {"score": 18, "max": 36, "by_score": "중급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"}, "과학": {"score": 6, "max": 43, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 1/2 · 중급 0/2 · 고급 0/2"}}, "wrong_items": ["듣3", "듣6", "듣8", "듣9", "듣10", "듣12", "듣13", "듣14", "듣15", "읽2", "읽3", "읽4", "읽6", "읽7", "읽8", "읽10", "읽11", "읽12", "읽13", "읽14", "읽15", "읽16", "읽17", "읽18", "읽19", "읽20"]}, "l4": {"name": "바트볼드", "grade_band": "초등학교 5~6학년", "native_language": "몽골어", "virtual": true, "overall": "중급", "listening": {"score": 66, "max": 100, "level": "중급"}, "reading": {"score": 52, "max": 100, "level": "중급"}, "total": 118, "daily_korean": {"score": 46, "max": 52, "level": "양호"}, "subjects": {"국어": {"score": 22, "max": 34, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}, "수학": {"score": 16, "max": 35, "by_score": "중급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"}, "사회": {"score": 24, "max": 36, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}, "과학": {"score": 10, "max": 43, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"}}, "wrong_items": ["듣10", "듣13", "듣14", "듣15", "읽12", "읽13", "읽14", "읽16", "읽17", "읽18", "읽19", "읽20"]}, "l5": {"name": "리나", "grade_band": "초등학교 5~6학년", "native_language": "중국어", "virtual": true, "overall": "고급", "listening": {"score": 83, "max": 100, "level": "고급"}, "reading": {"score": 94, "max": 100, "level": "고급"}, "total": 177, "daily_korean": {"score": 52, "max": 52, "level": "양호"}, "subjects": {"국어": {"score": 34, "max": 34, "by_score": "고급", "by_criterion": "고급", "level": "고급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"}, "수학": {"score": 35, "max": 35, "by_score": "고급", "by_criterion": "고급", "level": "고급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"}, "사회": {"score": 30, "max": 36, "by_score": "고급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 1/2"}, "과학": {"score": 26, "max": 43, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}}, "wrong_items": ["듣13", "듣14", "읽18"]}};
+const QZN = 5;
+/* 문항 유형(쉬운 것 → 어려운 것)과 진단 수준별 기본 구성. *가 붙은 것은 한 단계 위를 겨냥한 도전 문항 */
+const QTYPES = ["용어", "사실", "관계", "적용", "비교"];
+const QTYPE_DESC = {"용어":"교과 용어와 뜻 연결", "사실":"교재에 나온 내용 찾기", "관계":"개념 사이의 관계·순서·까닭 이해", "적용":"새 상황에 개념 적용", "비교":"개념 비교·판단"};
+const QBASE = [
+  ["용어","용어","용어","사실","관계*"],   // 0 초급 미달
+  ["용어","용어","사실","사실","관계*"],   // 1 초급
+  ["용어","사실","관계","관계","적용*"],   // 2 중급
+  ["용어","관계","적용","적용","비교*"]    // 3 고급
+];
+const QLANG = [
+  "교재의 쉬운 말만 쓴다. 발문은 한 문장 15자 안팎으로 아주 짧게 쓰고, 선지·해설은 해요체로 쓴다. 교과 용어는 정답 선지에서만 보여 준다. 부정 발문('아닌 것')은 쓰지 않는다.",
+  "쉬운 말을 중심으로 쓰되 교과 용어를 발문에도 쓴다. 발문은 짧게, 선지·해설은 해요체로 쓴다. 부정 발문은 쓰지 않는다.",
+  "교과 용어와 쉬운 말을 섞어 쓴다. 해설은 합니다체로 쓴다. 부정 발문은 1문항까지만 쓴다.",
+  "교과서 원문 표현을 그대로 쓴다. 해설은 합니다체로 쓴다."
+];
+
+const QZ_DEMO = {
+  l2: [
+    {q:"법원에 먼저 재판을 부탁한 사람을 무엇이라고 할까요?", opts:["피고","판사","원고","변호사"], ans:3, src:"c", type:"용어", stage:"현재", why:"먼저 재판을 부탁한 사람은 원고예요. 재판을 당한 사람은 피고예요."},
+    {q:"판결을 내리는 사람은 누구일까요?", opts:["원고","판사","피고","변호사"], ans:2, src:"c", type:"용어", stage:"현재", why:"판사는 두 사람의 말을 듣고 누가 맞는지 정해요. 이것이 판결이에요."},
+    {q:"민사 재판은 무엇을 해결하는 재판일까요?", opts:["사람과 사람 사이의 다툼","나쁜 일을 한 사람의 벌","새로운 법 만들기","학교 규칙 정하기"], ans:1, src:"c", type:"사실", stage:"현재", why:"민사 재판은 사람과 사람 사이의 다툼을 해결해요."},
+    {q:"소송 대리인은 주로 누가 할까요?", opts:["판사","변호사","원고","피고"], ans:2, src:"d", type:"사실", stage:"현재", why:"보통 변호사가 소송 대리인이에요."},
+    {q:"원고와 피고에게 왜 소송 대리인이 필요할까요?", opts:["법을 잘 몰라서 자기 생각을 말하기 어려워서","판결을 대신 내려 줘야 해서","재판에는 원고만 갈 수 있어서","증거를 내면 안 돼서"], ans:1, src:"d", type:"관계", stage:"도전", why:"원고와 피고는 법을 잘 몰라서 재판에서 말하기 어려워요. 그래서 소송 대리인이 도와줘요. 판결은 판사가 내려요."}
+  ],
+  l4: [
+    {q:"피고가 소장의 내용에 대해 자기 생각을 적어 법원에 내는 문서는 무엇일까요?", opts:["소장","답변서","판결","증거"], ans:2, src:"w2", type:"용어", stage:"현재", why:"답변서는 피고가 자기 생각을 적어 내는 문서입니다. 소장은 원고가 냅니다."},
+    {q:"민사 재판에서 판사가 하는 일은 무엇일까요?", opts:["두 사람의 주장을 듣고 판결을 내린다.","원고 대신 소장을 쓴다.","피고 편에서 증거를 낸다.","법원에 소송을 제기한다."], ans:1, src:"c", type:"사실", stage:"현재", why:"판사는 원고와 피고의 주장을 듣고 누구의 주장이 옳은지 판결을 내립니다."},
+    {q:"소송 대리인이 필요한 까닭으로 알맞은 것은 무엇일까요?", opts:["판사가 판결을 내리지 못해서","재판에는 증거가 필요 없어서","원고와 피고가 서로 만나면 안 돼서","원고와 피고가 법을 잘 몰라서 자기 주장을 펼치기 어려워서"], ans:4, src:"d", type:"관계", stage:"현재", why:"원고와 피고는 법을 잘 몰라 스스로 주장을 펼치기 어려운 경우가 많아, 소송 대리인이 돕습니다."},
+    {q:"민사 재판의 진행 순서에서 '답변서 제출' 바로 다음에 오는 것은 무엇일까요?", opts:["소장 제출","판결","증거 제출","변론"], ans:3, src:"st3", type:"관계", stage:"현재", why:"소장 제출 → 답변서 제출 → 증거 제출 → 변론 → 판결 순서입니다."},
+    {q:"영감이 항아리를 돌려 달라며 소송을 제기했어요. 이때 농부가 할 일로 알맞은 것은 무엇일까요?", opts:["판결을 내린다.","답변서를 써서 법원에 낸다.","소장을 써서 법원에 낸다.","판사를 직접 고른다."], ans:2, src:"w2", type:"적용", stage:"도전", why:"소송을 당한 농부가 피고이므로, 자기 입장을 적은 답변서를 냅니다. 소장은 원고인 영감이 냅니다."}
+  ],
+  l5: [
+    {q:"소송을 제기한 사람과 소송을 당한 사람을 가리키는 말을 순서대로 바르게 나열한 것은 무엇일까요?", opts:["피고, 원고","원고, 피고","판사, 원고","소송 대리인, 피고"], ans:2, src:"c", type:"용어", stage:"현재", why:"소송을 제기한 사람은 원고, 소송을 당한 사람은 피고라고 합니다."},
+    {q:"민사소송법 제87조에 따르면, 법률에 따라 재판상 행위를 할 수 있는 대리인이 아닌 경우 소송 대리인은 누가 될 수 있을까요?", opts:["변호사","원고의 가족","판사","피고의 친구"], ans:1, src:"law", type:"사실", stage:"현재", why:"법률이 따로 정한 대리인이 아니면 소송 대리인은 변호사만 될 수 있습니다."},
+    {q:"소장과 답변서의 관계를 바르게 설명한 것은 무엇일까요?", opts:["피고가 답변서를 먼저 내면 원고가 소장으로 답한다.","원고가 낸 소장의 내용에 대해 피고가 답변서로 입장을 밝힌다.","두 문서 모두 판사가 작성한다.","소장은 증거이고, 답변서는 판결문이다."], ans:2, src:"w2", type:"관계", stage:"현재", why:"원고가 소장을 내면, 피고는 그 내용에 대한 자신의 입장을 답변서로 밝힙니다."},
+    {q:"소송 대리인 덕분에 법률 지식이 부족한 사람이 얻을 수 있는 것은 무엇일까요?", opts:["재판을 하지 않아도 된다.","판결을 직접 내릴 수 있다.","증거를 내지 않아도 된다.","재판에서 자신의 권리를 지킬 수 있다."], ans:4, src:"sum", type:"관계", stage:"현재", why:"소송 대리인이 서류 작성, 증거 제출, 주장을 대신해 주어 법률 지식이 부족해도 권리를 지킬 수 있습니다."},
+    {q:"영감과 농부가 각각 소송 대리인을 두었다면, 소송 대리인이 하는 일로 보기 어려운 것은 무엇일까요?", opts:["영감 대신 소장을 작성한다.","농부 대신 답변서를 작성한다.","항아리가 누구 것인지 판결을 내린다.","주장을 뒷받침할 증거를 제출한다."], ans:3, src:"d", type:"적용", stage:"도전", why:"판결은 판사가 내립니다. 소송 대리인은 서류 작성, 증거 제출, 법정에서 주장 펼치기를 맡습니다."}
+  ]
+};
+st.qz = {status:"idle", byG:{}, ok:new Set(), err:"", busy:"", g:null, ans:{}, done:{}, open:false};
+st.qzHist = {};   /* 학생별 지난 확인 문제 결과: 새 자료를 만들어도 남겨 두고 다음 구성에 반영 */
+function qzReset(){ st.qz = {status:"idle", byG:{}, ok:new Set(), err:"", busy:"", g:null, ans:{}, done:{}, open:false}; }
+
+/* 학생 그룹이 실제로 본 교재 문장 (바꾼 표현·교사 수정 반영, 되돌린 표현·설명 메모는 원문 유지) */
+function stuPlain(g, key){
+  const p = P[key]; if (!p) return ""; let s = p.o;
+  for (const [o, e0, lv] of (p.sw || [])){
+    if (!lv.includes(g)) continue;
+    const rid = g + "|" + key + "|" + o;
+    if (st.reverted.has(rid)) continue;
+    const e = st.edits[rid] || e0;
+    if (isNote(o, e)) continue;
+    s = s.replace(o, e);
+  }
+  return s.replace(/\[\[(.+?)\]\]/g, "$1");
+}
+function qzKeys(){ return blockList().map(b => b.id).filter(k => P[k]); }
+function qzSrcText(g, key){ return P[key] ? stuPlain(g, key) : ""; }
+
+/* 진단 단계(0 초급 미달 ~ 3 고급): 진단평가 결과가 있으면 '이번 교과 수준'과 '읽기 등급' 중 낮은 쪽, 없으면 전체 한국어 수준(1~6)으로 정한다. */
+const DLV = ["초급 미달", "초급", "중급", "고급"];
+function qzTier(g){
+  const dg = DIAG[g];
+  if (dg){
+    const sj = dg.subjects[curSubj()], a = sj ? DLV.indexOf(sj.level) : 3, b = DLV.indexOf(dg.reading.level);
+    const lo = Math.min(a < 0 ? 3 : a, b < 0 ? 3 : b);
+    return {t: lo, name: DLV[lo], daily: dg.daily_korean.level === "보완 필요", why: `${curSubj()} ${sj ? sj.level : "결과 없음"} · 읽기 ${dg.reading.level}${dg.daily_korean.level === "보완 필요" ? " · 생활 한국어 보완 필요" : ""}`};
+  }
+  const lv = PROFILES[g].overall_korean_level, t = lv <= 1 ? 0 : lv <= 2 ? 1 : lv <= 4 ? 2 : 3;
+  return {t, name: DLV[t], daily: !!PROFILES[g].daily_korean_support, why: `전체 수준 ${lv}`};
+}
+/* 이번 5문항 구성: 기본 구성에 지난 결과를 반영해 도전 문항 수를 조정한다. */
+function qzPlan(g){
+  const tr = qzTier(g), h = st.qzHist[g];
+  let plan = QBASE[tr.t].map(x => ({type: x.replace("*", ""), stage: x.endsWith("*") ? "도전" : "현재"}));
+  let adj = "기본 구성";
+  if (h && h.challengeAllOk && h.currentWrong <= 1){
+    const ch = plan.find(x => x.stage === "도전"), i = plan.findIndex(x => x.stage === "현재");
+    if (ch && i >= 0){ plan[i] = {type: ch.type, stage: "도전"}; adj = "지난번 도전 문항을 모두 맞혀 도전 문항을 1개 늘림"; }
+  } else if (h && h.currentWrong >= 2){
+    plan = plan.map(x => x.stage === "도전" ? {type: "용어", stage: "현재"} : x);
+    adj = "지난번 현재 수준 문항을 2개 이상 틀려 도전 문항을 빼고 용어 문항을 늘림";
+  }
+  plan.sort((a, b) => QTYPES.indexOf(a.type) - QTYPES.indexOf(b.type) || (a.stage === "도전") - (b.stage === "도전"));
+  return {tier: tr, plan, adj};
+}
+function planText(pl){
+  const c = {}; pl.plan.forEach(x => { const k = x.type + (x.stage === "도전" ? "(도전)" : ""); c[k] = (c[k] || 0) + 1; });
+  return Object.entries(c).map(([k, n]) => `${k} ${n}`).join(" · ");
+}
+function diagText(g){
+  const dg = DIAG[g]; if (!dg) return "";
+  return `
+[한국어 진단평가 결과] (${dg.grade_band}용${dg.virtual ? ", 가상 데이터" : ""})
+- 듣기·읽기 종합: ${dg.overall} (듣기 ${dg.listening.score}/${dg.listening.max} ${dg.listening.level}, 읽기 ${dg.reading.score}/${dg.reading.max} ${dg.reading.level})
+- 생활 한국어: ${dg.daily_korean.level} (${dg.daily_korean.score}/${dg.daily_korean.max})
+- 교과별 수준(점수 등급과 수준 판정 기준 중 낮은 쪽): ${Object.entries(dg.subjects).map(([k, v]) => `${k} ${v.level}${v.by_score !== v.level ? `(점수로는 ${v.by_score})` : ""}`).join(", ")}`;
+}
+function qzPrompt(g){
+  const p = PROFILES[g], s = STU[g], pl = qzPlan(g), tr = pl.tier, nextLv = DLV[Math.min(3, tr.t + 1)];
+  const blocks = qzKeys().map(k => ({key: k, text: stuPlain(g, k)})).filter(b => b.text.length > 1);
+  const terms = Object.keys(T).map(t => `${t}: ${T[t].easy || ""}`).join("\n");
+  const h = st.qzHist[g];
+  return `너는 다문화 학생을 가르치는 한국어·교과 교사다. 아래는 학생이 방금 공부한 교재 본문이다(학생 수준에 맞게 표현을 바꾼 학생용 본문). 이 학생이 내용을 이해했는지 확인하고, 지금 진단된 단계에서 한 단계 위로 자랄 수 있도록 4지선다 확인 문제 ${QZN}개를 만든다.
+
+[학생]
+- 이름: ${s.name}, 모국어: ${p.native_language}
+- 전체 한국어 수준: ${p.overall_korean_level} (듣기 ${p.skills.listening} · 읽기 ${p.skills.reading})
+- 학습 한국어 위계 숙달도: ${JSON.stringify(p.academic_korean)} (B 생활, T1 교실 어휘, T2 사고 도구, T3 범용 지식 어휘, C 교과 적응) · 병목: ${(p.bottlenecks || []).join(", ") || "없음"}${diagText(g)}
+- 이번 문항의 기준 단계: ${tr.name} (${tr.why} 중 낮은 쪽) → 도전 문항은 ${nextLv} 단계를 겨냥한다.${h ? `\n- 지난 확인 문제 결과: 현재 수준 문항 ${h.currentWrong}개 틀림, 도전 문항 ${h.challengeAllOk ? "모두 맞힘" : "틀림"}` : ""}
+
+[교과] ${curSubj()}${st.doc && st.doc.unit ? " · " + st.doc.unit : ""}
+
+[학생 교재 본문] (key: 문장)
+${blocks.map(b => `${b.key}: ${b.text}`).join("\n")}
+
+[교과 용어와 쉬운 뜻]
+${terms || "(없음)"}
+
+[문항 유형] (쉬운 것 → 어려운 것)
+${QTYPES.map(t => `- ${t}: ${QTYPE_DESC[t]}`).join("\n")}
+
+[이번 5문항 구성] 반드시 이 유형·단계대로 만든다 (${pl.adj})
+${pl.plan.map((x, i) => `${i + 1}. ${x.type} · ${x.stage}${x.stage === "도전" ? ` (${nextLv} 단계 수준의 생각을 요구하되, 말은 학생 수준으로)` : ""}`).join("\n")}
+
+[원칙]
+1. 근거성: 모든 문항의 정답 근거가 위 본문에 있어야 한다. 상식만으로 풀리는 문항은 만들지 않는다.
+2. 핵심성: 학습 목표와 핵심 개념어를 묻는다. 쪽수·그림 번호·인물 이름처럼 학습 목표와 무관한 세부는 묻지 않는다.
+3. 언어와 내용 분리: 발문·선지는 학생 단계의 말로 써서, 한국어를 몰라서 틀리는 일이 없게 한다. 말투·어휘: ${QLANG[tr.t]}${tr.daily ? " 생활 한국어가 '보완 필요'이므로 발문을 더 짧게 쓰고 일상 표현을 우선한다." : ""}
+4. 진단이 되는 오답: 오답 3개는 실제로 헷갈릴 만한 오개념으로 만든다(예: 원고와 피고를 바꿈, 판사와 소송 대리인의 역할을 바꿈, 비슷한 문서를 바꿈). 정답은 하나만 분명히 맞다.
+5. 금지: 교재 문장을 그대로 베껴 빈칸만 뚫은 문항, 정답만 유난히 긴 선지, '모두 고르시오', 시간·숫자 같은 사소한 기억 문항.
+6. 발문은 모두 '~일까요?'로 끝낸다(예: '무엇을 해결하는 재판일까요?', '알맞은 것은 무엇일까요?'). '~입니까?', '~은?', '~예요?'로 끝내지 않는다.
+7. 정답 번호는 1~4에 고르게 흩어 놓는다.
+8. 병목 위계(${(p.bottlenecks || []).join(", ") || "없음"})의 어휘가 핵심인 문장은 문항에 꼭 넣는다.
+9. why는 학생이 읽을 해설로, 같은 단계의 말투로 한두 문장 쓴다. 오답이 왜 틀렸는지도 짧게 짚는다.
+
+[출력 형식]
+{"items":[{"q":"발문","opts":["선지1","선지2","선지3","선지4"],"ans":정답번호(1~4),"type":"용어|사실|관계|적용|비교","stage":"현재|도전","src":"근거 문장의 key","why":"해설"}]}`;
+}
+function qzValid(it){
+  return it && typeof it.q === "string" && Array.isArray(it.opts) && it.opts.length === 4 && it.opts.every(o => typeof o === "string" && o.trim())
+    && [1,2,3,4].includes(+it.ans) && new Set(it.opts.map(o => o.trim())).size === 4;
+}
+async function qzMakeFor(g, ai){
+  const keys = qzKeys(), plan = qzPlan(g).plan;
+  const r = await ai.json(qzPrompt(g), {modelTier: "default"});
+  const items = ((r && r.items) || []).filter(qzValid).slice(0, QZN)
+    .map((it, i) => ({q: it.q.trim(), opts: it.opts.map(o => o.trim()), ans: +it.ans, src: keys.includes(it.src) ? it.src : "",
+      type: QTYPES.includes(it.type) ? it.type : (plan[i] || {}).type || "사실", stage: it.stage === "도전" || it.stage === "현재" ? it.stage : (plan[i] || {}).stage || "현재",
+      why: String(it.why || "").trim()}));
+  if (items.length < 3) throw aiErr("too_few");
+  return items;
+}
+async function qzMake(only){
+  const groups = only ? [only] : [...st.mkGroups];
+  st.qz.err = ""; st.qz.status = "making";
+  if (!st.doc && !(only && await getAI())){
+    for (const g of groups){ st.qz.byG[g] = clone(QZ_DEMO[g] || QZ_DEMO.l4); st.qz.ok.delete(g); }
+    st.qz.busy = "예시 자료 확인 문제를 불러왔어요"; render();
+    setTimeout(() => { st.qz.status = "review"; st.qz.busy = ""; st.qz.g = st.qz.g && st.mkGroups.has(st.qz.g) ? st.qz.g : groups[0]; render(); }, 500);
+    return;
+  }
+  const ai = await getAI();
+  if (!ai){ st.qz.status = Object.keys(st.qz.byG).length ? "review" : "idle"; st.qz.err = "Claude를 쓸 수 없어요. 첫 화면의 ‘AI 연결’에 API 키를 넣어 주세요."; render(); return; }
+  for (const g of groups){
+    st.qz.busy = `${STU[g].name} 학생 문제를 만들고 있어요 (${groups.indexOf(g) + 1}/${groups.length})`; render();
+    try { st.qz.byG[g] = await qzMakeFor(g, ai); st.qz.ok.delete(g); }
+    catch(e){ st.qz.err = `${STU[g].name} 학생 문제를 만들지 못했어요${e && e.code === "bad_key" ? " (API 키 확인 필요)" : e && e.code === "rate_limited" ? " (잠시 뒤 다시 시도)" : ""}. ‘다시 만들기’를 눌러 주세요.`; }
+  }
+  st.qz.busy = ""; st.qz.status = "review"; st.qz.g = only || groups.find(g => st.qz.byG[g]) || groups[0]; render();
+}
+
+/* 교사 화면 (자료를 보낸 뒤) */
+function tagHTML(it){ return `<span class="qztag">${esc(it.type || "")}</span>${it.stage === "도전" ? `<span class="qztag ch">도전</span>` : ""}`; }
+function qzTeacherHTML(){
+  const Q = st.qz, groups = [...st.mkGroups];
+  if (Q.status === "idle") return `<div class="tcard qzt"><h2>확인 문제 만들기</h2>
+    <p class="note" style="color:var(--sub)">학생이 자료를 공부한 뒤 풀 확인 문제(4지선다 ${QZN}문항)를 학생마다 만듭니다. 진단된 단계에서 대부분 풀 수 있는 문항에, 한 단계 위를 겨냥한 ‘도전’ 문항을 더해 조금씩 성장하도록 구성합니다. 선생님이 검토하고 승인한 문제만 학생 화면에 나옵니다.</p>
+    <div class="qzplan">${groups.map(g => { const pl = qzPlan(g); return `<div><b>${STU[g].name}</b> <span>${pl.tier.name} 기준 · ${planText(pl)}</span>${pl.adj !== "기본 구성" ? `<em>${esc(pl.adj)}</em>` : ""}</div>`; }).join("")}</div>
+    ${Q.err ? `<span class="err">${esc(Q.err)}</span>` : ""}
+    <button type="button" class="runbtn" data-qz="make">확인 문제 만들기</button></div>`;
+  if (Q.status === "making") return `<div class="tcard qzt"><h2>확인 문제를 만들고 있어요</h2><p class="note" style="color:var(--sub)">${esc(Q.busy)}${st.doc ? " · 학생마다 20~40초 걸려요" : ""}</p><div class="qzspin"></div></div>`;
+  if (Q.status === "sent") return `<div class="tcard qzt"><h2>확인 문제를 보냈어요</h2>
+    <p class="note" style="color:var(--sub)">${groups.filter(g => Q.ok.has(g)).map(g => `${STU[g].name}(${(Q.byG[g] || []).length}문항)`).join(", ")} 학생 화면의 자료 아래에 ‘확인 문제’가 나타납니다.</p>
+    ${qzResultHTML()}
+    <div class="row"><button type="button" class="btn p" data-view="student">학생 화면에서 보기</button><button type="button" class="btn s" data-qz="reopen">문제 다시 검토하기</button></div></div>`;
+  const g = Q.g && groups.includes(Q.g) ? Q.g : groups[0]; Q.g = g;
+  const items = Q.byG[g] || [], ok = Q.ok.has(g), all = groups.every(k => Q.ok.has(k) && (Q.byG[k] || []).length);
+  const pf = PROFILES[g], pl = qzPlan(g);
+  return `<div class="tcard qzt"><h2>확인 문제를 검토해 주세요</h2>
+    <div class="ltabs">${groups.map(k => `<button type="button" data-qzg="${k}" aria-pressed="${g === k}">${STU[k].name}<span class="apv ${Q.ok.has(k) ? "y" : "n"}">${Q.ok.has(k) ? "승인" : "검토 전"}</span><small>${STU[k].lv} · ${STU[k].ln}</small></button>`).join("")}</div>
+    <p class="note" style="color:var(--sub)">${STU[g].name} 학생 기준: <b>${pl.tier.name}</b> (${esc(pl.tier.why)}${DIAG[g] ? `, 종합 ${DIAG[g].overall}${DIAG[g].virtual ? " · 가상 데이터" : ""}` : ""}) · 구성 ${planText(pl)}${pl.adj !== "기본 구성" ? ` · ${esc(pl.adj)}` : ""} · 병목 위계 ${(pf.bottlenecks || []).map(b => `${b}(${TIER_NAME[TIER_OF[b]]})`).join(", ") || "없음"}. 발문·선지·정답·해설을 바로 고칠 수 있어요.</p>
+    ${Q.err ? `<span class="err">${esc(Q.err)}</span>` : ""}
+    ${items.length ? items.map((it, i) => `<div class="qzc${ok ? " lock" : ""}">
+      <div class="qzh"><b>${i + 1}</b><div class="qzhb"><div class="qztags">${tagHTML(it)}</div><textarea rows="2" data-qzf="q" data-qzi="${i}" aria-label="${i + 1}번 발문" ${ok ? "disabled" : ""}>${esc(it.q)}</textarea></div>${ok ? "" : `<button type="button" class="btn s" data-qzdel="${i}" aria-label="${i + 1}번 문항 지우기">지우기</button>`}</div>
+      <div class="qzo">${it.opts.map((o, j) => `<label class="${it.ans === j + 1 ? "on" : ""}"><input type="radio" name="qzans${i}" value="${j + 1}" data-qzans="${i}" ${it.ans === j + 1 ? "checked" : ""} ${ok ? "disabled" : ""} aria-label="${j + 1}번을 정답으로"><span class="n">${"①②③④"[j]}</span><input type="text" value="${esc(o)}" data-qzf="o${j}" data-qzi="${i}" aria-label="${i + 1}번 선지 ${j + 1}" ${ok ? "disabled" : ""}></label>`).join("")}</div>
+      <div class="qzw"><span class="lab">해설</span><input type="text" value="${esc(it.why)}" data-qzf="why" data-qzi="${i}" aria-label="${i + 1}번 해설" ${ok ? "disabled" : ""}></div>
+      ${it.src && P[it.src] ? `<div class="qzsrc"><span class="lab">근거</span>${esc(qzSrcText(g, it.src))}</div>` : `<div class="qzsrc"><span class="lab">근거</span><span style="color:var(--amber-500)">근거 문장을 찾지 못했어요. 교재 내용과 맞는지 확인해 주세요.</span></div>`}
+    </div>`).join("") : `<p class="note">아직 문제가 없어요.</p>`}
+    <div class="rvbar"><span class="msg">${all ? "모든 학생의 문제를 승인했어요." : `${STU[g].name} ${ok ? "승인 완료" : "검토 중"} · 승인 ${groups.filter(k => Q.ok.has(k)).length}/${groups.length}`}</span>
+      ${ok ? `<button type="button" class="btn s" data-qz="unok">승인 취소</button>` : `<button type="button" class="btn s" data-qz="remake">${STU[g].name} 문제 다시 만들기</button><button type="button" class="btn p" data-qz="ok" ${items.length ? "" : "disabled"}>이 학생 승인</button>`}
+      <button type="button" class="btn ${all ? "p" : "s"}" data-qz="send" ${all ? "" : "disabled"}>확인 문제 보내기</button></div></div>`;
+}
+function qzStat(g){
+  const items = st.qz.byG[g] || [], a = st.qz.ans[g] || {};
+  const by = {}; let curWrong = 0, chTot = 0, chOk = 0;
+  items.forEach((it, i) => { const ok = +a[i] === it.ans; const k = it.type || "기타"; by[k] = by[k] || [0, 0]; by[k][1]++; if (ok) by[k][0]++;
+    if (it.stage === "도전"){ chTot++; if (ok) chOk++; } else if (!ok) curWrong++; });
+  return {n: items.filter((it, i) => +a[i] === it.ans).length, tot: items.length, by, curWrong, chTot, chOk};
+}
+function qzNextText(s){
+  if (s.chTot && s.chOk === s.chTot && s.curWrong <= 1) return "다음 확인 문제에서 도전 문항 1개 늘림";
+  if (s.curWrong >= 2) return "다음 확인 문제에서 도전 문항 빼고 용어 문항 늘림";
+  return "다음에도 같은 구성";
+}
+function qzResultHTML(){
+  const rows = [...st.mkGroups].filter(g => st.qz.done[g]).map(g => { const s = qzStat(g);
+    return `<tr><td>${STU[g].name}</td><td class="num">${s.n}/${s.tot}</td><td>${QTYPES.filter(t => s.by[t]).map(t => `${t} ${s.by[t][0]}/${s.by[t][1]}`).join(" · ")}</td><td>${s.chTot ? `${s.chOk}/${s.chTot}` : "-"}</td><td>${qzNextText(s)}</td></tr>`; });
+  return rows.length ? `<table class="qzr"><thead><tr><th>학생</th><th>맞힌 문항</th><th>유형별</th><th>도전</th><th>다음 구성</th></tr></thead><tbody>${rows.join("")}</tbody></table>` : `<p class="note">아직 푼 학생이 없어요.</p>`;
+}
+
+/* 학생 화면 */
+function qzStuHTML(){
+  const g = st.stu, Q = st.qz;
+  if (Q.status !== "sent" || !Q.ok.has(g) || !(Q.byG[g] || []).length) return "";
+  const items = Q.byG[g], a = Q.ans[g] || (Q.ans[g] = {}), done = !!Q.done[g];
+  const easy = qzTier(g).t <= 1;
+  if (!Q.open) return `<div class="qzs-in qzentry"><div><b>확인 문제 ${items.length}개</b><p>${easy ? "자료를 다 읽었어요? 문제를 풀어 봐요." : "자료를 다 공부했으면 확인 문제를 풀어 보세요."}</p></div><button type="button" class="btn p" data-qz="open">${done ? "결과 보기" : "풀기"}</button></div>`;
+  const n = items.filter((it, i) => +a[i] === it.ans).length, filled = items.every((it, i) => a[i]);
+  const s = done ? qzStat(g) : null;
+  return `<div class="qzs-in"><div class="qzst"><h2>확인 문제</h2><button type="button" class="x" data-qz="close" aria-label="닫기">✕</button></div>
+    ${done ? `<div class="qzscore"><b>${n} / ${items.length}</b><span>${n === items.length ? (easy ? "모두 맞았어요!" : "모두 맞혔어요.") : s.chTot && s.chOk === s.chTot ? (easy ? "도전 문제를 맞혔어요! 한 단계 더 자라고 있어요." : "도전 문제를 맞혔어요. 다음 단계로 가고 있어요.") : (easy ? "틀린 문제는 자료를 다시 읽어 봐요." : "틀린 문제는 ‘자료에서 다시 보기’로 해당 부분을 다시 읽어 보세요.")}</span></div>` : ""}
+    ${items.map((it, i) => { const pick = +a[i], right = pick === it.ans;
+      return `<div class="qzq${done ? (right ? " ok" : " no") : ""}"><p class="qq"><span class="qn">${i + 1}</span><span>${it.stage === "도전" ? `<span class="qztag ch">도전</span> ` : ""}${esc(it.q)}</span></p>
+      <div class="qzopts">${it.opts.map((o, j) => { const v = j + 1, cls = [pick === v ? "pick" : "", done && v === it.ans ? "ans" : "", done && pick === v && !right ? "wrong" : ""].filter(Boolean).join(" ");
+        return `<button type="button" class="${cls}" data-qzp="${i}:${v}" ${done ? "disabled" : ""} aria-pressed="${pick === v}"><span class="n">${"①②③④"[j]}</span>${esc(o)}</button>`; }).join("")}</div>
+      ${done ? `<div class="qzfb"><b>${right ? (easy ? "맞았어요" : "정답입니다") : (easy ? `정답은 ${"①②③④"[it.ans - 1]}이에요` : `정답: ${"①②③④"[it.ans - 1]}`)}</b>${it.why ? ` ${esc(it.why)}` : ""}${!right && it.src && P[it.src] ? `<button type="button" class="btn s" data-qzgo="${esc(it.src)}">자료에서 다시 보기</button>` : ""}</div>` : ""}
+      </div>`; }).join("")}
+    <div class="row">${done ? `<button type="button" class="btn s" data-qz="retry">다시 풀기</button>` : `<button type="button" class="btn p" data-qz="check" ${filled ? "" : "disabled"}>${easy ? "다 풀었어요" : "채점하기"}</button>${filled ? "" : `<span class="note">${items.length - items.filter((it, i) => a[i]).length}문항 남았어요</span>`}`}</div></div>`;
+}
+function qzMount(){
+  let el = $("qzStu");
+  if (!el){ el = document.createElement("section"); el.id = "qzStu"; el.className = "qzs"; el.setAttribute("aria-label", "확인 문제"); $("cmp").after(el); }
+  const show = st.view === "student" && st.sent;
+  const h = show ? qzStuHTML() : "";
+  el.hidden = !h; el.innerHTML = h;
+}
+
+/* 기존 함수에 덧붙이기 */
+{
+  const r0 = render; render = function(){ r0(); qzMount(); };
+  const m0 = makeHTML; makeHTML = function(){ const h = m0(); return st.mk === "sent" ? h + qzTeacherHTML() : h; };
+  const w0 = resetWork; resetWork = function(){ w0(); qzReset(); };
+  const k0 = runMake; runMake = function(){ qzReset(); k0(); };
+  const k1 = runReal; runReal = function(){ qzReset(); return k1(); };
+}
+document.addEventListener("click", e => {
+  if (e.target.id === "mkNew"){ qzReset(); return; }
+  const t = e.target.closest("[data-qz],[data-qzg],[data-qzdel],[data-qzp],[data-qzgo]"); if (!t) return;
+  const Q = st.qz, g = Q.g;
+  if (t.dataset.qzg){ Q.g = t.dataset.qzg; Q.err = ""; render(); return; }
+  if (t.dataset.qzdel != null){ Q.byG[g].splice(+t.dataset.qzdel, 1); render(); return; }
+  if (t.dataset.qzp){ const [i, v] = t.dataset.qzp.split(":").map(Number); (Q.ans[st.stu] = Q.ans[st.stu] || {})[i] = v; render(); return; }
+  if (t.dataset.qzgo){
+    const b = document.querySelector(`#cin [data-blk="${CSS.escape(t.dataset.qzgo)}"]`);
+    if (b){ b.scrollIntoView({behavior: "smooth", block: "center"}); const host = b.closest(".dtx") || b; host.classList.add("qzflash"); setTimeout(() => host.classList.remove("qzflash"), 2400); }
+    return;
+  }
+  const a = t.dataset.qz;
+  if (a === "make"){ qzMake(); return; }
+  if (a === "remake"){ qzMake(g); return; }
+  if (a === "ok"){ Q.ok.add(g); const next = [...st.mkGroups].find(k => !Q.ok.has(k)); toast(`${STU[g].name} 학생 문제를 승인했어요`); if (next) Q.g = next; render(); return; }
+  if (a === "unok"){ Q.ok.delete(g); render(); return; }
+  if (a === "send"){ Q.status = "sent"; Q.ans = {}; Q.done = {}; Q.open = false; render(); toast("확인 문제를 보냈어요"); return; }
+  if (a === "reopen"){ Q.status = "review"; Q.ok.clear(); render(); return; }
+  if (a === "open"){ Q.open = true; render(); $("qzStu").scrollIntoView({behavior: "smooth", block: "start"}); return; }
+  if (a === "close"){ Q.open = false; render(); return; }
+  if (a === "check"){ Q.done[st.stu] = true; Q.rec = Q.rec || {}; if (!Q.rec[st.stu]){ Q.rec[st.stu] = true; const z = qzStat(st.stu); st.qzHist[st.stu] = {currentWrong: z.curWrong, challengeAllOk: z.chTot > 0 && z.chOk === z.chTot}; } render(); $("qzStu").scrollIntoView({behavior: "smooth", block: "start"}); return; }
+  if (a === "retry"){ Q.done[st.stu] = false; Q.ans[st.stu] = {}; render(); $("qzStu").scrollIntoView({behavior: "smooth", block: "start"}); return; }
+});
+document.addEventListener("input", e => {
+  const f = e.target.dataset && e.target.dataset.qzf; if (!f) return;
+  const it = (st.qz.byG[st.qz.g] || [])[+e.target.dataset.qzi]; if (!it) return;
+  if (f === "q") it.q = e.target.value; else if (f === "why") it.why = e.target.value; else it.opts[+f.slice(1)] = e.target.value;
+});
+document.addEventListener("change", e => {
+  if (e.target.dataset && e.target.dataset.qzans != null){ const it = st.qz.byG[st.qz.g][+e.target.dataset.qzans]; it.ans = +e.target.value; render(); }
+});
 </script>

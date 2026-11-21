@@ -1,0 +1,227 @@
+{
+ "schema": "ganada.diagnostic_result.v1",
+ "note": "가상 데이터 · 한국어 진단평가 루브릭(초 5~6학년)과 진단평가 앱 채점 코드로 계산",
+ "students": [
+  {
+   "learner_key": "l2",
+   "name": "아지즈",
+   "grade_band": "초등학교 5~6학년",
+   "native_language": "우즈베크어",
+   "virtual": true,
+   "overall": "초급",
+   "listening": {
+    "score": 32,
+    "max": 100,
+    "level": "초급"
+   },
+   "reading": {
+    "score": 12,
+    "max": 100,
+    "level": "초급"
+   },
+   "total": 44,
+   "daily_korean": {
+    "score": 12,
+    "max": 52,
+    "level": "보완 필요"
+   },
+   "subjects": {
+    "국어": {
+     "score": 0,
+     "max": 34,
+     "by_score": "초급",
+     "by_criterion": "초급 미달",
+     "level": "초급 미달",
+     "correct_by_level": "초급 0/2 · 중급 0/2 · 고급 0/2"
+    },
+    "수학": {
+     "score": 8,
+     "max": 35,
+     "by_score": "초급",
+     "by_criterion": "초급",
+     "level": "초급",
+     "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"
+    },
+    "사회": {
+     "score": 18,
+     "max": 36,
+     "by_score": "중급",
+     "by_criterion": "초급",
+     "level": "초급",
+     "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"
+    },
+    "과학": {
+     "score": 6,
+     "max": 43,
+     "by_score": "초급",
+     "by_criterion": "초급",
+     "level": "초급",
+     "correct_by_level": "초급 1/2 · 중급 0/2 · 고급 0/2"
+    }
+   },
+   "wrong_items": [
+    "듣3",
+    "듣6",
+    "듣8",
+    "듣9",
+    "듣10",
+    "듣12",
+    "듣13",
+    "듣14",
+    "듣15",
+    "읽2",
+    "읽3",
+    "읽4",
+    "읽6",
+    "읽7",
+    "읽8",
+    "읽10",
+    "읽11",
+    "읽12",
+    "읽13",
+    "읽14",
+    "읽15",
+    "읽16",
+    "읽17",
+    "읽18",
+    "읽19",
+    "읽20"
+   ]
+  },
+  {
+   "learner_key": "l4",
+   "name": "바트볼드",
+   "grade_band": "초등학교 5~6학년",
+   "native_language": "몽골어",
+   "virtual": true,
+   "overall": "중급",
+   "listening": {
+    "score": 66,
+    "max": 100,
+    "level": "중급"
+   },
+   "reading": {
+    "score": 52,
+    "max": 100,
+    "level": "중급"
+   },
+   "total": 118,
+   "daily_korean": {
+    "score": 46,
+    "max": 52,
+    "level": "양호"
+   },
+   "subjects": {
+    "국어": {
+     "score": 22,
+     "max": 34,
+     "by_score": "중급",
+     "by_criterion": "중급",
+     "level": "중급",
+     "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"
+    },
+    "수학": {
+     "score": 16,
+     "max": 35,
+     "by_score": "중급",
+     "by_criterion": "초급",
+     "level": "초급",
+     "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"
+    },
+    "사회": {
+     "score": 24,
+     "max": 36,
+     "by_score": "중급",
+     "by_criterion": "중급",
+     "level": "중급",
+     "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"
+    },
+    "과학": {
+     "score": 10,
+     "max": 43,
+     "by_score": "초급",
+     "by_criterion": "초급",
+     "level": "초급",
+     "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"
+    }
+   },
+   "wrong_items": [
+    "듣10",
+    "듣13",
+    "듣14",
+    "듣15",
+    "읽12",
+    "읽13",
+    "읽14",
+    "읽16",
+    "읽17",
+    "읽18",
+    "읽19",
+    "읽20"
+   ]
+  },
+  {
+   "learner_key": "l5",
+   "name": "리나",
+   "grade_band": "초등학교 5~6학년",
+   "native_language": "중국어",
+   "virtual": true,
+   "overall": "고급",
+   "listening": {
+    "score": 83,
+    "max": 100,
+    "level": "고급"
+   },
+   "reading": {
+    "score": 94,
+    "max": 100,
+    "level": "고급"
+   },
+   "total": 177,
+   "daily_korean": {
+    "score": 52,
+    "max": 52,
+    "level": "양호"
+   },
+   "subjects": {
+    "국어": {
+     "score": 34,
+     "max": 34,
+     "by_score": "고급",
+     "by_criterion": "고급",
+     "level": "고급",
+     "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"
+    },
+    "수학": {
+     "score": 35,
+     "max": 35,
+     "by_score": "고급",
+     "by_criterion": "고급",
+     "level": "고급",
+     "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"
+    },
+    "사회": {
+     "score": 30,
+     "max": 36,
+     "by_score": "고급",
+     "by_criterion": "중급",
+     "level": "중급",
+     "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 1/2"
+    },
+    "과학": {
+     "score": 26,
+     "max": 43,
+     "by_score": "중급",
+     "by_criterion": "중급",
+     "level": "중급",
+     "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"
+    }
+   },
+   "wrong_items": [
+    "듣13",
+    "듣14",
+    "읽18"
+   ]
+  }
+ ]
+}
