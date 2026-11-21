@@ -68,6 +68,11 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,.swap:focus-visi
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--sub)}
 .legend i{font-style:normal;background:var(--swap);color:var(--swap-ink);border-radius:4px;padding:0 4px}
 
+/* 지면: 핵심어 모국어 병기·+ 표시 */
+.dab .tg{position:relative}
+.dab .tg .gl{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);font-size:.5em;line-height:1;white-space:nowrap;color:#0F766E;font-weight:600;pointer-events:none;margin-bottom:-.12em;font-family:"Noto Sans",var(--font)}
+.dab .xp{display:inline-grid;place-items:center;width:.9em;height:.9em;margin-left:.08em;border-radius:50%;background:#14A08C;color:#fff;font-size:.6em;font-weight:700;line-height:1;vertical-align:.45em;font-family:var(--font)}
+.dab .dnt{cursor:pointer;text-decoration:underline dotted #14A08C;text-underline-offset:.2em}
 /* 종이 지면 */
 .page{background:var(--p-paper);color:var(--p-ink);border-radius:6px;box-shadow:0 2px 14px rgba(0,0,0,.08);overflow:hidden;position:relative;font-size:calc(16px*var(--scale));line-height:1.85}
 .pin{padding:28px clamp(16px,4vw,44px) 22px;display:grid;gap:22px}
@@ -438,47 +443,6 @@ body.drawing .inkc{pointer-events:auto;touch-action:none;cursor:crosshair}
 .tri{display:grid;gap:2px;padding:8px 10px;border-radius:10px;background:var(--chip)}
 .tri .ko{font-size:13px;color:var(--sub)}
 .tri .l1{font-size:15px;color:var(--title);font-family:"Noto Sans",var(--font)}
-
-.qzhb{flex:1;min-width:0;display:grid;gap:4px}.qztags{display:flex;gap:4px}
-.qztag{display:inline-block;font-size:11px;font-weight:600;border-radius:999px;padding:0 8px;background:var(--chip);color:var(--sub);line-height:18px;vertical-align:middle}
-.qztag.ch{background:var(--amber-300);color:var(--amber-500)}
-.qzplan{display:grid;gap:4px;font-size:13px;color:var(--sub)}.qzplan b{color:var(--title)}.qzplan em{font-style:normal;color:var(--amber-500);margin-left:6px}
-/* 확인 문제 */
-.qzt textarea,.qzt input[type="text"]{font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;width:100%;box-sizing:border-box;min-width:0}
-.qzt textarea{resize:vertical;line-height:1.5}
-.qzt textarea:disabled,.qzt input:disabled{background:transparent;border-color:transparent;color:var(--fg);opacity:1}
-.qzc{border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px}
-.qzc.lock{background:var(--bg)}
-.qzh{display:flex;gap:8px;align-items:flex-start}.qzh .btn{flex:none;white-space:nowrap}.qzh>b{flex:none;width:24px;height:24px;border-radius:999px;background:var(--title);color:var(--bg);display:grid;place-items:center;font-size:13px;margin-top:4px}
-.qzo{display:grid;gap:6px;padding-left:32px}
-.qzo label{display:flex;gap:6px;align-items:center;border-radius:8px;padding:2px 4px}
-.qzo label.on{background:var(--ok-300)}.qzo label.on .n{color:var(--teal-600);font-weight:700}
-.qzo .n{flex:none;width:18px;color:var(--sub)}
-.qzw,.qzsrc{display:flex;gap:8px;align-items:baseline;padding-left:32px;font-size:13px;color:var(--sub);line-height:1.6}
-.qzw .lab,.qzsrc .lab{flex:none;font-size:11px;font-weight:600;color:var(--muted);background:var(--chip);border-radius:999px;padding:0 8px}
-.qzspin{width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--teal-500);border-radius:999px;animation:spin .8s linear infinite}
-.qzr{border-collapse:collapse;font-size:13px;width:100%}.qzr th,.qzr td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}.qzr th{color:var(--muted);font-weight:600;font-size:12px}
-.qzs{max-width:860px;margin:16px auto 0;padding:0 16px 96px}
-.qzs-in{background:var(--card);border-radius:16px;padding:18px;display:grid;gap:14px}
-.qzentry{grid-template-columns:1fr auto;align-items:center;border:2px solid var(--teal-500)}
-.qzentry b{font-size:17px;color:var(--title)}.qzentry p{margin:2px 0 0;font-size:14px;color:var(--sub)}
-.qzentry .btn{font-size:15px;padding:10px 22px}
-.qzst{display:flex;justify-content:space-between;align-items:center}.qzst h2{margin:0;font-size:19px;color:var(--title)}
-.qzst .x{border:0;background:var(--chip);border-radius:999px;width:30px;height:30px;color:var(--sub);cursor:pointer}
-.qzscore{display:flex;gap:12px;align-items:baseline;background:var(--ok-300);border-radius:12px;padding:10px 14px}.qzscore b{font-size:24px;color:var(--teal-600);font-variant-numeric:tabular-nums}.qzscore span{font-size:14px;color:var(--title)}
-.qzq{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:14px}
-.qq{margin:0;font-size:17px;line-height:1.6;color:var(--title);display:flex;gap:8px}.qn{flex:none;width:26px;height:26px;border-radius:999px;background:var(--title);color:var(--bg);display:grid;place-items:center;font-size:14px;margin-top:2px}
-.qzopts{display:grid;gap:8px;padding-left:34px}
-.qzopts button{display:flex;gap:10px;align-items:flex-start;text-align:left;font:inherit;font-size:16px;line-height:1.5;color:var(--fg);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;min-height:48px}
-.qzopts button .n{flex:none;color:var(--sub);font-weight:600}
-.qzopts button.pick{border-color:var(--teal-500);background:var(--teal-300)}
-.qzopts button.ans{border-color:var(--teal-500);background:var(--ok-300)}.qzopts button.ans .n{color:var(--teal-600)}
-.qzopts button.wrong{border-color:var(--red-500);background:var(--red-300)}
-.qzopts button:disabled{cursor:default}
-.qzfb{padding-left:34px;font-size:15px;line-height:1.6;color:var(--fg);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
-.qzq.ok .qzfb b{color:var(--teal-600)}.qzq.no .qzfb b{color:var(--red-500)}
-.qzflash{background:var(--amber-300);box-shadow:0 0 0 3px var(--amber-300);border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background .3s}
-@media (max-width:600px){.qzo,.qzw,.qzsrc,.qzopts,.qzfb{padding-left:0}.qzentry{grid-template-columns:1fr}}
 </style>
 
 <div class="wrap">
@@ -522,7 +486,7 @@ body.drawing .inkc{pointer-events:auto;touch-action:none;cursor:crosshair}
   <button type="button" class="tb" id="b-small"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11h6"/></svg>작게</button>
   <button type="button" class="tb" id="b-ink" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg>필기</button>
   <button type="button" class="tb" id="b-big"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11h6M11 8v6"/></svg>크게</button>
-  <button type="button" class="tb" id="b-tr"><svg viewBox="0 0 24 24"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c-1 4-4 7-7 8"/><path d="m13 21 4-9 4 9M14.5 18h5"/></svg>번역본</button>
+  <button type="button" class="tb" id="b-tr" hidden><svg viewBox="0 0 24 24"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c-1 4-4 7-7 8"/><path d="m13 21 4-9 4 9M14.5 18h5"/></svg>번역본</button>
   <button type="button" class="tb" id="b-words"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg><span>단어장 <span class="cnt" id="wcnt">0</span></span></button>
 </div></nav>
 <div class="sheet" id="sheet" hidden><div class="in" id="sheetIn" role="dialog" aria-modal="false"></div></div>
@@ -694,7 +658,7 @@ function txHTML(){
   }
   return h + `</div><details class="okl"><summary>교과 용어 대역표 보기</summary><div style="overflow-x:auto"><table class="okt"><thead><tr><th>한국어</th>${Object.values(OFF_LANGS).map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${Object.entries(OFFICIAL).map(([k,r])=>`<tr><td>${esc(k)}</td>${Object.keys(OFF_LANGS).map(lg=>`<td class="l1">${esc(r[lg])}</td>`).join("")}</tr>`).join("")}</tbody></table></div></details>`;
 }
-const TX_STEPS = ["한국어 원문과 번역문 문장 맞추기","교과·단원 파악: 사회 · 재판의 의미와 공정한 재판","번역문 속 교과 용어 찾기","교과 용어 대역표·혼동사전 대조","정의문·의미장·추가 문장 확인","판정과 보고서 정리"];
+const TX_STEPS = ["한국어 원문과 번역문을 문장끼리 짝짓기","어떤 과목, 어떤 단원인지 알아보기: 사회 · 재판의 의미와 공정한 재판","번역문에서 교과 낱말 찾기","교과 용어 사전과 맞춰 보기","뜻풀이와 앞뒤 문장으로 번역이 맞는지 확인하기","결과 정리하기"];
 function openTx(id){
   const er = TX[st.txl].errs.find(e=>e.id===id);
   const fbv = st.fb[id];
@@ -851,7 +815,10 @@ function termHTML(t){
       c.seen.add(t); const n = ++c.n; c.items.push({n, kind: "term", t});
       return `${esc(t)}<sup class="xn">${n}</sup>`;
     }
-    showG = false; sayOn = false;
+    /* 지면 보기: 핵심어 위에 모국어를 작게 띄우고(줄 간격은 그대로), 옆에 + 표시. 누르면 뜻풀이 */
+    const gk = st.view === "make" ? st.mkG : st.stu, gg = glossOf(t, STU[gk].lang);
+    const show = !!(gg && !st.raw && (st.view !== "student" || !st.known.has(t)));
+    return `<button type="button" class="tm tg" data-term="${esc(t)}">${esc(t)}${show ? `<span class="gl" aria-hidden="true">${esc(gg)}</span>` : ""}<span class="xp" aria-hidden="true">+</span></button>`;
   }
   const inner = showG ? `<ruby>${esc(t)}<rt>${esc(g)}</rt></ruby>` : esc(t);
   if (TM){
@@ -898,6 +865,7 @@ function txt(key){
       c.items.push({n: k, kind: "swap", o, e}); return `<span class="xsw">${esc(e)}</span><sup class="xn">${k}</sup>`;
     }
     if (st.doc && SAFE && SAFE.has(rid) && !rev && !note) return `<span class="swap safe" data-sw="${id}" data-rid="${esc(rid)}" tabindex="0" role="button">${esc(o)}</span>`;
+    if (st.doc && note && !rev) return `<span class="nt dnt" data-nt="${id}" data-rid="${esc(rid)}" tabindex="0" role="button" aria-label="${esc(o)}, 설명 보기">${esc(o)}<span class="xp" aria-hidden="true">+</span></span>`;
     if (note && !rev) return `<span class="nt${st.open.has(id)?" open":""}" data-nt="${id}" data-rid="${esc(rid)}" tabindex="0" role="button" aria-label="${esc(o)}, 추가 설명 보기"><span><span class="ph">${esc(o)}</span><span class="nb">설명</span></span><span class="nx">${esc(noteText(o,e))}${st.view==="make"?`<button type="button" class="edbtn" data-edrid="${esc(rid)}">수정하기</button>`:""}</span></span>`;
     if (rev) return `<span class="swap rev" data-sw="${id}" data-rid="${esc(rid)}" tabindex="0" role="button" title="원문으로 되돌림">${esc(o)}${st.view==="make"?`<button type="button" class="edbtn" data-edrid="${esc(rid)}">수정하기</button>`:""}</span>`;
     return `<span class="swap${st.open.has(id)?" open":""}${ed?" edited":""}" data-sw="${id}" data-rid="${esc(rid)}" tabindex="0" role="button" aria-label="${esc(e)}, 원래 표현 ${esc(o)}"><span class="e">${esc(e)}</span><span class="o">${esc(o)}${st.view==="make"?`<button type="button" class="edbtn" data-edrid="${esc(rid)}">수정하기</button>`:""}</span></span>`; });
@@ -1223,7 +1191,7 @@ $("b-tts").onclick = () => {
   catch(err){ toast("읽어 주기를 시작하지 못했어요"); }
 };
 /* ── 교사 · 오역 판독 ── */
-const SCAN_STEPS = ["PDF 읽기와 텍스트 인식 (2쪽)","교과·단원 파악: 사회 · 재판의 의미와 공정한 재판 (신뢰도 0.93 / 0.88)","모국어 병기 추출: 교과 개념어 11개 × 3개 언어","교과 용어 대역표·혼동사전 대조","맥락 신호 확인 (의미장, 정의문, 함께 쓰인 말)","판정과 보고서 정리"];
+const SCAN_STEPS = ["PDF 열고 글자 읽기 (2쪽)","어떤 과목, 어떤 단원인지 알아보기: 사회 · 재판의 의미와 공정한 재판","모국어로 함께 적힌 낱말 찾기 (교과 낱말 11개 × 3개 언어)","교과 용어 사전과 맞춰 보기","앞뒤 문장을 보고 뜻이 맞는지 확인하기","결과 정리하기"];
 function glossedTerms(){ const set=new Set(); Object.values(P).forEach(p=>{ (p.o.match(/\[\[(.+?)\]\]/g)||[]).forEach(m=>set.add(m.slice(2,-2))); }); return [...set].filter(t=>T[t]); }
 function occ(t){ let n=0; Object.values(P).forEach(p=>{ n += (p.o.split("[["+t+"]]").length-1); }); return n; }
 function teacherHTML(){
@@ -1326,7 +1294,9 @@ function routeHash(){
 window.addEventListener("hashchange", routeHash);
 
 /* ── 교사 · 자료 재구성 ── */
-const MK_STEPS = ["PDF 읽기와 텍스트 인식 (2쪽)","교과·단원 파악: 사회 · 재판의 의미와 공정한 재판 (신뢰도 0.93 / 0.88)","핵심 문장·교과 개념어 선별 (개념어 11개)","학습 한국어 위계 분류 (B · T1 · T2 · T3 · C)","학생 수준별 표현 바꾸기","모국어 병기 (교과 용어 대역표)","쉬운 설명·그림 준비","검토 화면 준비"];
+const MK_STEPS = ["PDF 열고 글자 읽기 (2쪽)","꼭 알아야 할 문장과 낱말 고르기 (낱말 11개)","낱말을 어려운 정도에 따라 나누기","학생 수준에 맞게 쉬운 말로 바꾸기","낱말 옆에 모국어 뜻 함께 적기","쉬운 설명과 그림 준비하기","선생님이 확인할 화면 만들기"];
+function backKey(){ const f = st.mkFile; return f ? JSON.stringify([f.name, f.size, !!f.demo, f.demo ? 0 : st.rFrom, f.demo ? 0 : st.rTo, st.mkSubj]) : ""; }
+function canResume(){ return !!st.backKey && st.backKey === backKey() && st.mkGroups.size > 0; }
 function mkName(){ return st.mkFile ? st.mkFile.name : "민사재판_예시교육자료.pdf"; }
 function groupStats(g){
   let sw=0, more=0, vis=0;
@@ -1335,7 +1305,7 @@ function groupStats(g){
 }
 function makeHTML(){
   const fsize = b => b > 1048576 ? (b/1048576).toFixed(1)+"MB" : Math.max(1,Math.round(b/1024))+"KB";
-  if (st.mk==="upload") return `<div class="tcard"><h2>수업 자료를 올리면 학생 수준에 맞게 재구성합니다</h2>
+  if (st.mk==="upload") return `<div class="tcard">${canResume() ? `<div class="warn"><b>↩</b><span>방금 바꾼 자료가 남아 있어요. 설정을 그대로 두면 결과로 바로 돌아갈 수 있어요.</span></div><div class="row" style="margin:0 0 12px"><button type="button" class="btn p" id="mkResume">바꾼 결과로 돌아가기</button></div>` : ""}<h2>수업 자료를 올리면 학생 수준에 맞게 재구성합니다</h2>
      <div class="up"><h3>1. PDF 올리기</h3>
       ${st.mkFile?`<div class="fchip"><span class="ic">PDF</span><span class="nm"><b>${esc(st.mkFile.name)}</b>${fsize(st.mkFile.size)}${st.mkFile.demo?" · 예시 자료":""}</span><button type="button" class="btn s" id="fReset">다른 파일</button></div>`
        :`<label class="drop" id="drop" for="pdfIn"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9 15l3-3 3 3"/></svg><b>PDF를 끌어 놓거나 눌러서 선택</b><span>교과서·활동지 PDF · 20MB 이하 · 한 번에 최대 ${MAXP}쪽</span></label>
@@ -1343,12 +1313,9 @@ function makeHTML(){
          <div class="row"><button type="button" class="btn s" id="fDemo">예시 자료로 보기</button></div>`}
       ${st.ferr?`<span class="err">${esc(st.ferr)}</span>`:""}${rangeHTML()}</div>
      <div class="up"><h3>2. 받을 학생 (읽기 수준과 모국어가 같은 학생끼리 한 그룹)</h3><div class="opt">${Object.entries(STU).map(([k,v])=>`<label><input type="checkbox" data-mg="${k}" ${st.mkGroups.has(k)?"checked":""}>${v.name} · ${v.lv} · ${v.ln}</label>`).join("")}</div></div>
-     <div class="up"><h3>3. 교과</h3><div class="opt">${[["auto","자동 인식"],["국어","국어"],["수학","수학"],["과학","과학"],["사회","사회"]].map(([v,l])=>`<label><input type="radio" name="mksubj" value="${v}" ${st.mkSubj===v?"checked":""}>${l}</label>`).join("")}</div></div>
-     ${keyHTML()}
-     <button type="button" class="runbtn" id="runMake" ${st.mkFile&&st.mkGroups.size&&(st.mkFile.demo||(st.mkPages&&!rangeOK()&&(HOSTAI!==false||getKey())))?"":"disabled"}>자료 재구성 시작</button>
-     <p class="note">올린 PDF의 지면을 분석해 원본 배치 그대로(지면 보기) 재구성합니다. 바꾼 내용이 있는 문장만 다시 쓰고, 그림·도표 안의 글자와 바꾸지 않은 문장은 원본 그대로 둡니다. 병기·설명·쉬운 표현은 누르면 뜨는 말풍선으로 보여 줍니다. 한 번에 최대 ${MAXP}쪽, 글자를 선택할 수 있는 PDF만 재구성할 수 있고 스캔한 쪽은 원본 그대로 둡니다. 재구성에는 Claude를 쓰며(claude.ai에서는 처음 한 번 사용 허락을 묻고, 밖에서는 넣은 API 키를 씁니다) 쪽마다 30초~1분 걸려요. 모국어 대역은 AI 초안이라 ‘검증 전’으로 표시됩니다. 예시 결과만 보려면 ‘예시 자료로 보기’를 누르세요.</p></div>`;
+     <button type="button" class="runbtn" id="runMake" ${st.mkFile&&st.mkGroups.size&&(st.mkFile.demo||(st.mkPages&&!rangeOK()))?"":"disabled"}>자료 재구성 시작</button></div>`;
   if (st.mk==="processing" && st.prog) return progHTML();
-  if (st.mk==="processing") return `<div class="tcard"><h2>자료를 재구성하고 있어요</h2><dl class="meta"><dt>파일</dt><dd>${esc(mkName())}</dd></dl>
+  if (st.mk==="processing") return `<div class="tcard"><h2>자료를 학생 눈높이에 맞게 바꾸고 있어요</h2><p class="note">창을 닫지 말고 잠시 기다려 주세요.</p><dl class="meta"><dt>파일</dt><dd>${esc(mkName())}</dd></dl>
      <ol class="steps2">${MK_STEPS.map((x,i)=>`<li class="${i<st.mkStep?"done":(i===st.mkStep?"on":"")}"><span class="d">${i<st.mkStep?"✓":""}</span>${x}</li>`).join("")}</ol></div>`;
   if (st.mk==="sent") return `<div class="empty"><b>학생 ${st.mkGroups.size}명에게 최종본을 보냈어요</b><p>${[...st.mkGroups].map(g=>STU[g].name).join(", ")} 학생 화면에 자료가 나타납니다.</p>
      <div class="row" style="justify-content:center"><button type="button" class="btn p" data-view="student">학생 화면에서 보기</button><button type="button" class="btn s" id="mkNew">새 자료 만들기</button></div></div>`;
@@ -1356,12 +1323,12 @@ function makeHTML(){
   if (!groups.includes(st.mkG)) st.mkG = groups[0];
   const g = groupStats(st.mkG);
   const myRev = [...st.reverted].filter(r=>r.startsWith(st.mkG+"|")).length, myEd = Object.keys(st.edits).filter(r=>r.startsWith(st.mkG+"|")).length;
-  return `<div class="tcard"><h2>재구성 결과를 검토해 주세요</h2>
+  return `<div class="tcard"><div class="row" style="margin:0 0 8px"><button type="button" class="btn s" id="mkPrev">← 이전 화면 (자료 설정)</button></div><h2>재구성 결과를 검토해 주세요</h2>
     <dl class="meta">${st.doc ? docMeta() : `<dt>파일</dt><dd>${esc(mkName())}</dd><dt>교과·단원</dt><dd>사회 · XI. 일상생활과 법 · 03 재판의 의미와 공정한 재판 (210~211쪽)</dd>`}</dl>
-    <div class="ltabs">${groups.map(k=>`<button type="button" data-mkg="${k}" aria-pressed="${st.mkG===k}">${STU[k].name}<span class="apv ${st.approved.has(k)?"y":"n"}">${st.approved.has(k)?"승인":"검토 전"}</span><small>${STU[k].lv} · ${STU[k].ln}</small></button>`).join("")}</div>
-    <div class="stat"><div><b>${g.sw}</b><span>바꾼 표현</span></div><div><b>${g.terms}</b><span>모국어 병기 용어</span></div><div><b>${g.more}</b><span>쉬운 표현</span></div><div><b>${g.vis}</b><span>그림</span></div></div>
-    <div class="row"><span class="pill2 ${st.approved.has(st.mkG)?"g":"r"}">${st.approved.has(st.mkG)?"승인됨 · 최종본":"교사 검토가 필요한 초안"}</span><span class="pill2">${st.doc ? `인식: ${st.doc.pages.filter(x=>!x.fallback).length}/${st.doc.pages.length}쪽 재구성` : "인식: 성공 · 불확실 구간 0"}</span>${st.doc ? `<span class="pill2 r">모국어 대역: AI 초안 · 검증 전</span>` : ""}${decision(st.mkG).warns.length?`<span class="pill2 r">경고 ${decision(st.mkG).warns.length}</span>`:""}</div>
-    ${st.doc ? `<p class="note" style="color:var(--sub)">지면 보기: 원본 배치를 그대로 두고 바꾼 문장만 다시 썼습니다. 밑줄·점선·<b style="color:var(--title)">+</b> 버튼을 누르면 원래 표현·설명·쉬운 표현이 말풍선으로 뜨고, 그 안의 <b style="color:var(--title)">수정하기</b>로 고칠 수 있습니다. 교사용 요소는 왼쪽 빨간 줄로 표시되며 학생 화면에는 나오지 않습니다.</p><div id="dcheck"></div>` : ""}<p class="note" style="color:var(--sub)${st.doc ? ";display:none" : ""}">밑줄·설명·쉬운 표현·그림을 누르면 펼쳐지고, 펼친 곳의 <b style="color:var(--title)">수정하기</b>로 고칠 수 있습니다. <b style="color:var(--title)">지면의 글자를 드래그하면 밑줄·설명·시각 자료를 직접 추가할 수 있습니다.</b>${myRev||myEd?` 이 그룹에서 되돌림 ${myRev}건, 직접 수정 ${myEd}건.`:""}</p>${st.doc ? st.doc.notes.map(x=>`<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("") : ""}</div>${evidenceHTML(st.mkG)}`;
+    <div class="ltabs">${groups.map(k=>`<button type="button" data-mkg="${k}" aria-pressed="${st.mkG===k}">${STU[k].name}${st.approved.has(k)?`<span class="apv y">승인</span>`:""}<small>${STU[k].lv} · ${STU[k].ln}</small></button>`).join("")}</div>
+    <div class="stat"><div><b>${g.sw}</b><span>바꾼 표현</span></div><div><b>${g.terms}</b><span>모국어 병기 용어</span></div><div><b>${g.vis}</b><span>그림</span></div></div>
+    
+    ${st.doc ? `<div id="dcheck"></div>` : ""}<p class="note" style="color:var(--sub)${st.doc ? ";display:none" : ""}">밑줄·설명·쉬운 표현·그림을 누르면 펼쳐지고, 펼친 곳의 <b style="color:var(--title)">수정하기</b>로 고칠 수 있습니다. <b style="color:var(--title)">지면의 글자를 드래그하면 밑줄·설명·시각 자료를 직접 추가할 수 있습니다.</b>${myRev||myEd?` 이 그룹에서 되돌림 ${myRev}건, 직접 수정 ${myEd}건.`:""}</p>${st.doc ? st.doc.notes.map(x=>`<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("") : ""}</div>`;
 }
 function reviewBar(){
   const groups = [...st.mkGroups], ok = st.approved.has(st.mkG), all = groups.every(k=>st.approved.has(k));
@@ -1370,7 +1337,7 @@ function reviewBar(){
    <button type="button" class="btn ${all?"p":"s"}" id="mkSend" ${all?"":"disabled"}>학생에게 보내기</button>${st.doc && all ? `<button type="button" class="btn s" id="mkPdf">${STU[st.mkG].name} 그룹 PDF로 저장</button>` : ""}</div></div>`;
 }
 function runMake(){
-  st.prog = null; if (st.doc){ st.doc = null; resetWork(); activate(); } st.mk = "processing"; st.mkStep = 0; st.approved.clear(); render(); window.scrollTo({top:0});
+  st.backKey = null; st.prog = null; if (st.doc){ st.doc = null; resetWork(); activate(); } st.mk = "processing"; st.mkStep = 0; st.approved.clear(); render(); window.scrollTo({top:0});
   const tick = () => { st.mkStep++; if (st.mkStep >= MK_STEPS.length){ st.mk = "review"; st.mkG = [...st.mkGroups][0]; render(); return; } render(); setTimeout(tick, 550); };
   setTimeout(tick, 550);
 }
@@ -1729,7 +1696,7 @@ function blockDiv(pg, b, p, g, cq, o){
   const wrapEl = b.wrap ? `<span class="dfl" style="width:${cq(Math.max(0, b.x + w - b.wrap.x))};height:${cq(Math.min(b.wrap.y1, top + H + roomH) - top)};shape-outside:inset(${cq(Math.max(0, b.wrap.y - top))} 0 0 0)"></span>` : "";
   const inner = wrapEl + txt(b.key);
   SAFE = null;
-  const mo = moreOf(b.key, g);
+  const mo = null;   /* 문장 전체를 바꿔 쓴 글은 보여 주지 않음. +는 설명이 필요한 낱말 옆에만 */
   let more = "";
   if (mo){
     if (EXPORT){ const n = ++EXPORT.cur.n; EXPORT.cur.items.push({n, kind: "more", key: b.key, m: mo.m, v: mo.v}); more = `<sup class="xn">${n}</sup>`; }
@@ -1841,7 +1808,7 @@ function popFor(el){
   const tm = el.closest("[data-term]"), sw = el.closest("[data-sw]"), nt = el.closest("[data-nt]"), cx = el.closest("[data-cx]"), mo = el.closest("[data-dmore]");
   if (tm){
     const t = tm.dataset.term, d = T[t] || {}, s = STU[g], gl = glossOf(t, s.lang);
-    return `<div class="ph"><b>${esc(t)}</b><button type="button" class="pa" data-psay="${esc(t)}" aria-label="듣기">🔊</button></div>${row("뜻", esc(d.easy || ""))}${gl ? row(esc(s.ln), `${esc(gl)}${isOfficial(t, s.lang) ? "" : ` <span class="vt">검증 전</span>`}`, "l1") : ""}
+    return `<div class="ph"><b>${esc(t)}</b><button type="button" class="pa" data-psay="${esc(t)}" aria-label="듣기">🔊</button></div>${row("뜻", esc(d.easy || ""))}${gl ? row(esc(s.ln), esc(gl), "l1") : ""}
       ${st.view === "student" ? `<div class="pb"><button type="button" class="pa" data-psave="${esc(t)}">모르는 단어 저장</button><button type="button" class="pa" data-pknown="${esc(t)}">${st.known.has(t) ? "아는 단어 취소" : "아는 단어"}</button></div>` : ""}`;
   }
   if (mo){
@@ -1883,7 +1850,12 @@ document.addEventListener("click", e => {
   if (!hit){ closePop(); return; }
   const html = popFor(e.target);
   e.stopPropagation(); e.preventDefault();
-  if (html) showPop(hit, html);
+  if (html){
+    showPop(hit, html);
+    /* 화면을 다시 그려도 열린 말풍선을 다시 띄우도록 기억 */
+    const an = ["data-term", "data-sw", "data-nt", "data-cx", "data-dmore"].find(a => hit.hasAttribute(a)), dk = hit.closest("[data-k]");
+    POPKEY = an ? `${hit.closest("#convCol") ? "#convCol " : ""}${dk ? `[data-k="${CSS.escape(dk.dataset.k)}"] ` : ""}[${an}="${CSS.escape(hit.getAttribute(an))}"]` : null;
+  }
 }, true);
 
 /* ── pdf.js ── */
@@ -1984,7 +1956,7 @@ function figureRegions(sh, items, vp){
 const cfar = (a, b) => !!(a && b) && (Math.abs(a[0]-b[0]) + Math.abs(a[1]-b[1]) + Math.abs(a[2]-b[2])) > 90;
 function vote(m, c, w){ if (!c) return; const k = c.join(","); m.set(k, (m.get(k) || 0) + w); }
 function top1(m){ let k = null, v = -1; m.forEach((n, key) => { if (n > v){ v = n; k = key; } }); return k ? k.split(",").map(Number) : null; }
-function toBlocks(items, imgs){
+function toBlocks(items, imgs, shapes){
   items.sort((a, b) => (a.y + a.fs) - (b.y + b.fs) || a.x - b.x);
   const imgGap = (l, it) => imgs.some(b => b.x < it.x && b.x1 > l.nx1 && b.y < it.y + it.fs && b.y1 > it.y && (b.y1 - b.y) < it.fs * 3 && (b.x1 - b.x) < it.fs * 4);
   const lines = [];
@@ -2000,10 +1972,22 @@ function toBlocks(items, imgs){
     } else { const cm = new Map(), fm = new Map(); vote(cm, it.c, it.s.length); vote(fm, [it.ff, it.wt], it.s.length); lines.push({s: it.s, x: it.x, x1: it.x + it.w, nx1: it.x + it.w, y: it.y, fs: it.fs, bold: it.bold, c: it.c, cm, fm, fig: it.fig, img: it.onImg ? it.s.length : 0, len: it.s.length, its: [it]}); }
   }
   lines.sort((a, b) => a.y - b.y || a.x - b.x);
+  /* 문단 번호 표시(동그라미 번호 등): 숫자 한두 자짜리 줄, 작은 정사각형 도형·그림 */
+  const marks = [
+    ...lines.filter(m => /^\s*([0-9]{1,2}|[①-⑳❶-❿➊-➓])\s*$/.test(m.s)).map(m => ({x: m.x, x1: m.x1, y: m.y, y1: m.y + m.fs, t: 1})),
+    ...[...(imgs || []), ...(shapes || [])].map(s => ({x: s.x, x1: s.x1, y: s.y, y1: s.y1}))
+  ];
+  /* 새 문단인가: ① 줄 왼쪽에 번호 표시가 나란히 있음 ② 앞 줄이 문장으로 끝나고 이 줄이 들여 쓰임 */
+  const newPara = (b, l) => {
+    const endS = /[.!?。」”)]\s*$/.test(b.last.s);
+    if (endS && l.x - b.x > l.fs * 0.6) return true;
+    return marks.some(m => { const w = m.x1 - m.x, h = m.y1 - m.y; if (!m.t && (w < l.fs * 0.6 || h < l.fs * 0.6 || w > l.fs * 3 || h > l.fs * 3 || w / h > 1.6 || h / w > 1.6)) return false;
+      return m.x1 <= l.x + l.fs * 0.6 && m.x1 > l.x - l.fs * 4 && m.y < l.y + l.fs * 0.9 && m.y1 > l.y + l.fs * 0.1 && !(m.y < b.last.y + b.last.fs * 0.5 && m.y1 > b.last.y + b.last.fs * 0.5); });
+  };
   const blocks = [];
   for (const l of lines){
     const lpic = !!l.fig || l.img > l.len / 2;
-    const b = blocks.slice(-40).reverse().find(b => Math.abs(b.fs - l.fs) < b.fs * 0.2 && b.bold === l.bold && l.y - b.y1 < l.fs * 1.25 && l.y - b.y1 > -l.fs * 0.4 && l.x < b.x1 && l.x1 > b.x && Math.abs(l.x - b.x) < l.fs * 3 && !cfar(b.c, l.c) && b.pic === lpic);
+    const b = blocks.slice(-40).reverse().find(b => !newPara(b, l) && Math.abs(b.fs - l.fs) < b.fs * 0.2 && b.bold === l.bold && l.y - b.y1 < l.fs * 1.25 && l.y - b.y1 > -l.fs * 0.4 && l.x < b.x1 && l.x1 > b.x && Math.abs(l.x - b.x) < l.fs * 3 && !cfar(b.c, l.c) && b.pic === lpic);
     if (b){
       const prev = b.last, endS = /[.!?。」”)]\s*$/.test(prev.s), short = (prev.nx1 - b.x) < (Math.max(b.x1, l.x1) - b.x) * 0.9;
       l.cm.forEach((v, k) => b.cm.set(k, (b.cm.get(k) || 0) + v)); l.fm.forEach((v, k) => b.fm.set(k, (b.fm.get(k) || 0) + v));
@@ -2147,7 +2131,7 @@ async function readPage(L, pdf, no){
   items.forEach(it => { if (!it.ws){ const cx = it.x + it.w / 2, cy = it.y + it.fs / 2; it.fig = figs.some(f => cx > f.x && cx < f.x1 && cy > f.y && cy < f.y1); } });
   const bare = maskText(full, items.filter(x => !x.ws), S, null, fullData);
   items.forEach(it => { if (!it.ws) it.c = inkColor(full, bare, S, it.x, it.y, it.w, it.fs * 1.1); });
-  let blocks = toBlocks(items, sh.imgs);
+  let blocks = toBlocks(items, sh.imgs, sh.shapes);
   /* 그림 영역 안이라도 바탕이 고른 곳의 긴 문장(그림 위 안내문 등)은 일반 글로 다룸. 말풍선·라벨처럼 짧은 글은 원본 그대로 */
   const fsw = items.filter(it => !it.ws && !it.fig).map(it => it.fs).sort((a, b) => a - b), med = fsw.length ? fsw[fsw.length >> 1] : 10;
   blocks.forEach(b => {
@@ -2326,8 +2310,9 @@ function buildData(pages, res, termDefs){
     const aud = r.audience === "teacher" ? "teacher" : "student";
     if (b.pic || !res[b.key]){ P2[b.key] = {o, sw: [], role: b.pic ? "other" : role, aud: res[b.key] ? aud : "student", keep: true}; nkeep++; return; }
     if (aud === "teacher" || r.protect === true || role === "other"){ P2[b.key] = {o, sw: [], role, aud, keep: true}; if (r.protect) nkeep++; return; }
-    [...new Set((r.terms || []).map(String))].filter(t => t.length > 1 && o.includes(t) && !PROTECT_RE.test(t)).sort((a, c) => c.length - a.length).slice(0, 3)
-      .forEach(t => { const i = findFree(o, t); if (i >= 0) o = o.slice(0, i) + "[[" + t + "]]" + o.slice(i + t.length); });
+    /* 핵심어는 자료 전체에서 정한 것을 나오는 곳마다 모두 표시 */
+    [...new Set([...(r.terms || []).map(String), ...Object.keys(termDefs)])].filter(t => t.length > 1 && o.includes(t) && !PROTECT_RE.test(t)).sort((a, c) => c.length - a.length)
+      .forEach(t => { let i, guard = 0; while ((i = findFree(o, t)) >= 0 && guard++ < 50) o = o.slice(0, i) + "[[" + t + "]]" + o.slice(i + t.length); });
     const sw = [];
     for (const h of (r.hard || []).slice(0, 10)){
       if (!h || typeof h.from !== "string" || h.from.length < 2 || !TIERS.includes(String(h.tier))) continue;
@@ -2370,7 +2355,7 @@ function buildData(pages, res, termDefs){
 }
 
 /* ── 실제 재구성 진행 ── */
-const RSTEPS = ["PDF 열기", "지면 분석: 글자·그림·도표·상자 (pdf.js)", "교과·단원 파악", "쪽별 재구성: 핵심어·어려운 표현·쉬운 표현·그림 (Claude)", "학생 그룹별 적용 (진단 결과의 위계별 숙달도)", "검토 화면 준비"];
+const RSTEPS = ["올린 PDF 파일 열기", "쪽마다 글과 그림이 어디 있는지 살펴보기", "어떤 과목, 어떤 단원인지 알아보기", "어려운 말을 쉬운 말로 바꾸고 설명 붙이기", "학생 그룹마다 한국어 수준에 맞게 고르기", "선생님이 확인할 화면 만들기"];
 const SUBJS = ["국어", "수학", "과학", "사회", "도덕", "기타"];
 let subjWait = null;
 async function pdfInfo(f){
@@ -2396,7 +2381,8 @@ function rangeHTML(){
 }
 async function runReal(){
   const f = st.mkFileObj; if (!f || rangeOK()) return;
-  st.prog = {steps: RSTEPS.map(t => ({t, s: "wait", d: ""})), err: null, ask: null};
+  st.backKey = null;
+  st.prog = {steps: RSTEPS.map((t, i) => ({t, s: "wait", d: "", hide: i === 2})), err: null, ask: null};
   st.mk = "processing"; render(); window.scrollTo({top: 0});
   const ctl = mkCtl = new AbortController();
   const S = (i, s, d) => { if (mkCtl !== ctl) return; st.prog.steps[i].s = s; if (d != null) st.prog.steps[i].d = d; if (st.mk === "processing") render(); };
@@ -2404,15 +2390,15 @@ async function runReal(){
   const stopped = () => ctl.signal.aborted;
   S(0, "on");
   let L, pdf;
-  try { L = await loadPdfjs(); } catch(e){ return fail(0, "PDF 읽기 도구(pdf.js)를 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요."); }
+  try { L = await loadPdfjs(); } catch(e){ return fail(0, "PDF를 여는 도구를 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요."); }
   try { pdf = await L.getDocument({data: new Uint8Array(await f.arrayBuffer()), cMapUrl: PDFJS + "cmaps/", cMapPacked: true, standardFontDataUrl: PDFJS + "standard_fonts/", isEvalSupported: false}).promise; }
   catch(e){ return fail(0, e && e.name === "PasswordException" ? "암호가 걸린 PDF예요. 암호를 푼 파일로 올려 주세요." : "PDF 파일을 열 수 없어요. 파일이 손상되지 않았는지 확인해 주세요."); }
   if (stopped()) return;
   const total = pdf.numPages, from = Math.max(1, st.rFrom | 0), to = Math.min(total, st.rTo | 0);
-  S(0, "done", `전체 ${total}쪽 중 ${from}~${to}쪽`);
+  S(0, "done", `전체 ${total}쪽 중 ${from}~${to}쪽을 바꿔요`);
   const pages = [], errs = [];
   for (let i = from; i <= to; i++){
-    S(1, "on", `${i - from + 1}/${to - from + 1}쪽 분석 중`);
+    S(1, "on", `${i - from + 1}번째 쪽 살펴보는 중 (모두 ${to - from + 1}쪽)`);
     try { pages.push(await readPage(L, pdf, i)); }
     catch(e){
       errs.push(`${i}쪽: ${(e && (e.message || e.name)) || e}`);
@@ -2430,30 +2416,23 @@ async function runReal(){
     return fail(1, "이 PDF에는 글자 정보가 없어요. 스캔했거나 그림으로만 된 PDF, 또는 글자가 윤곽선(그림)으로 저장된 PDF는 재구성할 수 없어요. 글자를 드래그해 선택할 수 있는 PDF로 올려 주세요.");
   }
   const nb = textPages.reduce((k, p) => k + p.blocks.filter(b => !b.pic).length, 0), nf = textPages.reduce((k, p) => k + p.nfig, 0);
-  S(1, "done", `${pages.length}쪽 · 글 블록 ${nb}개 · 그림·도표 ${nf}개${pages.length > textPages.length ? ` · 원본 그대로 둘 쪽 ${pages.length - textPages.length}개` : ""}`);
-  S(2, "on", "Claude 사용 허락을 물을 수 있어요");
+  S(1, "done", `${pages.length}쪽에서 글 덩어리 ${nb}개, 그림·표 ${nf}개를 찾았어요${pages.length > textPages.length ? ` · 글자를 읽을 수 없어 원래대로 둘 쪽 ${pages.length - textPages.length}개` : ""}`);
+  S(2, "on", ""); S(3, "on");
   const sample = await getAI();
-  if (!sample) return fail(2, "AI에 연결할 수 없어요. 첫 화면의 ‘4. AI 연결’에 Anthropic API 키를 넣어 주세요.");
+  if (!sample) return fail(2, "AI에 연결할 수 없어요. claude.ai에서 이 화면을 다시 열어 주세요.");
   let subj;
   try {
     const r = await sample.json(subjPrompt(textPages), {modelTier: "quick", signal: ctl.signal});
     subj = {subject: SUBJS.includes(r && r.subject) ? r.subject : "기타", unit: String((r && r.unit) || "단원 미상"), sc: +(r && r.subject_confidence) || 0, uc: +(r && r.unit_confidence) || 0};
   } catch(e){ return fail(2, sampleErr(e)); }
   if (stopped()) return;
-  const auto = st.mkSubj === "auto";
+  const auto = true;
   if (!auto){ subj.subject = st.mkSubj; subj.sc = 1; }
-  else if (subj.sc < 0.7){
-    st.prog.ask = {guess: subj.subject, sc: subj.sc, pick: subj.subject};
-    S(2, "on", "교과를 골라 주세요");
-    const pick = await new Promise(res => { subjWait = res; });
-    if (stopped() || !pick) return;
-    subj.subject = pick; subj.sc = 1; subj.picked = true; st.prog.ask = null;
-  }
-  S(2, "done", `${subj.subject} · ${subj.unit} (${subj.picked ? "교과는 교사가 고름" : auto ? `신뢰도 ${subj.sc.toFixed(2)} / ${subj.uc.toFixed(2)}` : `교과는 교사 선택 · 단원 신뢰도 ${subj.uc.toFixed(2)}`})`);
+  S(2, "done", "");
   const res = {}, termDefs = {}, aiFail = [];
   for (let k = 0; k < textPages.length; k++){
     const pg = textPages[k];
-    S(3, "on", `${k+1}/${textPages.length}쪽 (원본 ${pg.no}쪽) 재구성 중 · 쪽마다 30초~1분`);
+    S(3, "on", `원본 ${pg.no}쪽 바꾸는 중 (${k+1}/${textPages.length}) · 한 쪽에 30초~1분쯤 걸려요`);
     let r;
     try { r = await sample.json(pagePrompt(pg, subj, Object.keys(termDefs)), {modelTier: "default", signal: ctl.signal}); }
     catch(e){ if (FATAL.has(e && e.code) || stopped()) return fail(3, `원본 ${pg.no}쪽: ${sampleErr(e)}`); pg.fallback = `${pg.no}쪽은 AI 재구성을 하지 못해 원본 그대로 보여 줘요. (${sampleErr(e)})`; aiFail.push(pg.no); continue; }
@@ -2462,34 +2441,34 @@ async function runReal(){
     r.blocks.forEach(b => { if (b && b.id) res[b.id] = b; });
     Object.entries(r.terms || {}).forEach(([t, d]) => { if (d && !termDefs[t]) termDefs[t] = d; });
   }
-  S(3, "done", `${textPages.length - aiFail.length}/${textPages.length}쪽 · 핵심어 후보 ${Object.keys(termDefs).length}개${aiFail.length ? ` · 원본 그대로 둔 쪽 ${aiFail.join(", ")}` : ""}`);
+  S(3, "done", `${textPages.length - aiFail.length}쪽을 바꿨어요 · 꼭 알아야 할 낱말 ${Object.keys(termDefs).length}개${aiFail.length ? ` · 바꾸지 못해 원래대로 둔 쪽: ${aiFail.join(", ")}쪽` : ""}`);
   S(4, "on");
   let built;
   try { built = buildData(pages.filter(p => !p.fallback), res, termDefs); } catch(e){ return fail(4, `결과를 정리하다 문제가 생겼어요(${(e && e.message) || e}).`); }
-  S(4, "done", `바꾼 표현 ${built.nsw}개 · 모국어 병기 핵심어 ${built.nterms}개`);
+  S(4, "done", `쉬운 말로 바꾼 곳 ${built.nsw}개 · 모국어 뜻을 함께 적은 낱말 ${built.nterms}개`);
   S(5, "on");
   const notes = pages.filter(p => p.fallback).map(p => p.fallback);
   st.doc = {name: f.name, pages, subject: subj.subject, unit: subj.unit, sc: subj.sc, uc: subj.uc, auto: auto && !subj.picked, notes, data: built.data, total, from, to};
   resetWork(); FITMODE = {}; activate();
-  for (const pg of pages){ if (pg.fallback) continue; S(5, "on", `${pg.no}쪽 바탕 만드는 중`); try { await buildBgs(pg); } catch(e){ pg.bgs = null; pg.masked = null; } }
+  for (const pg of pages){ if (pg.fallback) continue; S(5, "on", `${pg.no}쪽 화면 만드는 중`); try { await buildBgs(pg); } catch(e){ pg.bgs = null; pg.masked = null; } }
   if (pages.some(p => p.blocks.some(b => b.ff && b.ff !== "sans"))) linkFonts();
   S(5, "done", "");
   st.mk = "review"; st.mkG = [...st.mkGroups][0]; render(); window.scrollTo({top: 0});
 }
 function progHTML(){
   const p = st.prog, err = p && p.err;
-  return `<div class="tcard"><h2>${err ? "재구성을 마치지 못했어요" : "자료를 재구성하고 있어요"}</h2><dl class="meta"><dt>파일</dt><dd>${esc(mkName())}</dd><dt>쪽</dt><dd>${st.rFrom}~${st.rTo}쪽</dd></dl>
-    <ol class="steps2">${p.steps.map(s => `<li class="${s.s === "on" ? "on" : s.s}"><span class="d">${s.s === "done" ? "✓" : s.s === "fail" ? "!" : ""}</span><span>${esc(s.t)}${s.d ? `<small class="sd">${esc(s.d)}</small>` : ""}</span></li>`).join("")}</ol>
-    ${p.ask && !err ? `<div class="warn"><b>?</b><span>교과를 확실히 알기 어려워요(추정: ${esc(p.ask.guess)}, 신뢰도 ${p.ask.sc.toFixed(2)}). 교과를 골라 주세요.</span></div>
+  return `<div class="tcard"><h2>${err ? "자료를 다 바꾸지 못했어요" : "자료를 학생 눈높이에 맞게 바꾸고 있어요"}</h2>${err ? "" : `<p class="note">창을 닫지 말고 잠시 기다려 주세요.</p>`}<dl class="meta"><dt>파일</dt><dd>${esc(mkName())}</dd><dt>쪽</dt><dd>${st.rFrom}~${st.rTo}쪽</dd></dl>
+    <ol class="steps2">${p.steps.filter(s => !s.hide || s.s === "fail").map(s => `<li class="${s.s === "on" ? "on" : s.s}"><span class="d">${s.s === "done" ? "✓" : s.s === "fail" ? "!" : ""}</span><span>${esc(s.t)}${s.d ? `<small class="sd">${esc(s.d)}</small>` : ""}</span></li>`).join("")}</ol>
+    ${p.ask && !err ? `<div class="warn"><b>?</b><span>어떤 과목인지 확실하지 않아요. AI는 ‘${esc(p.ask.guess)}’ 과목으로 짐작했어요. 맞는 과목을 골라 주세요.</span></div>
       <div class="opt">${SUBJS.map(s => `<label><input type="radio" name="askSubj" value="${s}" ${p.ask.pick === s ? "checked" : ""}>${s}</label>`).join("")}</div>
       <div class="row"><button type="button" class="btn p" id="mkSubjOK">이 교과로 계속</button></div>` : ""}
-    ${err ? `<div class="warn"><b>!</b><span>${err.i + 1}단계 '${esc(p.steps[err.i].t)}'에서 멈췄어요. ${esc(err.why)}</span></div>
-      <div class="row"><button type="button" class="btn p" id="mkRetry">다시 시도</button><button type="button" class="btn s" id="mkBack">다른 파일 올리기</button><button type="button" class="btn s" id="fDemo">예시 자료로 보기</button></div>`
+    ${err ? `<div class="warn"><b>!</b><span>‘${esc(p.steps[err.i].t)}’ 단계에서 멈췄어요. ${esc(err.why)}</span></div>
+      <div class="row"><button type="button" class="btn p" id="mkRetry">다시 시도</button><button type="button" class="btn s" id="mkPrevSet">← 이전 화면 (설정 바꾸기)</button><button type="button" class="btn s" id="mkBack">다른 파일 올리기</button><button type="button" class="btn s" id="fDemo">예시 자료로 보기</button></div>`
      : `<div class="row"><button type="button" class="btn s" id="mkStop">중단</button></div>`}</div>`;
 }
 function docMeta(){
   const d = st.doc;
-  return `<dt>파일</dt><dd>${esc(d.name)}</dd><dt>교과·단원</dt><dd>${esc(d.subject)} · ${esc(d.unit)} <span class="note">(${d.auto ? `자동 인식 · 신뢰도 ${d.sc.toFixed(2)} / ${d.uc.toFixed(2)}` : "교과는 교사 선택"})</span></dd><dt>쪽</dt><dd>${d.from}~${d.to}쪽 (전체 ${d.total}쪽)</dd>`;
+  return `<dt>파일</dt><dd>${esc(d.name)}</dd><dt>교과·단원</dt><dd>${esc(d.subject)} · ${esc(d.unit)}</dd><dt>쪽</dt><dd>${d.from}~${d.to}쪽 (전체 ${d.total}쪽)</dd>`;
 }
 /* 빠짐 점검: 분석한 글 블록 수와 화면에 그린 수를 쪽마다 비교 */
 function checkDoc(){
@@ -2506,12 +2485,15 @@ function checkDoc(){
     if (z95 || z90 || lz || safeN) info.push(`${pg.no}쪽: ${[z95 ? `글자 95% 문단 ${z95}개` : "", z90 ? `글자 90% 문단 ${z90}개` : "", lz ? `줄 간격 줄인 문단 ${lz}개` : "", safeN ? `자리가 좁아 눌러서 보기로 둔 표현 ${safeN}개` : ""].filter(Boolean).join(" · ")}`);
     if (kept) out.push(`${pg.no}쪽: 바꾼 내용이 원래 자리에 들어가지 않아 원본 그대로 둔 문단 ${kept}개`);
   });
-  box.innerHTML = out.map(x => `<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("") + (info.length ? `<p class="note">자동 맞춤: ${info.map(esc).join(" / ")}</p>` : "");
+  box.innerHTML = out.map(x => `<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("");
 }
 document.addEventListener("click", e => {
   const id = e.target.id;
   if (id === "mkStop"){ if (mkCtl) mkCtl.abort(); mkCtl = null; if (subjWait){ subjWait(null); subjWait = null; } st.prog.err = {i: Math.max(0, st.prog.steps.findIndex(s => s.s === "on")), why: "중단했어요."}; const i = st.prog.err.i; st.prog.steps[i].s = "fail"; render(); return; }
   if (id === "mkRetry"){ runReal(); return; }
+  if (id === "mkPrev"){ st.backKey = backKey(); st.mk = "upload"; render(); window.scrollTo({top: 0}); return; }
+  if (id === "mkResume"){ if (!canResume()) return; st.mk = "review"; if (!st.mkGroups.has(st.mkG)) st.mkG = [...st.mkGroups][0]; render(); window.scrollTo({top: 0}); return; }
+  if (id === "mkPrevSet"){ st.mk = "upload"; render(); window.scrollTo({top: 0}); return; }
   if (id === "mkBack"){ st.mk = "upload"; st.mkFile = null; st.mkFileObj = null; st.mkPages = 0; render(); return; }
   if (id === "mkSubjOK" && subjWait){ const r = subjWait; subjWait = null; r(st.prog.ask.pick); return; }
   if (id === "mkPdf"){ exportPDF(st.mkG); return; }
@@ -2540,7 +2522,7 @@ function helpHTML(pg, cur, g){
     if (it.kind === "more") return `<li>${it.m ? `쉬운 표현: ${esc(it.m)}` : ""}${it.v ? `${it.m ? "<br>" : ""}그림: ${esc(visText(it.v))}` : ""}</li>`;
     return "";
   });
-  return `<div class="xhelp"><h3>${pg.no}쪽 도움말 · ${esc(s.name)} 그룹 (${esc(s.ln)})</h3><ol>${rows.map((r, i) => r.replace("<li>", `<li value="${cur.items[i].n}">`)).join("")}</ol><p class="xfoot">모국어 대역 중 '검증 전'은 교과 용어 대역표로 확인하기 전의 AI 초안입니다.</p></div>`;
+  return `<div class="xhelp"><h3>${pg.no}쪽 도움말 · ${esc(s.name)} 그룹 (${esc(s.ln)})</h3><ol>${rows.map((r, i) => r.replace("<li>", `<li value="${cur.items[i].n}">`)).join("")}</ol></div>`;
 }
 function visText(v){
   const it = (v.items || []).filter(Boolean);
@@ -2609,7 +2591,7 @@ async function openTrans(){
   $("sheetIn").innerHTML = trHTML(lg); $("sheet").hidden = false; $("sheetX").onclick = closeSheet;
   if (st.trans[lg]) return;
   const sample = await getAI();
-  if (!sample){ $("sheetIn").innerHTML = trHTML(lg).replace("번역을 만들고 있어요… (30초~1분)", "AI 번역을 쓰려면 교사 화면의 ‘AI 연결’에 API 키를 넣어 주세요."); $("sheetX").onclick = closeSheet; return; }
+  if (!sample){ $("sheetIn").innerHTML = trHTML(lg).replace("번역을 만들고 있어요… (30초~1분)", "AI 번역은 claude.ai에서 이 화면을 열었을 때 쓸 수 있어요."); $("sheetX").onclick = closeSheet; return; }
   const LN = {zh: "중국어(간체)", uz: "우즈베크어(라틴 문자)", mn: "몽골어(키릴 문자)"}[lg] || STU[st.stu].ln;
   const list = blockList();
   try {
@@ -2634,8 +2616,12 @@ if (document.fonts){
   if (document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", refit);
   document.fonts.ready.then(refit);
 }
-const renderBase = render;
-render = function(){ closePop(); renderBase(); if (st.doc){ fitPages(); checkDoc(); } };
+const renderBase = render; let POPKEY = null;
+render = function(){
+  const pp = $("dpop"), was = pp && !pp.hidden ? POPKEY : null;
+  closePop(); renderBase(); if (st.doc){ fitPages(); checkDoc(); }
+  if (was){ try { const el = document.querySelector(was), h = el && popFor(el); if (h) showPop(el, h); } catch(e){} }
+};
 
 /* 원본과 나란히: 칸 너비에 맞춘 배율 + 같은 쪽·같은 비율 위치로 스크롤 맞춤 */
 (function(){
@@ -2716,299 +2702,4 @@ render = function(){ closePop(); renderBase(); if (st.doc){ fitPages(); checkDoc
 })();
 render();
 routeHash();
-
-/* ── 확인 문제 (교재를 공부한 뒤 푸는 4지선다 5문항) ──
-   교재(학생 그룹별로 바뀐 표현이 반영된 본문) + 학생 프로필(진단 수준·위계별 숙달도·병목)로 만든다.
-   예시 자료는 미리 만든 문항을 쓰고, 올린 PDF는 Claude로 만든다. 교사가 검토·승인한 문항만 학생 화면에 나온다. */
-/* 한국어 진단평가 결과 (가상 데이터 · 초 5~6학년 루브릭과 진단평가 앱 채점 코드로 계산). 실제 연동 시 진단평가 결과 파일로 바꾼다. */
-const DIAG = {"l2": {"name": "아지즈", "grade_band": "초등학교 5~6학년", "native_language": "우즈베크어", "virtual": true, "overall": "초급", "listening": {"score": 32, "max": 100, "level": "초급"}, "reading": {"score": 12, "max": 100, "level": "초급"}, "total": 44, "daily_korean": {"score": 12, "max": 52, "level": "보완 필요"}, "subjects": {"국어": {"score": 0, "max": 34, "by_score": "초급", "by_criterion": "초급 미달", "level": "초급 미달", "correct_by_level": "초급 0/2 · 중급 0/2 · 고급 0/2"}, "수학": {"score": 8, "max": 35, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"}, "사회": {"score": 18, "max": 36, "by_score": "중급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"}, "과학": {"score": 6, "max": 43, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 1/2 · 중급 0/2 · 고급 0/2"}}, "wrong_items": ["듣3", "듣6", "듣8", "듣9", "듣10", "듣12", "듣13", "듣14", "듣15", "읽2", "읽3", "읽4", "읽6", "읽7", "읽8", "읽10", "읽11", "읽12", "읽13", "읽14", "읽15", "읽16", "읽17", "읽18", "읽19", "읽20"]}, "l4": {"name": "바트볼드", "grade_band": "초등학교 5~6학년", "native_language": "몽골어", "virtual": true, "overall": "중급", "listening": {"score": 66, "max": 100, "level": "중급"}, "reading": {"score": 52, "max": 100, "level": "중급"}, "total": 118, "daily_korean": {"score": 46, "max": 52, "level": "양호"}, "subjects": {"국어": {"score": 22, "max": 34, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}, "수학": {"score": 16, "max": 35, "by_score": "중급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 1/2 · 고급 0/2"}, "사회": {"score": 24, "max": 36, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}, "과학": {"score": 10, "max": 43, "by_score": "초급", "by_criterion": "초급", "level": "초급", "correct_by_level": "초급 2/2 · 중급 0/2 · 고급 0/2"}}, "wrong_items": ["듣10", "듣13", "듣14", "듣15", "읽12", "읽13", "읽14", "읽16", "읽17", "읽18", "읽19", "읽20"]}, "l5": {"name": "리나", "grade_band": "초등학교 5~6학년", "native_language": "중국어", "virtual": true, "overall": "고급", "listening": {"score": 83, "max": 100, "level": "고급"}, "reading": {"score": 94, "max": 100, "level": "고급"}, "total": 177, "daily_korean": {"score": 52, "max": 52, "level": "양호"}, "subjects": {"국어": {"score": 34, "max": 34, "by_score": "고급", "by_criterion": "고급", "level": "고급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"}, "수학": {"score": 35, "max": 35, "by_score": "고급", "by_criterion": "고급", "level": "고급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 2/2"}, "사회": {"score": 30, "max": 36, "by_score": "고급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 1/2"}, "과학": {"score": 26, "max": 43, "by_score": "중급", "by_criterion": "중급", "level": "중급", "correct_by_level": "초급 2/2 · 중급 2/2 · 고급 0/2"}}, "wrong_items": ["듣13", "듣14", "읽18"]}};
-const QZN = 5;
-/* 문항 유형(쉬운 것 → 어려운 것)과 진단 수준별 기본 구성. *가 붙은 것은 한 단계 위를 겨냥한 도전 문항 */
-const QTYPES = ["용어", "사실", "관계", "적용", "비교"];
-const QTYPE_DESC = {"용어":"교과 용어와 뜻 연결", "사실":"교재에 나온 내용 찾기", "관계":"개념 사이의 관계·순서·까닭 이해", "적용":"새 상황에 개념 적용", "비교":"개념 비교·판단"};
-const QBASE = [
-  ["용어","용어","용어","사실","관계*"],   // 0 초급 미달
-  ["용어","용어","사실","사실","관계*"],   // 1 초급
-  ["용어","사실","관계","관계","적용*"],   // 2 중급
-  ["용어","관계","적용","적용","비교*"]    // 3 고급
-];
-const QLANG = [
-  "교재의 쉬운 말만 쓴다. 발문은 한 문장 15자 안팎으로 아주 짧게 쓰고, 선지·해설은 해요체로 쓴다. 교과 용어는 정답 선지에서만 보여 준다. 부정 발문('아닌 것')은 쓰지 않는다.",
-  "쉬운 말을 중심으로 쓰되 교과 용어를 발문에도 쓴다. 발문은 짧게, 선지·해설은 해요체로 쓴다. 부정 발문은 쓰지 않는다.",
-  "교과 용어와 쉬운 말을 섞어 쓴다. 해설은 합니다체로 쓴다. 부정 발문은 1문항까지만 쓴다.",
-  "교과서 원문 표현을 그대로 쓴다. 해설은 합니다체로 쓴다."
-];
-
-const QZ_DEMO = {
-  l2: [
-    {q:"법원에 먼저 재판을 부탁한 사람을 무엇이라고 할까요?", opts:["피고","판사","원고","변호사"], ans:3, src:"c", type:"용어", stage:"현재", why:"먼저 재판을 부탁한 사람은 원고예요. 재판을 당한 사람은 피고예요."},
-    {q:"판결을 내리는 사람은 누구일까요?", opts:["원고","판사","피고","변호사"], ans:2, src:"c", type:"용어", stage:"현재", why:"판사는 두 사람의 말을 듣고 누가 맞는지 정해요. 이것이 판결이에요."},
-    {q:"민사 재판은 무엇을 해결하는 재판일까요?", opts:["사람과 사람 사이의 다툼","나쁜 일을 한 사람의 벌","새로운 법 만들기","학교 규칙 정하기"], ans:1, src:"c", type:"사실", stage:"현재", why:"민사 재판은 사람과 사람 사이의 다툼을 해결해요."},
-    {q:"소송 대리인은 주로 누가 할까요?", opts:["판사","변호사","원고","피고"], ans:2, src:"d", type:"사실", stage:"현재", why:"보통 변호사가 소송 대리인이에요."},
-    {q:"원고와 피고에게 왜 소송 대리인이 필요할까요?", opts:["법을 잘 몰라서 자기 생각을 말하기 어려워서","판결을 대신 내려 줘야 해서","재판에는 원고만 갈 수 있어서","증거를 내면 안 돼서"], ans:1, src:"d", type:"관계", stage:"도전", why:"원고와 피고는 법을 잘 몰라서 재판에서 말하기 어려워요. 그래서 소송 대리인이 도와줘요. 판결은 판사가 내려요."}
-  ],
-  l4: [
-    {q:"피고가 소장의 내용에 대해 자기 생각을 적어 법원에 내는 문서는 무엇일까요?", opts:["소장","답변서","판결","증거"], ans:2, src:"w2", type:"용어", stage:"현재", why:"답변서는 피고가 자기 생각을 적어 내는 문서입니다. 소장은 원고가 냅니다."},
-    {q:"민사 재판에서 판사가 하는 일은 무엇일까요?", opts:["두 사람의 주장을 듣고 판결을 내린다.","원고 대신 소장을 쓴다.","피고 편에서 증거를 낸다.","법원에 소송을 제기한다."], ans:1, src:"c", type:"사실", stage:"현재", why:"판사는 원고와 피고의 주장을 듣고 누구의 주장이 옳은지 판결을 내립니다."},
-    {q:"소송 대리인이 필요한 까닭으로 알맞은 것은 무엇일까요?", opts:["판사가 판결을 내리지 못해서","재판에는 증거가 필요 없어서","원고와 피고가 서로 만나면 안 돼서","원고와 피고가 법을 잘 몰라서 자기 주장을 펼치기 어려워서"], ans:4, src:"d", type:"관계", stage:"현재", why:"원고와 피고는 법을 잘 몰라 스스로 주장을 펼치기 어려운 경우가 많아, 소송 대리인이 돕습니다."},
-    {q:"민사 재판의 진행 순서에서 '답변서 제출' 바로 다음에 오는 것은 무엇일까요?", opts:["소장 제출","판결","증거 제출","변론"], ans:3, src:"st3", type:"관계", stage:"현재", why:"소장 제출 → 답변서 제출 → 증거 제출 → 변론 → 판결 순서입니다."},
-    {q:"영감이 항아리를 돌려 달라며 소송을 제기했어요. 이때 농부가 할 일로 알맞은 것은 무엇일까요?", opts:["판결을 내린다.","답변서를 써서 법원에 낸다.","소장을 써서 법원에 낸다.","판사를 직접 고른다."], ans:2, src:"w2", type:"적용", stage:"도전", why:"소송을 당한 농부가 피고이므로, 자기 입장을 적은 답변서를 냅니다. 소장은 원고인 영감이 냅니다."}
-  ],
-  l5: [
-    {q:"소송을 제기한 사람과 소송을 당한 사람을 가리키는 말을 순서대로 바르게 나열한 것은 무엇일까요?", opts:["피고, 원고","원고, 피고","판사, 원고","소송 대리인, 피고"], ans:2, src:"c", type:"용어", stage:"현재", why:"소송을 제기한 사람은 원고, 소송을 당한 사람은 피고라고 합니다."},
-    {q:"민사소송법 제87조에 따르면, 법률에 따라 재판상 행위를 할 수 있는 대리인이 아닌 경우 소송 대리인은 누가 될 수 있을까요?", opts:["변호사","원고의 가족","판사","피고의 친구"], ans:1, src:"law", type:"사실", stage:"현재", why:"법률이 따로 정한 대리인이 아니면 소송 대리인은 변호사만 될 수 있습니다."},
-    {q:"소장과 답변서의 관계를 바르게 설명한 것은 무엇일까요?", opts:["피고가 답변서를 먼저 내면 원고가 소장으로 답한다.","원고가 낸 소장의 내용에 대해 피고가 답변서로 입장을 밝힌다.","두 문서 모두 판사가 작성한다.","소장은 증거이고, 답변서는 판결문이다."], ans:2, src:"w2", type:"관계", stage:"현재", why:"원고가 소장을 내면, 피고는 그 내용에 대한 자신의 입장을 답변서로 밝힙니다."},
-    {q:"소송 대리인 덕분에 법률 지식이 부족한 사람이 얻을 수 있는 것은 무엇일까요?", opts:["재판을 하지 않아도 된다.","판결을 직접 내릴 수 있다.","증거를 내지 않아도 된다.","재판에서 자신의 권리를 지킬 수 있다."], ans:4, src:"sum", type:"관계", stage:"현재", why:"소송 대리인이 서류 작성, 증거 제출, 주장을 대신해 주어 법률 지식이 부족해도 권리를 지킬 수 있습니다."},
-    {q:"영감과 농부가 각각 소송 대리인을 두었다면, 소송 대리인이 하는 일로 보기 어려운 것은 무엇일까요?", opts:["영감 대신 소장을 작성한다.","농부 대신 답변서를 작성한다.","항아리가 누구 것인지 판결을 내린다.","주장을 뒷받침할 증거를 제출한다."], ans:3, src:"d", type:"적용", stage:"도전", why:"판결은 판사가 내립니다. 소송 대리인은 서류 작성, 증거 제출, 법정에서 주장 펼치기를 맡습니다."}
-  ]
-};
-st.qz = {status:"idle", byG:{}, ok:new Set(), err:"", busy:"", g:null, ans:{}, done:{}, open:false};
-st.qzHist = {};   /* 학생별 지난 확인 문제 결과: 새 자료를 만들어도 남겨 두고 다음 구성에 반영 */
-function qzReset(){ st.qz = {status:"idle", byG:{}, ok:new Set(), err:"", busy:"", g:null, ans:{}, done:{}, open:false}; }
-
-/* 학생 그룹이 실제로 본 교재 문장 (바꾼 표현·교사 수정 반영, 되돌린 표현·설명 메모는 원문 유지) */
-function stuPlain(g, key){
-  const p = P[key]; if (!p) return ""; let s = p.o;
-  for (const [o, e0, lv] of (p.sw || [])){
-    if (!lv.includes(g)) continue;
-    const rid = g + "|" + key + "|" + o;
-    if (st.reverted.has(rid)) continue;
-    const e = st.edits[rid] || e0;
-    if (isNote(o, e)) continue;
-    s = s.replace(o, e);
-  }
-  return s.replace(/\[\[(.+?)\]\]/g, "$1");
-}
-function qzKeys(){ return blockList().map(b => b.id).filter(k => P[k]); }
-function qzSrcText(g, key){ return P[key] ? stuPlain(g, key) : ""; }
-
-/* 진단 단계(0 초급 미달 ~ 3 고급): 진단평가 결과가 있으면 '이번 교과 수준'과 '읽기 등급' 중 낮은 쪽, 없으면 전체 한국어 수준(1~6)으로 정한다. */
-const DLV = ["초급 미달", "초급", "중급", "고급"];
-function qzTier(g){
-  const dg = DIAG[g];
-  if (dg){
-    const sj = dg.subjects[curSubj()], a = sj ? DLV.indexOf(sj.level) : 3, b = DLV.indexOf(dg.reading.level);
-    const lo = Math.min(a < 0 ? 3 : a, b < 0 ? 3 : b);
-    return {t: lo, name: DLV[lo], daily: dg.daily_korean.level === "보완 필요", why: `${curSubj()} ${sj ? sj.level : "결과 없음"} · 읽기 ${dg.reading.level}${dg.daily_korean.level === "보완 필요" ? " · 생활 한국어 보완 필요" : ""}`};
-  }
-  const lv = PROFILES[g].overall_korean_level, t = lv <= 1 ? 0 : lv <= 2 ? 1 : lv <= 4 ? 2 : 3;
-  return {t, name: DLV[t], daily: !!PROFILES[g].daily_korean_support, why: `전체 수준 ${lv}`};
-}
-/* 이번 5문항 구성: 기본 구성에 지난 결과를 반영해 도전 문항 수를 조정한다. */
-function qzPlan(g){
-  const tr = qzTier(g), h = st.qzHist[g];
-  let plan = QBASE[tr.t].map(x => ({type: x.replace("*", ""), stage: x.endsWith("*") ? "도전" : "현재"}));
-  let adj = "기본 구성";
-  if (h && h.challengeAllOk && h.currentWrong <= 1){
-    const ch = plan.find(x => x.stage === "도전"), i = plan.findIndex(x => x.stage === "현재");
-    if (ch && i >= 0){ plan[i] = {type: ch.type, stage: "도전"}; adj = "지난번 도전 문항을 모두 맞혀 도전 문항을 1개 늘림"; }
-  } else if (h && h.currentWrong >= 2){
-    plan = plan.map(x => x.stage === "도전" ? {type: "용어", stage: "현재"} : x);
-    adj = "지난번 현재 수준 문항을 2개 이상 틀려 도전 문항을 빼고 용어 문항을 늘림";
-  }
-  plan.sort((a, b) => QTYPES.indexOf(a.type) - QTYPES.indexOf(b.type) || (a.stage === "도전") - (b.stage === "도전"));
-  return {tier: tr, plan, adj};
-}
-function planText(pl){
-  const c = {}; pl.plan.forEach(x => { const k = x.type + (x.stage === "도전" ? "(도전)" : ""); c[k] = (c[k] || 0) + 1; });
-  return Object.entries(c).map(([k, n]) => `${k} ${n}`).join(" · ");
-}
-function diagText(g){
-  const dg = DIAG[g]; if (!dg) return "";
-  return `
-[한국어 진단평가 결과] (${dg.grade_band}용${dg.virtual ? ", 가상 데이터" : ""})
-- 듣기·읽기 종합: ${dg.overall} (듣기 ${dg.listening.score}/${dg.listening.max} ${dg.listening.level}, 읽기 ${dg.reading.score}/${dg.reading.max} ${dg.reading.level})
-- 생활 한국어: ${dg.daily_korean.level} (${dg.daily_korean.score}/${dg.daily_korean.max})
-- 교과별 수준(점수 등급과 수준 판정 기준 중 낮은 쪽): ${Object.entries(dg.subjects).map(([k, v]) => `${k} ${v.level}${v.by_score !== v.level ? `(점수로는 ${v.by_score})` : ""}`).join(", ")}`;
-}
-function qzPrompt(g){
-  const p = PROFILES[g], s = STU[g], pl = qzPlan(g), tr = pl.tier, nextLv = DLV[Math.min(3, tr.t + 1)];
-  const blocks = qzKeys().map(k => ({key: k, text: stuPlain(g, k)})).filter(b => b.text.length > 1);
-  const terms = Object.keys(T).map(t => `${t}: ${T[t].easy || ""}`).join("\n");
-  const h = st.qzHist[g];
-  return `너는 다문화 학생을 가르치는 한국어·교과 교사다. 아래는 학생이 방금 공부한 교재 본문이다(학생 수준에 맞게 표현을 바꾼 학생용 본문). 이 학생이 내용을 이해했는지 확인하고, 지금 진단된 단계에서 한 단계 위로 자랄 수 있도록 4지선다 확인 문제 ${QZN}개를 만든다.
-
-[학생]
-- 이름: ${s.name}, 모국어: ${p.native_language}
-- 전체 한국어 수준: ${p.overall_korean_level} (듣기 ${p.skills.listening} · 읽기 ${p.skills.reading})
-- 학습 한국어 위계 숙달도: ${JSON.stringify(p.academic_korean)} (B 생활, T1 교실 어휘, T2 사고 도구, T3 범용 지식 어휘, C 교과 적응) · 병목: ${(p.bottlenecks || []).join(", ") || "없음"}${diagText(g)}
-- 이번 문항의 기준 단계: ${tr.name} (${tr.why} 중 낮은 쪽) → 도전 문항은 ${nextLv} 단계를 겨냥한다.${h ? `\n- 지난 확인 문제 결과: 현재 수준 문항 ${h.currentWrong}개 틀림, 도전 문항 ${h.challengeAllOk ? "모두 맞힘" : "틀림"}` : ""}
-
-[교과] ${curSubj()}${st.doc && st.doc.unit ? " · " + st.doc.unit : ""}
-
-[학생 교재 본문] (key: 문장)
-${blocks.map(b => `${b.key}: ${b.text}`).join("\n")}
-
-[교과 용어와 쉬운 뜻]
-${terms || "(없음)"}
-
-[문항 유형] (쉬운 것 → 어려운 것)
-${QTYPES.map(t => `- ${t}: ${QTYPE_DESC[t]}`).join("\n")}
-
-[이번 5문항 구성] 반드시 이 유형·단계대로 만든다 (${pl.adj})
-${pl.plan.map((x, i) => `${i + 1}. ${x.type} · ${x.stage}${x.stage === "도전" ? ` (${nextLv} 단계 수준의 생각을 요구하되, 말은 학생 수준으로)` : ""}`).join("\n")}
-
-[원칙]
-1. 근거성: 모든 문항의 정답 근거가 위 본문에 있어야 한다. 상식만으로 풀리는 문항은 만들지 않는다.
-2. 핵심성: 학습 목표와 핵심 개념어를 묻는다. 쪽수·그림 번호·인물 이름처럼 학습 목표와 무관한 세부는 묻지 않는다.
-3. 언어와 내용 분리: 발문·선지는 학생 단계의 말로 써서, 한국어를 몰라서 틀리는 일이 없게 한다. 말투·어휘: ${QLANG[tr.t]}${tr.daily ? " 생활 한국어가 '보완 필요'이므로 발문을 더 짧게 쓰고 일상 표현을 우선한다." : ""}
-4. 진단이 되는 오답: 오답 3개는 실제로 헷갈릴 만한 오개념으로 만든다(예: 원고와 피고를 바꿈, 판사와 소송 대리인의 역할을 바꿈, 비슷한 문서를 바꿈). 정답은 하나만 분명히 맞다.
-5. 금지: 교재 문장을 그대로 베껴 빈칸만 뚫은 문항, 정답만 유난히 긴 선지, '모두 고르시오', 시간·숫자 같은 사소한 기억 문항.
-6. 발문은 모두 '~일까요?'로 끝낸다(예: '무엇을 해결하는 재판일까요?', '알맞은 것은 무엇일까요?'). '~입니까?', '~은?', '~예요?'로 끝내지 않는다.
-7. 정답 번호는 1~4에 고르게 흩어 놓는다.
-8. 병목 위계(${(p.bottlenecks || []).join(", ") || "없음"})의 어휘가 핵심인 문장은 문항에 꼭 넣는다.
-9. why는 학생이 읽을 해설로, 같은 단계의 말투로 한두 문장 쓴다. 오답이 왜 틀렸는지도 짧게 짚는다.
-
-[출력 형식]
-{"items":[{"q":"발문","opts":["선지1","선지2","선지3","선지4"],"ans":정답번호(1~4),"type":"용어|사실|관계|적용|비교","stage":"현재|도전","src":"근거 문장의 key","why":"해설"}]}`;
-}
-function qzValid(it){
-  return it && typeof it.q === "string" && Array.isArray(it.opts) && it.opts.length === 4 && it.opts.every(o => typeof o === "string" && o.trim())
-    && [1,2,3,4].includes(+it.ans) && new Set(it.opts.map(o => o.trim())).size === 4;
-}
-async function qzMakeFor(g, ai){
-  const keys = qzKeys(), plan = qzPlan(g).plan;
-  const r = await ai.json(qzPrompt(g), {modelTier: "default"});
-  const items = ((r && r.items) || []).filter(qzValid).slice(0, QZN)
-    .map((it, i) => ({q: it.q.trim(), opts: it.opts.map(o => o.trim()), ans: +it.ans, src: keys.includes(it.src) ? it.src : "",
-      type: QTYPES.includes(it.type) ? it.type : (plan[i] || {}).type || "사실", stage: it.stage === "도전" || it.stage === "현재" ? it.stage : (plan[i] || {}).stage || "현재",
-      why: String(it.why || "").trim()}));
-  if (items.length < 3) throw aiErr("too_few");
-  return items;
-}
-async function qzMake(only){
-  const groups = only ? [only] : [...st.mkGroups];
-  st.qz.err = ""; st.qz.status = "making";
-  if (!st.doc && !(only && await getAI())){
-    for (const g of groups){ st.qz.byG[g] = clone(QZ_DEMO[g] || QZ_DEMO.l4); st.qz.ok.delete(g); }
-    st.qz.busy = "예시 자료 확인 문제를 불러왔어요"; render();
-    setTimeout(() => { st.qz.status = "review"; st.qz.busy = ""; st.qz.g = st.qz.g && st.mkGroups.has(st.qz.g) ? st.qz.g : groups[0]; render(); }, 500);
-    return;
-  }
-  const ai = await getAI();
-  if (!ai){ st.qz.status = Object.keys(st.qz.byG).length ? "review" : "idle"; st.qz.err = "Claude를 쓸 수 없어요. 첫 화면의 ‘AI 연결’에 API 키를 넣어 주세요."; render(); return; }
-  for (const g of groups){
-    st.qz.busy = `${STU[g].name} 학생 문제를 만들고 있어요 (${groups.indexOf(g) + 1}/${groups.length})`; render();
-    try { st.qz.byG[g] = await qzMakeFor(g, ai); st.qz.ok.delete(g); }
-    catch(e){ st.qz.err = `${STU[g].name} 학생 문제를 만들지 못했어요${e && e.code === "bad_key" ? " (API 키 확인 필요)" : e && e.code === "rate_limited" ? " (잠시 뒤 다시 시도)" : ""}. ‘다시 만들기’를 눌러 주세요.`; }
-  }
-  st.qz.busy = ""; st.qz.status = "review"; st.qz.g = only || groups.find(g => st.qz.byG[g]) || groups[0]; render();
-}
-
-/* 교사 화면 (자료를 보낸 뒤) */
-function tagHTML(it){ return `<span class="qztag">${esc(it.type || "")}</span>${it.stage === "도전" ? `<span class="qztag ch">도전</span>` : ""}`; }
-function qzTeacherHTML(){
-  const Q = st.qz, groups = [...st.mkGroups];
-  if (Q.status === "idle") return `<div class="tcard qzt"><h2>확인 문제 만들기</h2>
-    <p class="note" style="color:var(--sub)">학생이 자료를 공부한 뒤 풀 확인 문제(4지선다 ${QZN}문항)를 학생마다 만듭니다. 진단된 단계에서 대부분 풀 수 있는 문항에, 한 단계 위를 겨냥한 ‘도전’ 문항을 더해 조금씩 성장하도록 구성합니다. 선생님이 검토하고 승인한 문제만 학생 화면에 나옵니다.</p>
-    <div class="qzplan">${groups.map(g => { const pl = qzPlan(g); return `<div><b>${STU[g].name}</b> <span>${pl.tier.name} 기준 · ${planText(pl)}</span>${pl.adj !== "기본 구성" ? `<em>${esc(pl.adj)}</em>` : ""}</div>`; }).join("")}</div>
-    ${Q.err ? `<span class="err">${esc(Q.err)}</span>` : ""}
-    <button type="button" class="runbtn" data-qz="make">확인 문제 만들기</button></div>`;
-  if (Q.status === "making") return `<div class="tcard qzt"><h2>확인 문제를 만들고 있어요</h2><p class="note" style="color:var(--sub)">${esc(Q.busy)}${st.doc ? " · 학생마다 20~40초 걸려요" : ""}</p><div class="qzspin"></div></div>`;
-  if (Q.status === "sent") return `<div class="tcard qzt"><h2>확인 문제를 보냈어요</h2>
-    <p class="note" style="color:var(--sub)">${groups.filter(g => Q.ok.has(g)).map(g => `${STU[g].name}(${(Q.byG[g] || []).length}문항)`).join(", ")} 학생 화면의 자료 아래에 ‘확인 문제’가 나타납니다.</p>
-    ${qzResultHTML()}
-    <div class="row"><button type="button" class="btn p" data-view="student">학생 화면에서 보기</button><button type="button" class="btn s" data-qz="reopen">문제 다시 검토하기</button></div></div>`;
-  const g = Q.g && groups.includes(Q.g) ? Q.g : groups[0]; Q.g = g;
-  const items = Q.byG[g] || [], ok = Q.ok.has(g), all = groups.every(k => Q.ok.has(k) && (Q.byG[k] || []).length);
-  const pf = PROFILES[g], pl = qzPlan(g);
-  return `<div class="tcard qzt"><h2>확인 문제를 검토해 주세요</h2>
-    <div class="ltabs">${groups.map(k => `<button type="button" data-qzg="${k}" aria-pressed="${g === k}">${STU[k].name}<span class="apv ${Q.ok.has(k) ? "y" : "n"}">${Q.ok.has(k) ? "승인" : "검토 전"}</span><small>${STU[k].lv} · ${STU[k].ln}</small></button>`).join("")}</div>
-    <p class="note" style="color:var(--sub)">${STU[g].name} 학생 기준: <b>${pl.tier.name}</b> (${esc(pl.tier.why)}${DIAG[g] ? `, 종합 ${DIAG[g].overall}${DIAG[g].virtual ? " · 가상 데이터" : ""}` : ""}) · 구성 ${planText(pl)}${pl.adj !== "기본 구성" ? ` · ${esc(pl.adj)}` : ""} · 병목 위계 ${(pf.bottlenecks || []).map(b => `${b}(${TIER_NAME[TIER_OF[b]]})`).join(", ") || "없음"}. 발문·선지·정답·해설을 바로 고칠 수 있어요.</p>
-    ${Q.err ? `<span class="err">${esc(Q.err)}</span>` : ""}
-    ${items.length ? items.map((it, i) => `<div class="qzc${ok ? " lock" : ""}">
-      <div class="qzh"><b>${i + 1}</b><div class="qzhb"><div class="qztags">${tagHTML(it)}</div><textarea rows="2" data-qzf="q" data-qzi="${i}" aria-label="${i + 1}번 발문" ${ok ? "disabled" : ""}>${esc(it.q)}</textarea></div>${ok ? "" : `<button type="button" class="btn s" data-qzdel="${i}" aria-label="${i + 1}번 문항 지우기">지우기</button>`}</div>
-      <div class="qzo">${it.opts.map((o, j) => `<label class="${it.ans === j + 1 ? "on" : ""}"><input type="radio" name="qzans${i}" value="${j + 1}" data-qzans="${i}" ${it.ans === j + 1 ? "checked" : ""} ${ok ? "disabled" : ""} aria-label="${j + 1}번을 정답으로"><span class="n">${"①②③④"[j]}</span><input type="text" value="${esc(o)}" data-qzf="o${j}" data-qzi="${i}" aria-label="${i + 1}번 선지 ${j + 1}" ${ok ? "disabled" : ""}></label>`).join("")}</div>
-      <div class="qzw"><span class="lab">해설</span><input type="text" value="${esc(it.why)}" data-qzf="why" data-qzi="${i}" aria-label="${i + 1}번 해설" ${ok ? "disabled" : ""}></div>
-      ${it.src && P[it.src] ? `<div class="qzsrc"><span class="lab">근거</span>${esc(qzSrcText(g, it.src))}</div>` : `<div class="qzsrc"><span class="lab">근거</span><span style="color:var(--amber-500)">근거 문장을 찾지 못했어요. 교재 내용과 맞는지 확인해 주세요.</span></div>`}
-    </div>`).join("") : `<p class="note">아직 문제가 없어요.</p>`}
-    <div class="rvbar"><span class="msg">${all ? "모든 학생의 문제를 승인했어요." : `${STU[g].name} ${ok ? "승인 완료" : "검토 중"} · 승인 ${groups.filter(k => Q.ok.has(k)).length}/${groups.length}`}</span>
-      ${ok ? `<button type="button" class="btn s" data-qz="unok">승인 취소</button>` : `<button type="button" class="btn s" data-qz="remake">${STU[g].name} 문제 다시 만들기</button><button type="button" class="btn p" data-qz="ok" ${items.length ? "" : "disabled"}>이 학생 승인</button>`}
-      <button type="button" class="btn ${all ? "p" : "s"}" data-qz="send" ${all ? "" : "disabled"}>확인 문제 보내기</button></div></div>`;
-}
-function qzStat(g){
-  const items = st.qz.byG[g] || [], a = st.qz.ans[g] || {};
-  const by = {}; let curWrong = 0, chTot = 0, chOk = 0;
-  items.forEach((it, i) => { const ok = +a[i] === it.ans; const k = it.type || "기타"; by[k] = by[k] || [0, 0]; by[k][1]++; if (ok) by[k][0]++;
-    if (it.stage === "도전"){ chTot++; if (ok) chOk++; } else if (!ok) curWrong++; });
-  return {n: items.filter((it, i) => +a[i] === it.ans).length, tot: items.length, by, curWrong, chTot, chOk};
-}
-function qzNextText(s){
-  if (s.chTot && s.chOk === s.chTot && s.curWrong <= 1) return "다음 확인 문제에서 도전 문항 1개 늘림";
-  if (s.curWrong >= 2) return "다음 확인 문제에서 도전 문항 빼고 용어 문항 늘림";
-  return "다음에도 같은 구성";
-}
-function qzResultHTML(){
-  const rows = [...st.mkGroups].filter(g => st.qz.done[g]).map(g => { const s = qzStat(g);
-    return `<tr><td>${STU[g].name}</td><td class="num">${s.n}/${s.tot}</td><td>${QTYPES.filter(t => s.by[t]).map(t => `${t} ${s.by[t][0]}/${s.by[t][1]}`).join(" · ")}</td><td>${s.chTot ? `${s.chOk}/${s.chTot}` : "-"}</td><td>${qzNextText(s)}</td></tr>`; });
-  return rows.length ? `<table class="qzr"><thead><tr><th>학생</th><th>맞힌 문항</th><th>유형별</th><th>도전</th><th>다음 구성</th></tr></thead><tbody>${rows.join("")}</tbody></table>` : `<p class="note">아직 푼 학생이 없어요.</p>`;
-}
-
-/* 학생 화면 */
-function qzStuHTML(){
-  const g = st.stu, Q = st.qz;
-  if (Q.status !== "sent" || !Q.ok.has(g) || !(Q.byG[g] || []).length) return "";
-  const items = Q.byG[g], a = Q.ans[g] || (Q.ans[g] = {}), done = !!Q.done[g];
-  const easy = qzTier(g).t <= 1;
-  if (!Q.open) return `<div class="qzs-in qzentry"><div><b>확인 문제 ${items.length}개</b><p>${easy ? "자료를 다 읽었어요? 문제를 풀어 봐요." : "자료를 다 공부했으면 확인 문제를 풀어 보세요."}</p></div><button type="button" class="btn p" data-qz="open">${done ? "결과 보기" : "풀기"}</button></div>`;
-  const n = items.filter((it, i) => +a[i] === it.ans).length, filled = items.every((it, i) => a[i]);
-  const s = done ? qzStat(g) : null;
-  return `<div class="qzs-in"><div class="qzst"><h2>확인 문제</h2><button type="button" class="x" data-qz="close" aria-label="닫기">✕</button></div>
-    ${done ? `<div class="qzscore"><b>${n} / ${items.length}</b><span>${n === items.length ? (easy ? "모두 맞았어요!" : "모두 맞혔어요.") : s.chTot && s.chOk === s.chTot ? (easy ? "도전 문제를 맞혔어요! 한 단계 더 자라고 있어요." : "도전 문제를 맞혔어요. 다음 단계로 가고 있어요.") : (easy ? "틀린 문제는 자료를 다시 읽어 봐요." : "틀린 문제는 ‘자료에서 다시 보기’로 해당 부분을 다시 읽어 보세요.")}</span></div>` : ""}
-    ${items.map((it, i) => { const pick = +a[i], right = pick === it.ans;
-      return `<div class="qzq${done ? (right ? " ok" : " no") : ""}"><p class="qq"><span class="qn">${i + 1}</span><span>${it.stage === "도전" ? `<span class="qztag ch">도전</span> ` : ""}${esc(it.q)}</span></p>
-      <div class="qzopts">${it.opts.map((o, j) => { const v = j + 1, cls = [pick === v ? "pick" : "", done && v === it.ans ? "ans" : "", done && pick === v && !right ? "wrong" : ""].filter(Boolean).join(" ");
-        return `<button type="button" class="${cls}" data-qzp="${i}:${v}" ${done ? "disabled" : ""} aria-pressed="${pick === v}"><span class="n">${"①②③④"[j]}</span>${esc(o)}</button>`; }).join("")}</div>
-      ${done ? `<div class="qzfb"><b>${right ? (easy ? "맞았어요" : "정답입니다") : (easy ? `정답은 ${"①②③④"[it.ans - 1]}이에요` : `정답: ${"①②③④"[it.ans - 1]}`)}</b>${it.why ? ` ${esc(it.why)}` : ""}${!right && it.src && P[it.src] ? `<button type="button" class="btn s" data-qzgo="${esc(it.src)}">자료에서 다시 보기</button>` : ""}</div>` : ""}
-      </div>`; }).join("")}
-    <div class="row">${done ? `<button type="button" class="btn s" data-qz="retry">다시 풀기</button>` : `<button type="button" class="btn p" data-qz="check" ${filled ? "" : "disabled"}>${easy ? "다 풀었어요" : "채점하기"}</button>${filled ? "" : `<span class="note">${items.length - items.filter((it, i) => a[i]).length}문항 남았어요</span>`}`}</div></div>`;
-}
-function qzMount(){
-  let el = $("qzStu");
-  if (!el){ el = document.createElement("section"); el.id = "qzStu"; el.className = "qzs"; el.setAttribute("aria-label", "확인 문제"); $("cmp").after(el); }
-  const show = st.view === "student" && st.sent;
-  const h = show ? qzStuHTML() : "";
-  el.hidden = !h; el.innerHTML = h;
-}
-
-/* 기존 함수에 덧붙이기 */
-{
-  const r0 = render; render = function(){ r0(); qzMount(); };
-  const m0 = makeHTML; makeHTML = function(){ const h = m0(); return st.mk === "sent" ? h + qzTeacherHTML() : h; };
-  const w0 = resetWork; resetWork = function(){ w0(); qzReset(); };
-  const k0 = runMake; runMake = function(){ qzReset(); k0(); };
-  const k1 = runReal; runReal = function(){ qzReset(); return k1(); };
-}
-document.addEventListener("click", e => {
-  if (e.target.id === "mkNew"){ qzReset(); return; }
-  const t = e.target.closest("[data-qz],[data-qzg],[data-qzdel],[data-qzp],[data-qzgo]"); if (!t) return;
-  const Q = st.qz, g = Q.g;
-  if (t.dataset.qzg){ Q.g = t.dataset.qzg; Q.err = ""; render(); return; }
-  if (t.dataset.qzdel != null){ Q.byG[g].splice(+t.dataset.qzdel, 1); render(); return; }
-  if (t.dataset.qzp){ const [i, v] = t.dataset.qzp.split(":").map(Number); (Q.ans[st.stu] = Q.ans[st.stu] || {})[i] = v; render(); return; }
-  if (t.dataset.qzgo){
-    const b = document.querySelector(`#cin [data-blk="${CSS.escape(t.dataset.qzgo)}"]`);
-    if (b){ b.scrollIntoView({behavior: "smooth", block: "center"}); const host = b.closest(".dtx") || b; host.classList.add("qzflash"); setTimeout(() => host.classList.remove("qzflash"), 2400); }
-    return;
-  }
-  const a = t.dataset.qz;
-  if (a === "make"){ qzMake(); return; }
-  if (a === "remake"){ qzMake(g); return; }
-  if (a === "ok"){ Q.ok.add(g); const next = [...st.mkGroups].find(k => !Q.ok.has(k)); toast(`${STU[g].name} 학생 문제를 승인했어요`); if (next) Q.g = next; render(); return; }
-  if (a === "unok"){ Q.ok.delete(g); render(); return; }
-  if (a === "send"){ Q.status = "sent"; Q.ans = {}; Q.done = {}; Q.open = false; render(); toast("확인 문제를 보냈어요"); return; }
-  if (a === "reopen"){ Q.status = "review"; Q.ok.clear(); render(); return; }
-  if (a === "open"){ Q.open = true; render(); $("qzStu").scrollIntoView({behavior: "smooth", block: "start"}); return; }
-  if (a === "close"){ Q.open = false; render(); return; }
-  if (a === "check"){ Q.done[st.stu] = true; Q.rec = Q.rec || {}; if (!Q.rec[st.stu]){ Q.rec[st.stu] = true; const z = qzStat(st.stu); st.qzHist[st.stu] = {currentWrong: z.curWrong, challengeAllOk: z.chTot > 0 && z.chOk === z.chTot}; } render(); $("qzStu").scrollIntoView({behavior: "smooth", block: "start"}); return; }
-  if (a === "retry"){ Q.done[st.stu] = false; Q.ans[st.stu] = {}; render(); $("qzStu").scrollIntoView({behavior: "smooth", block: "start"}); return; }
-});
-document.addEventListener("input", e => {
-  const f = e.target.dataset && e.target.dataset.qzf; if (!f) return;
-  const it = (st.qz.byG[st.qz.g] || [])[+e.target.dataset.qzi]; if (!it) return;
-  if (f === "q") it.q = e.target.value; else if (f === "why") it.why = e.target.value; else it.opts[+f.slice(1)] = e.target.value;
-});
-document.addEventListener("change", e => {
-  if (e.target.dataset && e.target.dataset.qzans != null){ const it = st.qz.byG[st.qz.g][+e.target.dataset.qzans]; it.ans = +e.target.value; render(); }
-});
 </script>
