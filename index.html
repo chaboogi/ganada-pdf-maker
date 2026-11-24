@@ -386,8 +386,11 @@ body.drawing .inkc{pointer-events:auto;touch-action:none;cursor:crosshair}
 .dab{position:absolute;box-sizing:border-box;z-index:2}
 .dab.dorig{z-index:1}
 .dab.dcover .dtx{background:var(--bgc,#fff);box-shadow:0 0 0 .15em var(--bgc,#fff)}
+.dab.dcover.dpic .dtx{background:rgba(255,255,255,.96);box-shadow:0 0 0 .3em rgba(255,255,255,.96);border-radius:.3em}
+.dab:not(.dorig) .dtx{text-shadow:0 0 .08em var(--hl,#fff),0 0 .08em var(--hl,#fff),0 0 .16em var(--hl,#fff)}
 .dab .dtx{position:relative;z-index:1;letter-spacing:var(--ls,normal);word-break:keep-all;overflow-wrap:anywhere;white-space:pre-line}
 .dfl{float:right;display:block}
+.dfll{float:left;clear:left;display:block}
 .dcrop{position:absolute;z-index:0;background-repeat:no-repeat;pointer-events:none}
 .dorig .dtx,.dorig .dtx *{color:transparent!important}
 .dorig .dtx ::selection{background:rgba(30,140,134,.28)}
@@ -606,43 +609,6 @@ function decision(g){
   if (false && t3.length){ warns.push(`교과 적응 한국어가 들어간 표현 ${t3.length}개를 바꿨습니다. 개념어 보존 원칙과 충돌할 수 있어 확인이 필요합니다.`); qs.push(`'${t3[0]}' 등 ${t3.length}개 표현을 원문 유지 + 괄호 설명으로 바꿀까요?`); }
   qs.push("모국어 병기는 교과 용어 대역표 검증 전입니다. 핵심어 목록에서 대역을 확인해 주세요.");
   return {methods, why, warns, qs};
-}
-function agentJSON(g){
-  const p = PROFILES[g], dcs = decision(g);
-  const ks = []; let n = 0;
-  for (const [k,b] of Object.entries(P)){ const sws = b.sw.filter(x=>x[2].includes(g)); if (!sws.length) continue;
-    let r = b.o; sws.forEach(([o,e])=>{ const rid = g+"|"+k+"|"+o; if (!st.reverted.has(rid)) r = r.replace(o, st.edits[rid]||e); });
-    ks.push({id:"s"+(++n), page: /^(conn|s1|s2|b|q)/.test(k)?210:211, source:b.o.replace(/\[\[|\]\]/g,""), rewritten:r.replace(/\[\[|\]\]/g,""),
-      swaps:sws.map(([o,e])=>({from:o, to:st.reverted.has(g+"|"+k+"|"+o)?o:(st.edits[g+"|"+k+"|"+o]||e), tier:SW_TIER[o]||"unknown_needs_teacher"})),
-      operations:[...new Set(sws.map(([o,e])=>swapInfo(g,o,e).op))], rationale:"학습자 위계 숙달도 대비 상위 위계 표현을 조정", review_required: sws.some(([o,e])=>swapInfo(g,o,e).review)}); }
-  const vocab = glossedTerms().map(t=>({term:t, tier:VT[t]?VT[t][0]:"unknown_needs_teacher", category:VT[t]?VT[t][1]:"unknown", action:"elaborate", simple_meaning:T[t].easy, native_language:p.native_language, translation:glossOf(t, STU[g].lang)||"", translation_status: isOfficial(t, STU[g].lang) ? "translated" : "review", tts_text:t, knowledge_state: st.saved.has(t)?"unknown":(st.known.has(t)?"known":"unmarked"), highlight:true, review_required:true}));
-  return {status: st.approved.has(g)?"teacher_approved":"teacher_review_required",
-    document:{class_name:"1학년 3반", subject:"사회", grade:"중학교 1학년", source_name: mkName()},
-    learner_decision:{diagnosed_level:p.overall_korean_level, skill_profile:p.skills, subject_profile_used:p.subject["사회"], native_language:p.native_language, methods_selected:dcs.methods, rationale:dcs.why},
-    recognition:{status:"success", page_notes:["210쪽, 211쪽 텍스트 인식 완료"], uncertain_spans:[]},
-    key_sentences:ks, vocabulary:vocab,
-    visual_aids:[{needed: g!=="l5", kind:"other", title:"민사 재판의 사람들", description:"판사 앞에서 원고·피고와 각자의 소송 대리인이 주장하는 관계", items:["판사","원고","피고","소송 대리인"], source_sentence_ids:[], alt_text:"판사 앞에서 원고와 피고가 각자의 소송 대리인과 함께 주장하는 관계도", visible_by_default:false, rationale:"인물·역할 관계 정보가 있어 도식이 이해를 돕습니다."}],
-    learner_tools:{tts_texts:glossedTerms(), vocabulary_states:Object.fromEntries([...st.saved.keys()].map(k=>[k,"unknown"])), visual_visibility_default:false, document_zoom_default_percent:100, handwriting_supported_by_host:false},
-    teacher_review:{required:!st.approved.has(g), editable_fields:["key_sentences.rewritten","key_sentences.swaps","vocabulary.translation","vocabulary.tier","visual_aids"], questions:dcs.qs, teacher_edits_applied: [...st.reverted, ...Object.keys(st.edits)].some(r=>r.startsWith(g+"|"))},
-    teacher_annotations:(st.ann[g]||[]).map(a=>({block:a.key, phrase:a.phrase, underline_easy_text:a.swap, explanation:a.note, visual:a.vis})),
-    finalization:{approved_by_teacher: st.approved.has(g), final_document: st.approved.has(g)?"승인된 최종본":null},
-    warnings:dcs.warns};
-}
-function evidenceHTML(g){
-  const p = PROFILES[g], dc = decision(g);
-  const tiers = ["B","T1","T2","T3","C"].map(c=>{ const m = p.academic_korean[c]; return `<div class="${m>=6?"m6":(m>=4?"m45":"m3")}"><b>${c} · ${TIER_OF[c]}</b>M${m}</div>`; }).join("");
-  const vrows = glossedTerms().map(t=>`<tr><td><b>${esc(t)}</b></td><td>${VT[t]?VT[t][0]:"?"}</td><td>${VT[t]&&VT[t][1]==="general_knowledge"?"범용 지식":"교과 적응"}</td><td>${esc(T[t].easy)}</td><td class="l1">${esc(glossOf(t,STU[g].lang)||"")}</td><td>${isOfficial(t,STU[g].lang)?`<span class="pill2 g">대역표 확인</span>`:`<span class="pill2 r">검증 전</span>`}</td><td><button type="button" data-say="${esc(t)}">듣기</button></td></tr>`).join("");
-  return `<details class="why2"><summary>에이전트 판단 근거 · ${STU[g].name}</summary><div class="in">
-    <dl class="kv"><dt>진단 수준</dt><dd>${p.overall_korean_level} (듣기 ${p.skills.listening} · 읽기 ${p.skills.reading} · 쓰기 ${p.skills.writing} · 말하기 ${p.skills.speaking})</dd>
-    <dt>모국어</dt><dd>${p.native_language}</dd><dt>병목</dt><dd>${p.bottlenecks.join(", ")}</dd>
-    <dt>${curSubj()} 교과</dt><dd>${(()=>{ const sj = p.subject[curSubj()]; return sj ? `${sj.representative_level}${(sj.uncertainty_flags||[]).length?" · "+sj.uncertainty_flags.join(", "):""}${sj.recheck_required?" · 재시행 필요":""}` : "진단 결과 없음"; })()}</dd>
-    <dt>선택한 방법</dt><dd>${dc.methods.join(", ")}</dd></dl>
-    <div><span class="note">학습 한국어 위계별 숙달 단계 (M6 유지 · M4~5 상세화 · M3 이하 단순화)</span><div class="tierbar">${tiers}</div></div>
-    <ul class="qs">${dc.why.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-    ${dc.warns.map(x=>`<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("")}
-    <div><b style="color:var(--title)">교사 확인 질문</b><ol class="qs">${dc.qs.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>
-  </div></details>
-  <details class="why2"><summary>핵심어 목록 (${glossedTerms().length}개)</summary><div class="in" style="overflow-x:auto"><table class="vt"><thead><tr><th>핵심어</th><th>위계</th><th>종류</th><th>쉬운 뜻</th><th>모국어</th><th>번역 상태</th><th>발음</th></tr></thead><tbody>${vrows}</tbody></table></div></details>`;
 }
 
 /* 팀 교과 용어 대역표 (공식 값). 여기에 있는 값만 '대역표 확인'으로 표시하고, 오역 판정의 기준으로 쓴다 */
@@ -873,6 +839,22 @@ function termHTML(t){
   }
   const sayb = !sayOn ? "" : `<button type="button" class="say" data-say="${esc(t)}" aria-label="${esc(t)} 듣기"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg></button>`;
   return `<button type="button" class="tm" data-term="${esc(t)}">${inner}</button>${sayb}`;
+}
+/* 낱말 끝 조사(비교·중심 낱말 찾기용) */
+const JOSA_END = /(에서|에게|으로|에는|에도|은|는|이|가|을|를|에|의|도|로|와|과)$/;
+/* 바꾼 말이 바로 앞·뒤 낱말(최대 3개)과 겹치는가: "소리를 내는 [발음 기관]" → "소리를 내는 소리를 내는 몸의 부분" 같은 반복 막기 */
+function repeatsContext(o, from, easy){
+  const at = o.indexOf(from); if (at < 0) return false;
+  const clean = x => x.replace(/\[\[|\]\]|‸/g, " ");
+  const before = clean(o.slice(0, at)).trim().split(/\s+/).filter(Boolean), after = clean(o.slice(at + from.length)).trim().split(/\s+/).filter(Boolean);
+  const ew = easy.trim().split(/\s+/).filter(Boolean);
+  const stem = w => w.replace(/[^가-힣A-Za-z0-9]/g, "").replace(JOSA_END, "");
+  const same = (a, b) => a.length === b.length && a.every((w, i) => stem(w) && stem(w) === stem(b[i]));
+  for (let k = 1; k <= 3; k++){
+    if (ew.length >= k && before.length >= k && same(before.slice(-k), ew.slice(0, k))) return true;
+    if (ew.length >= k && after.length >= k && same(after.slice(0, k), ew.slice(-k))) return true;
+  }
+  return false;
 }
 /* 원문에 바꿀 표현을 표시해 두고(토큰), 굵은 용어와 함께 HTML로 만든다 */
 function txt(key){
@@ -1186,9 +1168,10 @@ let tt; function toast(m){ const el=$("toast"); el.textContent=m; el.hidden=fals
 
 document.addEventListener("input", e => { if (e.target.id && /^a\d/.test(e.target.id)) st.qa[e.target.id] = e.target.value; });
 document.addEventListener("click", e => {
-  const edb = e.target.closest("[data-edrid],[data-edcx],[data-edmore],[data-edvis]");
+  const edb = e.target.closest("[data-edrid],[data-edcx],[data-edmore],[data-edvis],[data-edterm]");
   if (edb){ e.stopPropagation();
-    if (edb.dataset.edrid) openSwapEdit(edb.dataset.edrid);
+    if (edb.dataset.edterm) openTermEdit(edb.dataset.edterm);
+    else if (edb.dataset.edrid) openSwapEdit(edb.dataset.edrid);
     else if (edb.dataset.edcx) openAnnSheet({id:edb.dataset.edcx});
     else if (edb.dataset.edmore) openMoreEdit(edb.dataset.edmore);
     else openVisEdit(edb.dataset.edvis);
@@ -1369,7 +1352,7 @@ function makeHTML(){
     <div class="ltabs">${groups.map(k=>`<button type="button" data-mkg="${k}" aria-pressed="${st.mkG===k}">${STU[k].name}${st.approved.has(k)?`<span class="apv y">승인</span>`:""}<small>${STU[k].lv} · ${STU[k].ln}</small></button>`).join("")}</div>
     <div class="stat"><div><b>${g.sw}</b><span>바꾼 표현</span></div><div><b>${g.terms}</b><span>모국어 병기 용어</span></div><div><b>${g.vis}</b><span>그림</span></div></div>
     
-    ${st.doc ? `<div id="dcheck"></div>` : ""}<p class="note" style="color:var(--sub)${st.doc ? ";display:none" : ""}">밑줄·설명·쉬운 표현·그림을 누르면 펼쳐지고, 펼친 곳의 <b style="color:var(--title)">수정하기</b>로 고칠 수 있습니다. <b style="color:var(--title)">지면의 글자를 드래그하면 밑줄·설명·시각 자료를 직접 추가할 수 있습니다.</b>${myRev||myEd?` 이 그룹에서 되돌림 ${myRev}건, 직접 수정 ${myEd}건.`:""}</p>${st.doc ? st.doc.notes.map(x=>`<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("") : ""}</div>`;
+    <p class="note" style="color:var(--sub)${st.doc ? ";display:none" : ""}">밑줄·설명·쉬운 표현·그림을 누르면 펼쳐지고, 펼친 곳의 <b style="color:var(--title)">수정하기</b>로 고칠 수 있습니다. <b style="color:var(--title)">지면의 글자를 드래그하면 밑줄·설명·시각 자료를 직접 추가할 수 있습니다.</b>${myRev||myEd?` 이 그룹에서 되돌림 ${myRev}건, 직접 수정 ${myEd}건.`:""}</p>${st.doc ? st.doc.notes.map(x=>`<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("") : ""}</div>`;
 }
 function reviewBar(){
   const groups = [...st.mkGroups], ok = st.approved.has(st.mkG), all = groups.every(k=>st.approved.has(k));
@@ -1382,15 +1365,33 @@ function runMake(){
   const tick = () => { st.mkStep++; if (st.mkStep >= MK_STEPS.length){ st.mk = "review"; st.mkG = [...st.mkGroups][0]; render(); return; } render(); setTimeout(tick, 550); };
   setTimeout(tick, 550);
 }
+/* 핵심어 뜻·모국어 고치기: 뜻은 모든 그룹, 모국어는 지금 보는 그룹의 언어에 적용 */
+function openTermEdit(t){
+  const g = st.mkG, s = STU[g], d = T[t] || (T[t] = {easy: ""});
+  $("sheetIn").innerHTML = `<div class="t"><span>핵심어 뜻·모국어 수정</span><button type="button" class="x" id="sheetX" aria-label="닫기">✕</button></div>
+   <dl><dt>핵심어</dt><dd>${esc(t)}</dd><dt>대상</dt><dd>${esc(s.name)} · ${esc(s.ln)}</dd></dl>
+   <label class="note" for="tmEasy">뜻</label><input class="editin" id="tmEasy" value="${esc(d.easy || "")}">
+   <label class="note" for="tmGl">${esc(s.ln)}</label><input class="editin" id="tmGl" value="${esc(glossOf(t, s.lang) || "")}">
+   <div class="row"><button type="button" class="btn p" id="tmSave">고친 표현 저장</button></div>`;
+  $("sheet").hidden = false; $("sheetX").onclick = closeSheet;
+  $("tmSave").onclick = () => {
+    const easy = $("tmEasy").value.trim(), gl = $("tmGl").value.trim();
+    if (!easy){ toast("뜻을 입력해 주세요"); return; }
+    d.easy = easy; d[s.lang] = gl;
+    Object.keys(STU).forEach(k => { if (k === g || STU[k].lang === s.lang) st.approved.delete(k); });
+    closeSheet(); render(); toast("고친 표현을 저장했어요");
+  };
+}
 function openSwapEdit(rid){
   const [g, key, o] = rid.split("|");
   const sw = P[key].sw.find(x=>x[0]===o && x[2].includes(g)) || P[key].sw.find(x=>x[0]===o); const rev = st.reverted.has(rid); const cur = st.edits[rid] || sw[1];
+  const note = isNote(o, sw[1]), shown = note ? noteText(o, cur) : cur;   /* 설명은 설명 글만 고치게 함 */
   $("sheetIn").innerHTML = `<div class="t"><span>${isNote(o,sw[1])?"추가 설명 수정":"밑줄(쉬운 표현) 수정"}</span><button type="button" class="x" id="sheetX" aria-label="닫기">✕</button></div>
    <dl><dt>원문</dt><dd>${esc(o)}</dd><dt>${isNote(o,sw[1])?"추가 설명":"바꾼 표현"}</dt><dd>${rev?"(원문으로 되돌림)":esc(isNote(o,sw[1])?noteText(o,cur):cur)}</dd><dt>대상</dt><dd>${STU[g].name} · ${STU[g].lv}</dd>${(()=>{const i=swapInfo(g,o,sw[1]); return `<dt>위계</dt><dd>${i.tier} ${TIER_NAME[i.tier]||""}${i.m!=null?` · 숙달 M${i.m}`:""}</dd><dt>처리</dt><dd>${i.op==="elaborate"?"원문 유지 + 추가 설명":"쉬운 표현으로 교체"}</dd><dt>근거</dt><dd>${esc(i.why)}</dd>${i.review?`<dt></dt><dd><span class="pill2 r">교사 확인 필요</span></dd>`:""}`;})()}</dl>
-   <label class="note" for="editIn">직접 고치기</label><input class="editin" id="editIn" value="${esc(cur)}">
+   <label class="note" for="editIn">${note ? "설명 고치기" : "직접 고치기"}</label><input class="editin" id="editIn" value="${esc(shown)}">
    <div class="row"><button type="button" class="btn p" id="edSave">고친 표현 저장</button>${rev?`<button type="button" class="btn s" id="edRestore">바꾼 표현 다시 쓰기</button>`:`<button type="button" class="btn s" id="edRevert">원문으로 되돌리기</button>`}</div>`;
   $("sheet").hidden = false; $("sheetX").onclick = closeSheet;
-  $("edSave").onclick = () => { const v = $("editIn").value.trim(); if (!v){ toast("고칠 표현을 입력해 주세요"); return; } if (v===sw[1]) delete st.edits[rid]; else st.edits[rid] = v; st.reverted.delete(rid); st.approved.delete(g); closeSheet(); render(); toast("고친 표현을 저장했어요"); };
+  $("edSave").onclick = () => { const raw = $("editIn").value.trim(); if (!raw){ toast("고칠 표현을 입력해 주세요"); return; } const v = note ? `${o}(${raw})` : raw; if (v===sw[1]) delete st.edits[rid]; else st.edits[rid] = v; st.reverted.delete(rid); st.approved.delete(g); closeSheet(); render(); toast("고친 표현을 저장했어요"); };
   const rv = $("edRevert"); if (rv) rv.onclick = () => { st.reverted.add(rid); st.approved.delete(g); closeSheet(); render(); toast("원문으로 되돌렸어요"); };
   const rs = $("edRestore"); if (rs) rs.onclick = () => { st.reverted.delete(rid); closeSheet(); render(); };
 }
@@ -1619,14 +1620,6 @@ function keySample(key){
   return call;
 }
 async function getAI(){ const s = await SAMPLEP; if (s) return s; const k = getKey(); return k ? keySample(k) : null; }
-function keyHTML(){
-  if (HOSTAI !== false) return "";
-  const k = getKey();
-  return `<div class="up"><h3>4. AI 연결 (Anthropic API 키)</h3>
-    ${k ? `<div class="krow"><span class="kok">키 저장됨 · ${esc(k.slice(0, 10))}…${esc(k.slice(-4))}</span><button type="button" class="btn s" id="kDel">키 지우기</button></div>`
-        : `<div class="krow"><input type="password" id="kIn" placeholder="sk-ant-로 시작하는 키" autocomplete="off" spellcheck="false" aria-label="Anthropic API 키"><button type="button" class="btn s" id="kSave">저장</button></div>`}
-    <p class="note">claude.ai 밖에서 열린 화면이라, 직접 발급한 Anthropic API 키로 Claude를 부릅니다. 키는 이 브라우저에만 저장되고 Anthropic 서버로만 바로 보내집니다. 사용한 만큼 키 계정에 요금이 나오며, 공용 컴퓨터에서는 다 쓴 뒤 ‘키 지우기’를 눌러 주세요. 예시 자료는 키 없이 볼 수 있어요.</p></div>`;
-}
 const DLP = (window.claude && typeof window.claude.use === "function") ? window.claude.use("downloads").catch(() => null) : Promise.resolve(null);
 let mkCtl = null, EXPORT = null, SAFE = null;
 
@@ -1674,7 +1667,7 @@ function fillPages(extraLast){
 const cqOf = W => v => (v / W * 100).toFixed(3) + "cqw";
 function grp(){ return st.stu; }
 function blockHasChange(b, p, g){
-  if (p.keep) return false;
+  if (p.keep) return p.aud !== "teacher" && /\[\[/.test(p.o);   /* 원본 유지 블록은 핵심어 병기만 */
   if (p.sw.some(x => x[2].includes(g))) return true;
   if (/\[\[/.test(p.o)) return true;
   if ((st.ann[g] || []).some(a => a.key === b.key)) return true;
@@ -1720,11 +1713,12 @@ function blockDiv(pg, b, p, g, cq, o){
   else if (FITMODE[g + "|" + b.key] && FITMODE[g + "|" + b.key].safe) mode = "safe";
   else mode = (masked || changed) ? "" : "orig";
   if (b.pic && (stuView || st.view !== "make")) return "";
-  const cls = `dab${o.tch ? " tch" : ""}${o.first ? " tfirst" : ""}${mode === "orig" || mode === "crop" ? " dorig" : ""}${mode === "safe" ? " dsafe" : ""}${!masked && (mode === "" || mode === "safe") ? " dcover" : ""}`;
+  const cls = `dab${o.tch ? " tch" : ""}${o.first ? " tfirst" : ""}${mode === "orig" || mode === "crop" ? " dorig" : ""}${mode === "safe" ? " dsafe" : ""}${!masked && (mode === "" || mode === "safe") ? " dcover" : ""}${b.onPic ? " dpic" : ""}`;
   const roomH = (mode === "" || mode === "safe") ? (b.room || 0) : 0;
-  const pos = `left:${(b.x / W * 100).toFixed(3)}%;top:${(top / pg.h * 100).toFixed(3)}%;width:${(w / W * 100).toFixed(3)}%;height:${cq(H + roomH)}${!masked && (mode === "" || mode === "safe") && b.bgc ? `;--bgc:${b.bgc}` : ""}`;
+  const pos = `left:${(b.x / W * 100).toFixed(3)}%;top:${(top / pg.h * 100).toFixed(3)}%;width:${(w / W * 100).toFixed(3)}%;height:${cq(H + roomH)}${!masked && (mode === "" || mode === "safe") && b.bgc ? `;--bgc:${b.bgc}` : ""}${b.bgc ? `;--hl:${b.bgc}` : ""}`;
   const ind = b.ind > b.fs * 0.3 ? `;text-indent:${cq(b.ind)}` : "";
-  const fstyle = `font-size:calc(${cq(b.fs)} * var(--fz,1));line-height:calc(${cq(b.lh * b.fs)} * var(--lz,1));color:${b.color}${b.weight ? `;font-weight:${b.weight}` : ""}${ind}`;
+  const cover = !masked && (mode === "" || mode === "safe");
+  const fstyle = `font-size:calc(${cq(b.fs)} * var(--fz,1));line-height:calc(${cq(b.lh * b.fs)} * var(--lz,1));color:${b.color}${b.weight ? `;font-weight:${b.weight}` : ""}${ind}${cover ? `;min-height:${cq(H)}` : ""}`;   /* 가림 바탕이 원래 글 영역 전체를 덮도록 */
   const ff = b.ff && b.ff !== "sans" ? ` ff-${b.ff}` : "";
   if (mode === "orig" || mode === "crop"){
     const pad = b.fs * 0.15;
@@ -1735,7 +1729,10 @@ function blockDiv(pg, b, p, g, cq, o){
   }
   SAFE = mode === "safe" ? new Set(FITMODE[g + "|" + b.key].safe) : null;
   const wrapEl = b.wrap ? `<span class="dfl" style="width:${cq(Math.max(0, b.x + w - b.wrap.x))};height:${cq(Math.min(b.wrap.y1, top + H + roomH) - top)};shape-outside:inset(${cq(Math.max(0, b.wrap.y - top))} 0 0 0)"></span>` : "";
-  const inner = wrapEl + txt(b.key);
+  /* 왼쪽 걸림 자리: 높이만 차지하는 빈 띄움(0폭) 뒤에 걸림 너비만큼 띄움을 놓아, 그 줄들만 옆으로 비킴 */
+  let lw = "", yAt = top;
+  (b.lwrap || []).forEach(l => { const gap = Math.max(0, l.y - yAt); lw += `<span class="dfll" style="width:0;height:${cq(gap)}"></span><span class="dfll" style="width:${cq(Math.max(0, l.x1 - b.x))};height:${cq(Math.max(0, l.y1 - Math.max(l.y, yAt)))}"></span>`; yAt = Math.max(yAt, l.y1); });
+  const inner = lw + wrapEl + txt(b.key);
   SAFE = null;
   const mo = null;   /* 문장 전체를 바꿔 쓴 글은 보여 주지 않음. +는 설명이 필요한 낱말 옆에만 */
   let more = "";
@@ -1850,7 +1847,7 @@ function popFor(el){
   if (tm){
     const t = tm.dataset.term, d = T[t] || {}, s = STU[g], gl = glossOf(t, s.lang);
     return `<div class="ph"><b>${esc(t)}</b><button type="button" class="pa" data-psay="${esc(t)}" aria-label="듣기">🔊</button></div>${row("뜻", esc(d.easy || ""))}${gl ? row(esc(s.ln), esc(gl), "l1") : ""}
-      ${st.view === "student" ? `<div class="pb"><button type="button" class="pa" data-psave="${esc(t)}">모르는 단어 저장</button><button type="button" class="pa" data-pknown="${esc(t)}">${st.known.has(t) ? "아는 단어 취소" : "아는 단어"}</button></div>` : ""}`;
+      ${ed ? edb("data-edterm", t) : ""}${st.view === "student" ? `<div class="pb"><button type="button" class="pa" data-psave="${esc(t)}">모르는 단어 저장</button><button type="button" class="pa" data-pknown="${esc(t)}">${st.known.has(t) ? "아는 단어 취소" : "아는 단어"}</button></div>` : ""}`;
   }
   if (mo){
     const key = mo.dataset.dmore, m = moreOf(key, g); if (!m) return null;
@@ -2113,6 +2110,19 @@ function layoutAids(pg){
       room = Math.min(room, o.y - bottom - b.fs * 0.25);
     });
     b.room = Math.max(0, Math.min(room, b.fs * 6));
+    /* 왼쪽 걸림: 문단 왼쪽 부분에 걸친 번호 표시·작은 도형·그림 자리를 비워 두고 글이 옆으로 돌아 흐르게 함 */
+    const markB = pg.blocks.filter(o => o.key !== b.key && (o.pic || /^\s*([0-9]{1,2}|[①-⑳❶-❿➊-➓])\s*$/.test(o.text))).map(o => ({x: o.x, x1: o.x + o.w, y: o.y, y1: o.y + o.h}));
+    const lefts = [...obs.filter(o => !o.k), ...markB].filter(o => {
+      const w = o.x1 - o.x, h = o.y1 - o.y;
+      if (o.sh && (w > b.fs * 3.5 || h > b.fs * 3.5)) return false;            /* 큰 상자(배경)는 제외 */
+      return o.x <= b.x + b.fs * 1.2 && o.x1 > b.x + b.fs * 0.15 && o.x1 < b.x + b.w * 0.45 && o.y < bottom + (b.room || 0) && o.y1 > top + b.fs * 0.1;
+    }).map(o => ({x1: o.x1 + b.fs * 0.3, y: Math.max(top, o.y - b.fs * 0.1), y1: o.y1 + b.fs * 0.1})).sort((p, q) => p.y - q.y);
+    if (lefts.length){
+      const merged = [];
+      lefts.forEach(l => { const m = merged[merged.length - 1]; if (m && l.y <= m.y1){ m.y1 = Math.max(m.y1, l.y1); m.x1 = Math.max(m.x1, l.x1); } else merged.push({...l}); });
+      b.lwrap = merged;
+      if (merged.some(l => l.y < top + b.lh * b.fs * 0.8)) b.ind = 0;     /* 첫 줄은 빈 자리가 들여쓰기를 대신함 */
+    }
     /* 원본에서 줄이 짧아진 구간(오른쪽 그림·도표·글 때문에)을 그대로 비워 둠: 줄 오른쪽 끝으로 판단 */
     const lr = (b.lr || []).slice().sort((p, q) => p[1] - q[1]);
     if (lr.length >= 2){
@@ -2176,24 +2186,35 @@ async function readPage(L, pdf, no){
   /* 그림 영역 안이라도 바탕이 고른 곳의 긴 문장(그림 위 안내문 등)은 일반 글로 다룸. 말풍선·라벨처럼 짧은 글은 원본 그대로 */
   const fsw = items.filter(it => !it.ws && !it.fig).map(it => it.fs).sort((a, b) => a - b), med = fsw.length ? fsw[fsw.length >> 1] : 10;
   blocks.forEach(b => {
-    if (!b.pic || !b.figOnly) return;
-    const perLine = b.text.replace(/\s/g, "").length / b.n;
-    /* 말풍선처럼 문장으로 된 글도 다시 쓸 수 있게 함. 도표 라벨처럼 짧은 낱말·숫자는 원본 그대로 */
-    const flat = b.text.replace(/[\s‸]/g, ""), chars = flat.length, digits = (flat.match(/[0-9]/g) || []).length;
-    const sentence = chars >= 8 && digits / chars < 0.15 && /[\s‸]/.test(b.text.trim()) && /[다요어지까네야게죠군나라자]\s*[.?!…~]*\s*$/.test(b.text.trim());
-    if (!(perLine >= 22 && b.fs >= med * 0.9) && !(sentence && b.fs >= med * 0.75)) return;
-    const its = b.its.map(it => ({...it, fig: false, onImg: false}));
-    maskText(full, its, S, bare, fullData);
-    if (its.some(it => it.onImg)) return;
-    const cc = inkColor(full, bare, S, b.x, b.y, b.w, b.h);
-    b.pic = false; if (cc) b.color = `rgb(${cc.join(",")})`;
+    if (!b.pic) return;
+    const flat = b.text.replace(/[\s‸]/g, ""), chars = flat.length, digits = (flat.match(/[0-9]/g) || []).length, han = (flat.match(/[가-힣]/g) || []).length;
+    /* ① 말풍선처럼 바탕이 고른 곳의 문장: 바탕에서 글자를 지우고 그 자리에 다시 씀 */
+    if (b.figOnly){
+      const perLine = chars / b.n;
+      const sentence = chars >= 8 && digits / chars < 0.15 && /[\s‸]/.test(b.text.trim()) && /[다요어지까네야게죠군나라자]\s*[.?!…~]*\s*$/.test(b.text.trim());
+      if ((perLine >= 22 && b.fs >= med * 0.9) || (sentence && b.fs >= med * 0.75)){
+        const its = b.its.map(it => ({...it, fig: false, onImg: false}));
+        maskText(full, its, S, bare, fullData);
+        if (!its.some(it => it.onImg)){
+          const cc = inkColor(full, bare, S, b.x, b.y, b.w, b.h);
+          b.pic = false; if (cc) b.color = `rgb(${cc.join(",")})`;
+          return;
+        }
+      }
+    }
+    /* ② 삽화 위 글: 그림은 그대로 두고 글 뒤에 흰 바탕을 깔아 다시 씀(숫자·한 글자 이름표는 원본 그대로) */
+    if (han >= 2 && digits / chars < 0.3){
+      b.pic = false; b.onPic = true;
+      const c = (String(b.color).match(/\d+/g) || []).map(Number);
+      if (c.length >= 3 && 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2] > 150) b.color = "rgb(34,34,34)";   /* 밝은 글자는 흰 바탕에서 안 보이므로 진하게 */
+    }
   });
   blocks = blocks.map((b, i) => {
     const {its, figOnly, ...rest} = b;
     const m = ringMode(fullData, full.cv.width, full.cv.height, Math.floor(b.x * S), Math.floor(b.y * S), Math.ceil((b.x + b.w) * S), Math.ceil((b.y + b.h) * S), 3);
     const lr = [];
     [...its].sort((p, q) => p.y - q.y || p.x - q.x).forEach(it => { const L = lr.find(r => Math.abs(r[1] - it.y) < it.fs * 0.5); if (L){ L[2] = Math.max(L[0] + L[2], it.x + it.w) - Math.min(L[0], it.x); L[0] = Math.min(L[0], it.x); L[3] = Math.max(L[3], it.fs); } else lr.push([it.x, it.y, it.w, it.fs]); });
-    return {...rest, ib: its.map(it => [it.x, it.y, it.w, it.fs]), lr, bgc: m ? `rgb(${m.rgb.join(",")})` : "#fff", key: `p${no}b${i+1}`};
+    return {...rest, ib: its.map(it => [it.x, it.y, it.w, it.fs]), lr, bgc: m && !b.onPic ? `rgb(${m.rgb.join(",")})` : "#fff", key: `p${no}b${i+1}`};
   });
   const chars = blocks.reduce((n, b) => n + b.text.replace(/\s/g, "").length, 0);
   const boxes = sh.shapes.filter(s => (s.rect || s.segs <= 10) && (s.x1 - s.x) > 20 && (s.y1 - s.y) > 10 && (s.x1 - s.x) * (s.y1 - s.y) < sh.area * 0.6);
@@ -2223,7 +2244,7 @@ async function buildBgs(pg){
   const isT = b => P[b.key] && P[b.key].aud === "teacher";
   pg.bgs = {}; pg.masked = {};
   for (const g of Object.keys(STU)){
-    const set = new Set(pg.blocks.filter(b => !b.pic && P[b.key] && blockHasChange(b, P[b.key], g)).map(b => b.key));
+    const set = new Set(pg.blocks.filter(b => !b.pic && !b.onPic && P[b.key] && blockHasChange(b, P[b.key], g)).map(b => b.key));   /* 삽화 위 글은 바탕을 지우지 않음(흰 바탕으로 가림) */
     pg.masked[g] = set;
     const mk = (stu) => {
       const cv = document.createElement("canvas"); cv.width = CW; cv.height = CH;
@@ -2280,7 +2301,7 @@ function pagePrompt(pg, subj, known){
 - 학습자(위계별 숙달도 M1~6, 6이면 그 위계는 혼자 읽음): ${groupSummary()}
 - audience: 교사용 지도서에만 있는 요소(활동 설정 의도, 지도 방안·지도 유의점, 예시 답·정답·해설·채점 기준, 교사용 주석·참고 자료 안내)는 "teacher", 학생이 읽는 본문·활동·문제는 "student". 글자색·위치(교사용은 보통 여백이나 색 상자에 있다)와 표지어를 참고한다. teacher 블록은 terms·hard·easy_low·easy_mid·visual을 비운다.
 - protect: 바꾸면 안 되는 블록이면 true — 인용된 문학 작품 원문(시·소설·고전 등), 지문의 원문 인용, 문제의 보기·선택지, 수식·화학식, 표의 수치, 출처 표기. protect 블록은 terms·hard·easy·visual을 비운다.
-- 핵심어(terms): 그 단원의 교과 개념어를 고른다. 일반 어휘·고유명사·숫자·수식은 제외, 한 블록 최대 3개, 이 쪽 전체 최대 10개. 전체 terms에 쉬운 뜻과 중국어(zh)·우즈베크어(uz)·몽골어(mn) 대역을 쓴다. 대역은 그 교과에서 실제로 쓰는 용어로.
+- 핵심어(terms): 그 단원의 교과 개념어와, 글을 이해하는 데 꼭 필요한 핵심 낱말·교과어(예: 효도, 비교, 감상, 작품, 현실)를 고른다. 학생 화면에서 이 낱말 위에 모국어 뜻이 함께 적힌다. 고유명사·숫자·수식과 아주 쉬운 일상어(예: 사람, 하다)는 제외, 한 블록 최대 5개, 이 쪽 전체 최대 20개. 같은 낱말이 여러 블록에 나오면 나오는 블록마다 terms에 넣는다. 제목·소제목·그림 이름표에 나오는 교과어(예: 자음자, 모음자)도 빠짐없이 넣는다. 전체 terms에 쉬운 뜻과 중국어(zh)·우즈베크어(uz)·몽골어(mn) 대역을 쓴다. 대역은 그 교과에서 실제로 쓰는 용어로.
 - 위계 코드(reconstruction_rules hierarchy): "1" 생활 한국어 / "2-1" 학습 도구(교실 어휘: 활동, 설명하다, 빈칸 등) / "2-2" 학습 도구(사고 도구: 비교하다, 판단하다, 근거 등) / "2-3" 학습 도구(범용 지식 어휘: 개인, 법률, 제출 등) / "3" 교과 적응 한국어(그 교과에서만 쓰는 표현).
 - hard[].from: 블록 text에 글자 그대로 들어 있는 2~14자 표현(조사·어미 포함 가능). 핵심어·숫자·날짜·단위·고유명사·따옴표 속 인용을 포함하면 안 된다. 블록당 최대 10개. 생활 한국어(1)라도 읽기 2 학습자가 모를 만한 표현이면 고른다.
 - hard[].easy: 같은 자리에 넣어도 문장이 자연스러운 쉬운 표현(활용형을 맞추고, 되도록 원래 표현보다 길지 않게). 모든 hard에 easy를 쓴다. hard[].note: 15자 이내 짧은 설명.
@@ -2340,26 +2361,53 @@ const PROTECT_RE = /[0-9０-９]|[=+×÷±<>≤≥√∑∫∞^_′″°℃%‰]
 const TIERS = ["1", "2-1", "2-2", "2-3", "3"];
 /* AI 답 → 기존 데이터 구조(P·T·SW_TIER·VT). 그룹별 적용은 진단 결과(위계별 숙달도)로 코드가 정한다:
    M6 이상 유지 · M4~5 원문 + 설명(상세화) · M3 이하 쉬운 표현으로 교체 · 교과 적응(3)은 원문 유지 + 설명 */
+/* 제목·이름표(짧은 글 덩어리)의 끝 낱말 = 중심 낱말. 조사를 떼고, 이미 핵심어인 것은 뺌 */
+function labelHeads(pages, termDefs){
+  const out = new Set();
+  pages.forEach(pg => pg.blocks.forEach(b => {
+    const t = b.text.replace(/[‸\s]+/g, " ").trim();
+    if (b.n > 2 || t.length > 24 || !/[가-힣]/.test(t)) return;
+    const w = (t.replace(/[^가-힣\s]/g, " ").trim().split(/\s+/).pop() || "").replace(JOSA_END, "");
+    if (w.length >= 2 && !termDefs[w]) out.add(w);
+  }));
+  return [...out].slice(0, 30);
+}
+function headTermPrompt(words, subj){
+  return `다음은 ${subj.subject} 교과서 제목·이름표에 나온 중심 낱말이다. 한국어를 배우는 학생에게 줄 쉬운 뜻(15자 안팎)과 중국어(zh)·우즈베크어(uz)·몽골어(mn) 대역을 쓴다. 대역은 그 교과에서 실제로 쓰는 용어로. 아주 쉬운 일상어(예: 사람, 하늘)는 빼도 된다.
+낱말: ${words.join(", ")}
+형식: {"terms":{"낱말":{"easy":"","zh":"","uz":"","mn":"","tier":"3"}}}`;
+}
 function buildData(pages, res, termDefs){
   const P2 = {}, T2 = {}, SWT = {}, VT2 = {}, groups = Object.keys(STU);
   let nsw = 0, nkeep = 0;
+  /* 핵심어 표시: 이 블록에서 고른 것 + 자료 전체에서 정한 핵심어를 나오는 곳마다 모두 [[ ]]로 */
+  const markTerms = (o, terms) => {
+    [...new Set([...(terms || []).map(String), ...Object.keys(termDefs)])].filter(t => t.length > 1 && o.includes(t) && !PROTECT_RE.test(t)).sort((a, c) => c.length - a.length)
+      .forEach(t => { let i, guard = 0; while ((i = findFree(o, t)) >= 0 && guard++ < 50) o = o.slice(0, i) + "[[" + t + "]]" + o.slice(i + t.length); });
+    return o;
+  };
   pages.forEach(pg => pg.blocks.forEach(b => {
     const r = res[b.key] || {};
     let ji = 0; const J = Array.isArray(r.joins) ? r.joins : [];
     let o = b.text.replace(/‸/g, () => (J[ji++] === true ? " " : ""));
     const role = ["title","heading","body","caption","question","other"].includes(r.role) ? r.role : "body";
     const aud = r.audience === "teacher" ? "teacher" : "student";
-    if (b.pic || !res[b.key]){ P2[b.key] = {o, sw: [], role: b.pic ? "other" : role, aud: res[b.key] ? aud : "student", keep: true}; nkeep++; return; }
-    if (aud === "teacher" || r.protect === true || role === "other"){ P2[b.key] = {o, sw: [], role, aud, keep: true}; if (r.protect) nkeep++; return; }
-    /* 핵심어는 자료 전체에서 정한 것을 나오는 곳마다 모두 표시 */
-    [...new Set([...(r.terms || []).map(String), ...Object.keys(termDefs)])].filter(t => t.length > 1 && o.includes(t) && !PROTECT_RE.test(t)).sort((a, c) => c.length - a.length)
-      .forEach(t => { let i, guard = 0; while ((i = findFree(o, t)) >= 0 && guard++ < 50) o = o.slice(0, i) + "[[" + t + "]]" + o.slice(i + t.length); });
+    if (b.pic || !res[b.key]){ P2[b.key] = {o: b.pic ? o : markTerms(o, []), sw: [], role: b.pic ? "other" : role, aud: res[b.key] ? aud : "student", keep: true}; nkeep++; return; }
+    if (aud === "teacher" || r.protect === true || role === "other"){ P2[b.key] = {o: aud === "teacher" ? o : markTerms(o, r.terms), sw: [], role, aud, keep: true}; if (r.protect) nkeep++; return; }
+    o = markTerms(o, r.terms);
     const sw = [];
     for (const h of (r.hard || []).slice(0, 10)){
       if (!h || typeof h.from !== "string" || h.from.length < 2 || !TIERS.includes(String(h.tier))) continue;
       if (PROTECT_RE.test(h.from) || findFree(o, h.from) < 0) continue;
-      const tier = String(h.tier), easy = (h.easy || "").trim(), note = (h.note || "").trim();
+      const tier = String(h.tier);
+      let easy = (h.easy || "").trim(), note = (h.note || "").trim();
       if (easy && PROTECT_RE.test(easy) && !PROTECT_RE.test(h.from)) continue;
+      /* 같은 말 반복 막기: 쉬운 말 = 원래 말, 설명이 원래 말·쉬운 말을 되풀이, 바꾼 말이 앞뒤 낱말과 겹침("옛날에 옛날에") */
+      const nz = x => String(x).replace(/[\s()（）·,.:;'"“”‘’!?~\-]/g, "");
+      if (easy && nz(easy) === nz(h.from)) easy = "";
+      if (note && (nz(note) === nz(h.from) || nz(note) === nz(easy) || nz(note).startsWith(nz(h.from)) && nz(note).length <= nz(h.from).length + 2)) note = "";
+      if (easy && repeatsContext(o, h.from, easy)) easy = "";
+      if (!easy && !note) continue;
       SWT[h.from] = tier;
       const byE = {};
       for (const g of groups){
@@ -2372,7 +2420,7 @@ function buildData(pages, res, termDefs){
         if (tier === "3") e = (m <= 3 && easy) ? easy : (note ? `${h.from}(${note})` : easy || null);
         else if (m >= 4) e = fits ? easy : (note ? `${h.from}(${note})` : easy || null);
         else e = easy || (note ? `${h.from}(${note})` : null);
-        if (!e || e === h.from) continue;
+        if (!e || nz(e) === nz(h.from)) continue;
         (byE[e] = byE[e] || []).push(g);
       }
       Object.entries(byE).forEach(([e, lv]) => { sw.push([h.from, e, lv]); nsw++; });
@@ -2482,6 +2530,16 @@ async function runReal(){
     r.blocks.forEach(b => { if (b && b.id) res[b.id] = b; });
     Object.entries(r.terms || {}).forEach(([t, d]) => { if (d && !termDefs[t]) termDefs[t] = d; });
   }
+  /* 제목·이름표의 중심 낱말(예: '모양을 본뜬 자음자'의 '자음자')은 AI가 핵심어로 고르지 않았어도 뜻·모국어를 받아 붙임 */
+  const heads = labelHeads(textPages, termDefs);
+  if (heads.length && !stopped()){
+    S(3, "on", `제목·이름표 낱말 ${heads.length}개의 뜻과 모국어를 찾는 중`);
+    try {
+      const r = await sample.json(headTermPrompt(heads, subj), {modelTier: "quick", signal: ctl.signal});
+      Object.entries((r && r.terms) || {}).forEach(([t, d]) => { if (d && d.easy && heads.includes(t) && !termDefs[t]) termDefs[t] = d; });
+    } catch(e){ if (FATAL.has(e && e.code) || stopped()) return fail(3, sampleErr(e)); }
+  }
+  if (stopped()) return;
   S(3, "done", `${textPages.length - aiFail.length}쪽을 바꿨어요 · 꼭 알아야 할 낱말 ${Object.keys(termDefs).length}개${aiFail.length ? ` · 바꾸지 못해 원래대로 둔 쪽: ${aiFail.join(", ")}쪽` : ""}`);
   S(4, "on");
   let built;
@@ -2510,23 +2568,6 @@ function progHTML(){
 function docMeta(){
   const d = st.doc;
   return `<dt>파일</dt><dd>${esc(d.name)}</dd><dt>교과·단원</dt><dd>${esc(d.subject)} · ${esc(d.unit)}</dd><dt>쪽</dt><dd>${d.from}~${d.to}쪽 (전체 ${d.total}쪽)</dd>`;
-}
-/* 빠짐 점검: 분석한 글 블록 수와 화면에 그린 수를 쪽마다 비교 */
-function checkDoc(){
-  if (!st.doc || st.view !== "make") return;
-  const box = $("dcheck"); if (!box) return;
-  const out = [], info = [];
-  pageEls().forEach((el, i) => {
-    const pg = st.doc.pages[i]; if (!pg || pg.fallback || el.hidden) return;
-    const want = pg.blocks.filter(b => !b.pic).length, got = el.querySelectorAll(".dab:not(.dorig), .dab.dorig .dtx").length;
-    if (got < want) out.push(`${pg.no}쪽에서 문단 ${want - got}개를 화면에 그리지 못했어요. 그 자리는 원본 그대로 보여요.`);
-    const kept = [...el.querySelectorAll(".dab.dorig")].filter(x => FITMODE[st.mkG + "|" + x.dataset.k] === "orig").length;
-    const z95 = el.querySelectorAll('.dab[data-fz="0.95"]').length, z90 = el.querySelectorAll('.dab[data-fz="0.9"]').length, lz = [...el.querySelectorAll(".dab[data-lz]")].filter(x => x.dataset.lz !== "1").length;
-    const safeN = el.querySelectorAll(".swap.safe").length;
-    if (z95 || z90 || lz || safeN) info.push(`${pg.no}쪽: ${[z95 ? `글자 95% 문단 ${z95}개` : "", z90 ? `글자 90% 문단 ${z90}개` : "", lz ? `줄 간격 줄인 문단 ${lz}개` : "", safeN ? `자리가 좁아 눌러서 보기로 둔 표현 ${safeN}개` : ""].filter(Boolean).join(" · ")}`);
-    if (kept) out.push(`${pg.no}쪽: 바꾼 내용이 원래 자리에 들어가지 않아 원본 그대로 둔 문단 ${kept}개`);
-  });
-  box.innerHTML = out.map(x => `<div class="warn"><b>!</b><span>${esc(x)}</span></div>`).join("");
 }
 document.addEventListener("click", e => {
   const id = e.target.id;
@@ -2660,7 +2701,7 @@ if (document.fonts){
 const renderBase = render; let POPKEY = null;
 render = function(){
   const pp = $("dpop"), was = pp && !pp.hidden ? POPKEY : null;
-  closePop(); renderBase(); if (st.doc){ fitPages(); checkDoc(); }
+  closePop(); renderBase(); if (st.doc) fitPages();
   if (was){ try { const el = document.querySelector(was), h = el && popFor(el); if (h) showPop(el, h); } catch(e){} }
 };
 
